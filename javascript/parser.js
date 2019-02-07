@@ -1,4 +1,12 @@
-Papa.parse("https://docs.google.com/spreadsheets/d/e/2PACX-1vRCmu8vTzD_R7L2iqEE0gdD43zbEnTUv5-_f6cHz1zX16JN6c2sdWKagLuOWPO8HBnbghfmInxWNwSz/pub?output=csv", {
+/*
+	This script loads the 8BallTV Schedule CSV file and determines
+	which clip file to play and the time at which to start playback.
+*/
+const CSV_FILE_URL = "https://docs.google.com/spreadsheets/d/e" +
+											"/2PACX-1vRCmu8vTzD_R7L2iqEE0gdD43zbEnTUv5-" +
+											"_f6cHz1zX16JN6c2sdWKagLuOWPO8HBnbghfmInxWN" +
+											"wSz/pub?output=csv";
+Papa.parse( CSV_FILE_URL, {
 	download: true,
 	complete: results => {
 		findFileNameAndCalculatePlaybackStartTime(results);
@@ -7,12 +15,11 @@ Papa.parse("https://docs.google.com/spreadsheets/d/e/2PACX-1vRCmu8vTzD_R7L2iqEE0
 
 /*
 	A callback function that gets called when the 8BallTV scheduling CSV
-	file has been parsed. It first finds the file name for the current
-	clip, which will be used to provide the video player with the correct
-	source URL for the clip. The function then finds at which time to
-	play the clip.
+	file has been parsed.
 
-
+	It first finds the file name for the current clip, which will be used
+	to provide the video player with the correct source URL for the clip.
+	The function then finds at which time to play the clip.
 */
 function findFileNameAndCalculatePlaybackStartTime(results) {
 	const date = new Date();
