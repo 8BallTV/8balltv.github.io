@@ -12,7 +12,6 @@ export function onPageLoad() {
 		download: true,
 		complete: csvParseResults => {
 			const currentTimeDateObject = new Date();
-			console.log('parser');
 			findFileNameAndCalculatePlaybackStartTime(csvParseResults, currentTimeDateObject);
 		}
 	});
@@ -29,7 +28,7 @@ export function onPageLoad() {
 	to provide the video player with the correct source URL for the clip.
 	The function then finds at which time to play the clip.
 */
-export function findFileNameAndCalculatePlaybackStartTime(csvParseResults, date) {
+export function findFileNameAndCalculatePlaybackStartTime(csvParseResults, date, test) {
 	const clipDataObjectsArray = createClipDataObjectsArray(csvParseResults);
 
 	const currentClipDataObject = findCurrentClipDataObject(clipDataObjectsArray, date);
@@ -40,8 +39,10 @@ export function findFileNameAndCalculatePlaybackStartTime(csvParseResults, date)
  	// TODO: figure out if the playback time should be in seconds or milliseconds
 	const timeToStartPlayingVideo = calculatePlaybackStartTime(partNumber, date);
 
-//	console.log(`File name is: ${fileName}`);
-//	console.log(`Time to start playing video is: ${timeToStartPlayingVideo}`);
+	if(!test) {
+		console.log(`Current File name is: ${fileName}`);
+		console.log(`Current Time to start playing video is: ${timeToStartPlayingVideo}`);
+	}
 
 	return { fileName, timeToStartPlayingVideo };
 	// TODO: Figure out how to schedule an update

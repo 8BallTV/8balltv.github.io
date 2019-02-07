@@ -12,7 +12,7 @@ function batchTestRunner(csvParseResults) {
 		const currentTestCase = testCases[i];
 		const { time, expectedFileName, expectedtimeToStartPlayingVideo } = currentTestCase;
 
-		const actual = findFileNameAndCalculatePlaybackStartTime(csvParseResults, time);
+		const actual = findFileNameAndCalculatePlaybackStartTime(csvParseResults, time, true);
 
 		let pass = false;
 		if(expectedFileName === actual['fileName'] &&
