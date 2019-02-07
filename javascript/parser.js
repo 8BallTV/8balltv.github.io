@@ -6,10 +6,12 @@ const CSV_FILE_URL = "https://docs.google.com/spreadsheets/d/e" +
 											"/2PACX-1vRCmu8vTzD_R7L2iqEE0gdD43zbEnTUv5-" +
 											"_f6cHz1zX16JN6c2sdWKagLuOWPO8HBnbghfmInxWN" +
 											"wSz/pub?output=csv";
+
 Papa.parse( CSV_FILE_URL, {
 	download: true,
-	complete: results => {
-		findFileNameAndCalculatePlaybackStartTime(results);
+	complete: csvParseResults => {
+		const currentTimeDateObject = new Date();
+		findFileNameAndCalculatePlaybackStartTime(csvParseResults, currentTimeDateObject);
 	}
 });
 
@@ -21,9 +23,8 @@ Papa.parse( CSV_FILE_URL, {
 	to provide the video player with the correct source URL for the clip.
 	The function then finds at which time to play the clip.
 */
-function findFileNameAndCalculatePlaybackStartTime(results) {
-	const date = new Date();
-	const clipDataObjectsArray = createClipDataObjectsArray(results);
+function findFileNameAndCalculatePlaybackStartTime(csvParseResults, date) {
+	const clipDataObjectsArray = createClipDataObjectsArray(csvParseResults);
 
 	const currentClipDataObject = findCurrentClipDataObject(clipDataObjectsArray, date);
 	const fileName = currentClipDataObject.fileName;
@@ -100,8 +101,8 @@ function calculateMinutesPastMidnight(date) {
 	return date.getHours() * 60 + date.getMinutes();
 }
 
-function createClipDataObjectsArray(results) {
-	clipDataObjectsArrayWithHeader = results.data.map((data, i) => {
+function createClipDataObjectsArray(csvParseResults) {
+	clipDataObjectsArrayWithHeader = csvParseResults.data.map((data, i) => {
 		return { fileName: data[1], partNumber: data[2], title: data[3],
 						 director: data[4] };
 	});
