@@ -41,7 +41,6 @@ function generateDescriptiveErrorMessage(expectedFileName, expectedtimeToStartPl
 	colorString = "color:red";
 	console.log(`    %cExpected file name was: ${expectedFileName}`, colorString);
 	console.log(`    %cActual file name was: ${actual['fileName']}`, colorString);
-
 	console.log(`    %cExpected playback start time was: ${expectedtimeToStartPlayingVideo}`, colorString);
 	console.log(`    %cActual playback start time name was: ${actual['timeToStartPlayingVideo']}`, colorString);
 }
@@ -54,6 +53,7 @@ function generateTestCases() {
 		[ new Date('Thu, 01 Jan 2019 12:00:00'), "planet.mp3", 0 ],
 		[ new Date('Thu, 01 Jan 2019 12:15:00'), "planet.mp3", 900 ],
 		[ new Date('Thu, 01 Jan 2019 11:59:59'), "sunlight.mp3", (45 + 14) * 60 + 59],
+		[ new Date('Thu, 01 Jan 2019 01:30:00'), "future.mp3", 30 * 60],
 
 	]
 

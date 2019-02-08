@@ -17,9 +17,6 @@ export function onPageLoad() {
 	});
 }
 
-
-
-
 /*
 	A callback function that gets called when the 8BallTV scheduling CSV
 	file has been parsed.
@@ -33,9 +30,7 @@ export function findFileNameAndCalculatePlaybackStartTime(csvParseResults, date,
 
 	const currentClipDataObject = findCurrentClipDataObject(clipDataObjectsArray, date);
 	const fileName = currentClipDataObject.fileName;
-
 	const partNumber = currentClipDataObject.partNumber;
-
  	// TODO: figure out if the playback time should be in seconds or milliseconds
 	const timeToStartPlayingVideo = calculatePlaybackStartTime(partNumber, date);
 
@@ -58,38 +53,10 @@ function findCurrentClipDataObject(clipDataObjectsArray, date) {
 	return currentClipDataObject;
 }
 
-/*
-	 Calculate at which time the clip file should start playback.
-	 The partNumber tells us if the clip is in a series- e.g. if
-	 partNumber === 3, then it's the third clip in a series.
+/* Calculate at which time the clip file should start playback.
 
-	 The way this function works is best explained via example. Say it's
-	 8:52:36am, and the clip is part 2 in the series. Before proceeding
-	 convince yourself that the clip should start playback at 22 min 36
-	 seconds.
-
-	 We know that we at least need to start playback
-	 at the 15min mark (the first clip in the series occurs from the 0min
-	 to 15min mark). The variable
-	 "playbackOffSetDueToClipPositionInSeries" calculates this "offset".
-	 (2 - 1) * 15 = 15
-
-	 We then need to find how far into the 15 minute interval the clip's
-	 playback should be. We know that the first part of the clip played
-	 between 8:30am and 8:45am. So the second part should have started at
-	 8:45. If it's 8:52 now, then we're 7 minutes into the second part of
-	 the clip (52 - 45 = 7). The variable "playbackMinutesInto15MinuteInterval"
-	 represents this.
-
-	 Adding the two variables together, gives us the correct  minute
-	 at which to start the playback- 15 + 7 = 22. Now, we just need to add t
-	 he seconds to give us the precise time. Our example time is 8:52:36,
-	 so that's 36 seconds past the minute.
-
-	 If we were using a clock, this would be 22 minutes and 36 seconds.
-	 But since we're dealing with computers, lets convert it to one
-	 time unit. I chose to convert it to seconds (though we may need it
-	 in milliseconds). The playbackseconds varible represents this.
+	The partNumber tells us if the clip is in a series- e.g. if
+	partNumber === 3, then it's the third clip in a series.
 */
 function calculatePlaybackStartTime(partNumber, date) {
 	const [minutes, seconds] = [date.getMinutes(), date.getSeconds()];
