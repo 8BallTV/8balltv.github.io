@@ -29,8 +29,7 @@ export function findFileNameAndCalculatePlaybackStartTime(csvParseResults, date,
 	const clipDataObjectsArray = createClipDataObjectsArray(csvParseResults);
 
 	const currentClipDataObject = findCurrentClipDataObject(clipDataObjectsArray, date);
-	const fileName = currentClipDataObject.fileName;
-	const partNumber = currentClipDataObject.partNumber;
+	const { fileName, partNumber } = currentClipDataObject;
  	// TODO: figure out if the playback time should be in seconds or milliseconds
 	const timeToStartPlayingVideo = calculatePlaybackStartTime(partNumber, date);
 
@@ -38,8 +37,12 @@ export function findFileNameAndCalculatePlaybackStartTime(csvParseResults, date,
 		console.log(`Current File name is: ${fileName}`);
 		console.log(`Current Time to start playing video is: ${timeToStartPlayingVideo}`);
 	}
-
+	if(!test) {
+		//function handleSubsequentClipLoads(csvParseResults, date )
+	}
 	return { fileName, timeToStartPlayingVideo };
+
+
 	// TODO: Figure out how to schedule an update
 }
 
