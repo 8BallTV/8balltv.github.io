@@ -4,17 +4,18 @@ import findFileNameAndCalculatePlaybackStartTime from './find_clip_info.js';
 import * as TIME_UTIL from './utils/time.js';
 import setClipOnVideoPlayer from './video_player.js';
 
-// TODO(samdealy): delete
-//let formattedParseData;
 /*
-* Loads the 8BallTV Schedule CSV file for the correct day
+* Loads the 8BallTV Schedule CSV file for the correct day. Calls the
+* provided callback once CSV_Parse completes.
+* 	Note: Callers, like tests, can provide csv_urls
 *
-* @param {null}, @return {null}
+* @param {Function} Callback
+* @optional_param {String} csv_url
+* @return {null}
 */
-
-export const parseCSV = (callback) => {
-	const CSV_URL = determineCSV_URL();
-  Papa.parse(CSV_URL, {
+export const parseCSV = (callback, csv_url) => {
+	csv_url = csv_url || determineCSV_URL();
+  Papa.parse(csv_url, {
     download: true,
     complete: csvParseResults =>  {
 			const formattedParseData = formatParseData(csvParseResults);

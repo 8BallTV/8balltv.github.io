@@ -1,6 +1,7 @@
 import findFilenameAndCalculatePlaybackTime from './find_clip_info.js';
 import * as TIME_UTIL from './utils/time.js';
-import { parseCSV } from './parser.js';
+import constructSrcURL from './utils/video_player.js';
+import { parseCSV, main } from './parser.js';
 
 /*
 *	Set the html5 video player to play the current
@@ -12,7 +13,9 @@ import { parseCSV } from './parser.js';
 export default function setClipOnVideoPlayer(formattedParseData) {
   const videoPlayerClipInfo = getCurrentFilenameAndPlaybackTime(formattedParseData);
   const [fileName, playbackTime] = [videoPlayerClipInfo.fileName, videoPlayerClipInfo.playbackTime];
-  //TODO Logic to update the videoplayer
+  const srcURL = constructSrcURL(fileName, playbackTime);
+  document.getElementById("mp4_src").src = srcURL;
+  document.getElementById("tv").load();
 }
 
 /*
@@ -26,6 +29,6 @@ function getCurrentFilenameAndPlaybackTime(formattedParseData) {
   const date = new Date();
   // If it's midnight, re-parse to load the next day's schedule.
   // Otherwise, at midnight you'd start playing the previous day's schedule
-  if(TIME_UTIL.isItMidnight(date)) parseCSV();
+  if(TIME_UTIL.isItMidnight(date)) parseCSV(main);
   return findFilenameAndCalculatePlaybackTime(formattedParseData, date, false);
 }

@@ -2,7 +2,8 @@ const first = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRCmu8vTzD_R7L2iq
 const second = '&single=true&output=csv';
 
 const SUNDAY = first + '845076906' + second;
-const MONDAY = first + '0' + second;
+// The MONDAY url is used in the filename_playback_test.js
+export const MONDAY = first + '0' + second;
 const TUESDAY = first + '580064975' + second;
 const WEDNESDAY = first + '1447255775' + second;
 const THURSDAY = first + '326821657' + second;
