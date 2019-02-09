@@ -22,7 +22,7 @@ function batchTestRunner() {
   for(let i = 0; i < testCases.length; i++) {
     const date = testCases[i][0];
     const expectedTime = testCases[i][1];
-    const actualTime = findMillisecondsToQueryForNewClip(date);
+    const actualTime = findMillisecondsToQueryForNewClip(date, true);
 
     let pass = expectedTime === actualTime ? true : false;
     generateTestMessages(pass, i);
