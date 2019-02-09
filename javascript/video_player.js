@@ -10,9 +10,8 @@ import { parseCSV } from './parser.js';
 * @return {null}
 */
 export default function setClipOnVideoPlayer(formattedParseData) {
-  const { fileName, playbackTime } = getCurrentFilenameAndPlaybackTime(formattedParseData);
-  console.log(`file name is: ${fileName}`);
-  console.log(`playbackTime is: ${playbackTime}`);
+  const videoPlayerClipInfo = getCurrentFilenameAndPlaybackTime(formattedParseData);
+  const [fileName, playbackTime] = [videoPlayerClipInfo.fileName, videoPlayerClipInfo.playbackTime];
   //TODO Logic to update the videoplayer
 }
 

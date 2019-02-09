@@ -4,10 +4,10 @@ export function generateTestMessages(pass, index) {
 	console.log(`%cTest${index + 1} ${message}`, `color:${color}`);
 }
 
-export function generateErrorMessageForParserTests(expectedFileName, expectedtimeToStartPlayingVideo, actual) {
+export function generateErrorMessageForParserTests(expectedFileName, expectedtimeToStartPlayingVideo, actualFilename, actualPlaybackTime) {
 	const colorString = "color:red";
 	console.log(`    %cExpected file name was: ${expectedFileName}`, colorString);
-	console.log(`    %cActual file name was: ${actual['fileName']}`, colorString);
+	console.log(`    %cActual file name was: ${actualFilename}`, colorString);
 	console.log(`    %cExpected playback start time was: ${expectedtimeToStartPlayingVideo}`, colorString);
-	console.log(`    %cActual playback start time name was: ${actual['timeToStartPlayingVideo']}`, colorString);
+	console.log(`    %cActual playback start time name was: ${actualPlaybackTime}`, colorString);
 }
