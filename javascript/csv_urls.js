@@ -9,7 +9,6 @@ const THURSDAY = first + '326821657' + second;
 const FRIDAY = first + '677702322' + second;
 const SATURDAY = first + '1613981700' + second;
 
-
 export function determineCSV_URL() {
 	const date = new Date();
 	const dayOfTheWeek = date.getDay();

@@ -12,7 +12,6 @@ export function parseCSV() {
   });
 }
 
-
 /*
 	A callback that gets executed when the 8BallTV scheduling CSV
 	file has been parsed.

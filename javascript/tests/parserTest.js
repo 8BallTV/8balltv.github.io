@@ -1,6 +1,6 @@
 /* TESTING */
 import { findFileNameAndCalculatePlaybackStartTime } from '../parser.js';
-import { MONDAY } from '../constants.js';
+import { MONDAY } from '../csv_urls.js';
 import { generateTestMessages, generateErrorMessageForParserTests } from './utils.js';
 
 Papa.parse( MONDAY, {
