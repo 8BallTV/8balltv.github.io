@@ -1,20 +1,20 @@
 import * as TIME_UTIL from './utils/time.js';
 
-export default function findFileNameAndCalculatePlaybackStartTime(formattedParseData, date, test) {
-  const currentClipDataObject = findCurrentClipDataObject(formattedParseData, date);
+export default function findFilenameAndCalculatePlaybackTime(formattedParseData, date, test) {
+  const currentClipDataObject = findClipDataObject(formattedParseData, date);
   const { fileName, partNumber } = currentClipDataObject;
-  const timeToStartPlayingVideo = calculatePlaybackStartTime(partNumber, date);
+  const timeToStartPlayingVideo = calculatePlaybackTime(partNumber, date);
 
   return { fileName, timeToStartPlayingVideo };
 }
 
-/* Finds the ClipDataObject for the currently scheduled file */
-function findCurrentClipDataObject(formattedParseData, date) {
+/* Finds a clipDataObject for a given time */
+function findClipDataObject(formattedParseData, date) {
   const minutesPastMidnight = TIME_UTIL.calculateMinutesPastMidnight(date);
-  const indexOfCurrentClipObject = Math.floor(minutesPastMidnight / 15);
-  const currentClipDataObject = formattedParseData[indexOfCurrentClipObject];
+  const indexOfClipObject = Math.floor(minutesPastMidnight / 15);
+  const clipDataObject = formattedParseData[indexOfClipObject];
 
-  return currentClipDataObject;
+  return clipDataObject;
 }
 
 /* Calculate at which time the clip file should start playback.
@@ -22,7 +22,7 @@ function findCurrentClipDataObject(formattedParseData, date) {
 	The partNumber tells us if the clip is in a series- e.g. if
 	partNumber === 3, then it's the third clip in a series.
 */
-function calculatePlaybackStartTime(partNumber, date) {
+function calculatePlaybackTime(partNumber, date) {
   const [minutes, seconds] = [date.getMinutes(), date.getSeconds()];
 
   const playbackOffSetDueToClipPositionInSeries = (partNumber - 1) * 15;
