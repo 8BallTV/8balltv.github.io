@@ -9,14 +9,17 @@ const THURSDAY = first + '326821657' + second;
 const FRIDAY = first + '677702322' + second;
 const SATURDAY = first + '1613981700' + second;
 
+/*
+* Returns correct url for the current day of the week.
+*
+* @param {Number} dayOfTheWeek
+* @return {String} (URL)
+*/
 export function determineCSV_URL() {
 	const date = new Date();
 	const dayOfTheWeek = date.getDay();
-  return findURLGivenDay(dayOfTheWeek);
-}
-/* Returns the {string} url given the {int} dayOfTheWeek */
-function findURLGivenDay(dayOfTheWeek) {
-  switch(dayOfTheWeek) {
+
+	switch(dayOfTheWeek) {
     case 0: return SUNDAY;
     case 1: return MONDAY;
     case 2: return TUESDAY;
