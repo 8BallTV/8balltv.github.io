@@ -1,16 +1,19 @@
 import { determineCSV_URL } from './csv_urls.js';
+import { formatParseData } from './format_parse_data.js';
+import * as TIME_UTIL from './utils/time.js';
 
+
+let formattedParseData;
 /*
 	This script loads the 8BallTV Schedule CSV file for the correct day,
   and determines which clip file to play and the time at which to
   start playback.
 */
-
-export function parseCSV() {
+export const parseCSV = () => {
 	const CSV_URL = determineCSV_URL();
   Papa.parse(CSV_URL, {
     download: true,
-    complete: csvParseResults => main(csvParseResults)
+    complete: results =>  main(results)
   });
 }
 
@@ -18,18 +21,20 @@ export function parseCSV() {
 	A callback that gets executed when the 8BallTV scheduling CSV
 	file has been parsed.
 */
-function main(csvParseResults) {
-  setClipOnVideoPlayer(csvParseResults);
-  scheduleSubsequentClipLoads(csvParseResults);
+function main(results) {
+	formattedParseData =  formatParseData(results);
+  console.log(formattedParseData);
+  setClipOnVideoPlayer();
+  scheduleSubsequentClipLoads();
 }
 
 /* Schedules subsequent clip loads by  */
-async function scheduleSubsequentClipLoads(csvParseResults) {
-  const millisecondsUntilFirstNewQuery = findMillisecondsToQueryForNewClip();
+async function scheduleSubsequentClipLoads() {
+  const millisecondsUntilFirstNewQuery = TIME_UTIL.findMillisecondsToQueryForNewClip();
   let promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       console.log(`Setting first new video, the time is: ${JSON.stringify(new Date())}`);
-      setClipOnVideoPlayer(csvParseResults);
+      setClipOnVideoPlayer();
       resolve();
     }, millisecondsUntilFirstNewQuery);
   });
@@ -37,31 +42,25 @@ async function scheduleSubsequentClipLoads(csvParseResults) {
   await promise;
 
   const fifteenMinutesInMilliseconds = 15 * 60 * 1000;
-  setInterval(() => setClipOnVideoPlayer(csvParseResults), fifteenMinutesInMilliseconds);
+  setInterval(() => setClipOnVideoPlayer(), fifteenMinutesInMilliseconds);
 }
 
 /*
 	Given the current time, set the html5 video player to play the clip
 	file at the correct time.
  */
-export function setClipOnVideoPlayer(csvParseResults) {
+export function setClipOnVideoPlayer() {
   const date = new Date();
   // If it's midnight, re-parse to load the next day's schedule.
   // Otherwise, at midnight you'd start playing the previous day's schedule
-  if(isItMidnight(date)) parseCSV();
-
-  const currentFileNameAndPlaybackStartTime = findFileNameAndCalculatePlaybackStartTime(csvParseResults, date, false);
-  //Logic to update the videoplayer
+  if(TIME_UTIL.isItMidnight(date)) parseCSV();
+  const currentFileNameAndPlaybackStartTime = findFileNameAndCalculatePlaybackStartTime(date, false);
+	console.log(JSON.stringify(currentFileNameAndPlaybackStartTime));
+  //TODO Logic to update the videoplayer
 }
 
-function isItMidnight(date) {
-  return date.getMinutes() === 0 && date.getHours() === 0;
-}
-
-export function findFileNameAndCalculatePlaybackStartTime(csvParseResults, date, test) {
-  const clipDataObjectsArray = createClipDataObjectsArray(csvParseResults);
-
-  const currentClipDataObject = findCurrentClipDataObject(clipDataObjectsArray, date);
+export function findFileNameAndCalculatePlaybackStartTime(date, test) {
+  const currentClipDataObject = findCurrentClipDataObject(date);
   const { fileName, partNumber } = currentClipDataObject;
   const timeToStartPlayingVideo = calculatePlaybackStartTime(partNumber, date);
 
@@ -71,26 +70,11 @@ export function findFileNameAndCalculatePlaybackStartTime(csvParseResults, date,
   };
 }
 
-/* Returns number of milliseconds to wait until querying for new clip
- *		pararms:
- *     Date: javascript Date Object
- *			Boolean test: true if in testing mode, false if in production
- */
-export function findMillisecondsToQueryForNewClip(date, test) {
-  if (!test) {
-    date = new Date();
-  }
-  const [minutes, seconds] = [date.getMinutes(), date.getSeconds()];
-  const secondsUntilNextQuery = (15 - (minutes % 15)) * 60 - seconds;
-  return secondsUntilNextQuery * 1000;
-}
-
 /* Finds the ClipDataObject for the currently scheduled file */
-function findCurrentClipDataObject(clipDataObjectsArray, date) {
-  const minutesPastMidnight = calculateMinutesPastMidnight(date);
-
+function findCurrentClipDataObject(date) {
+  const minutesPastMidnight = TIME_UTIL.calculateMinutesPastMidnight(date);
   const indexOfCurrentClipObject = Math.floor(minutesPastMidnight / 15);
-  const currentClipDataObject = clipDataObjectsArray[indexOfCurrentClipObject];
+  const currentClipDataObject = formattedParseData[indexOfCurrentClipObject];
 
   return currentClipDataObject;
 }
@@ -112,24 +96,4 @@ function calculatePlaybackStartTime(partNumber, date) {
 
   const playbackSeconds = playbackStartTimeMinutes * 60 + seconds;
   return playbackSeconds;
-}
-
-function calculateMinutesPastMidnight(date) {
-  return date.getHours() * 60 + date.getMinutes();
-}
-
-function createClipDataObjectsArray(csvParseResults) {
-  const clipDataObjectsArrayWithTitle = csvParseResults.data.map((data, i) => {
-    return {
-      // Each key corresponds to a column in the CSV file
-      fileName: data[1],
-      partNumber: data[2],
-      title: data[3],
-      director: data[4]
-    };
-  });
-  // Slice to get rid of the first entry, which is the CSV's column
-  // title
-  const clipDataObjectsArray = clipDataObjectsArrayWithTitle.slice(1);
-  return clipDataObjectsArray;
 }
