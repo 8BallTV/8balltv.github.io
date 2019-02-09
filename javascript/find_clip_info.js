@@ -8,14 +8,14 @@ import * as TIME_UTIL from './utils/time.js';
 * @param {Array<ClipDataObject>} formattedParseData
 * @param {DateObject} date
 * @param {Boolean} test
-* @return {Object} (fileNameAndPlaybackTime)
+* @return {VideoPlayerClipInfo} ()
 */
 export default function findFilenameAndCalculatePlaybackTime(formattedParseData, date, test) {
   const currentClipDataObject = findClipDataObject(formattedParseData, date);
   const { fileName, partNumber } = currentClipDataObject;
   const playbackTime = calculatePlaybackTime(partNumber, date);
 
-  return { fileName, playbackTime };
+  return new VideoPlayerClipInfo(fileName, playbackTime);
 }
 
 /*
@@ -55,4 +55,11 @@ function calculatePlaybackTime(partNumber, date) {
 
   const playbackSeconds = playbackStartTimeMinutes * 60 + seconds;
   return playbackSeconds;
+}
+
+class VideoPlayerClipInfo {
+  constructor(fileName, playbackTime) {
+    this.fileName = fileName;
+    this.playbackTime = playbackTime;
+  }
 }

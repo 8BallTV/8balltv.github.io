@@ -5,19 +5,22 @@ import * as TIME_UTIL from './utils/time.js';
 import setClipOnVideoPlayer from './video_player.js';
 
 let formattedParseData;
-
 /*
 * Loads the 8BallTV Schedule CSV file for the correct day
 *
 * @param {null}, @return {null}
 */
-export const parseCSV = () => {
+
+export const parseCSV = (callback) => {
 	const CSV_URL = determineCSV_URL();
   Papa.parse(CSV_URL, {
     download: true,
-    complete: csvParseResults =>  main(csvParseResults)
+    complete: csvParseResults =>  {
+			formattedParseData = formatParseData(csvParseResults);
+			callback(formattedParseData);
+		}
   });
-}
+};
 
 /*
 * A callback for parseCSV that initiates entire process of setting
@@ -27,12 +30,10 @@ export const parseCSV = () => {
 * @param {Array<Array<String>>} csvParseResults
 * @return {null}
 */
-function main(csvParseResults) {
-	formattedParseData =  formatParseData(csvParseResults);
-  console.log(formattedParseData);
+export function main(csvParseResults) {
   setClipOnVideoPlayer(formattedParseData);
   scheduleSubsequentClipLoads();
-}
+};
 
 /*
 * Schedules the first clipload and all subsequent clip loads.

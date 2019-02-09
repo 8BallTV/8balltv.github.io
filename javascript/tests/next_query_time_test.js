@@ -1,5 +1,5 @@
 import { findMillisecondsToQueryForNewClip } from '../parser.js';
-import { generateTestMessages } from './utils.js';
+import { generateTestMessages } from '../utils/tests.js';
 
 batchTestRunner();
 

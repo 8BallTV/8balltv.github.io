@@ -1,3 +1,3 @@
-import { parseCSV } from './parser.js';
+import { parseCSV, main } from './parser.js';
 
-parseCSV();
+parseCSV(main);
