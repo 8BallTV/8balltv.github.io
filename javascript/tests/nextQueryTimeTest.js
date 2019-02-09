@@ -1,8 +1,20 @@
 import { findMillisecondsToQueryForNewClip } from '../parser.js';
 import { generateTestMessages } from './utils.js';
 
-
 batchTestRunner();
+
+function batchTestRunner() {
+  const testCases = generateTestCases();
+  for(let i = 0; i < testCases.length; i++) {
+    const date = testCases[i][0];
+    const expectedTime = testCases[i][1];
+    const actualTime = findMillisecondsToQueryForNewClip(date, true);
+
+    let pass = expectedTime === actualTime ? true : false;
+    generateTestMessages(pass, i);
+    if(!pass) generateErrorMessages(expectedTime, actualTime);
+  }
+}
 
 function generateTestCases() {
   const testCases = [
@@ -17,18 +29,6 @@ function generateTestCases() {
   return testCases;
 }
 
-function batchTestRunner() {
-  const testCases = generateTestCases();
-  for(let i = 0; i < testCases.length; i++) {
-    const date = testCases[i][0];
-    const expectedTime = testCases[i][1];
-    const actualTime = findMillisecondsToQueryForNewClip(date, true);
-
-    let pass = expectedTime === actualTime ? true : false;
-    generateTestMessages(pass, i);
-    if(!pass) generateErrorMessages(expectedTime, actualTime);
-  }
-}
 
 function generateErrorMessages(expectedTime, actualTime) {
   const colorString = "color:red";

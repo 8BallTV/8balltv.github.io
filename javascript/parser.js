@@ -1,4 +1,4 @@
-import { findURLGivenDay } from './constants.js';
+import { determineCSV_URL } from './csv_urls.js';
 
 /*
 	This script loads the 8BallTV Schedule CSV file and determines
@@ -12,11 +12,7 @@ export function parseCSV() {
   });
 }
 
-function determineCSV_URL() {
-	const date = new Date();
-	const dayOfTheWeek = date.getDay();
-  return findURLGivenDay(dayOfTheWeek);
-}
+
 /*
 	A callback that gets executed when the 8BallTV scheduling CSV
 	file has been parsed.
@@ -55,7 +51,7 @@ async function scheduleSubsequentClipLoads(csvParseResults) {
  */
 export function setClipOnVideoPlayer(csvParseResults) {
   const date = new Date();
-  // This ensures that next day's sheet will get pulled at midnight
+  // If it's midnight, re-parse to load the next day's schedule
   if(date.getMinutes() === 0 && date.getHours() === 0) parseCSV();
 
   const currentFileNameAndPlaybackStartTime = findFileNameAndCalculatePlaybackStartTime(csvParseResults, date, false);
@@ -123,18 +119,19 @@ function calculateMinutesPastMidnight(date) {
 }
 
 function createClipDataObjectsArray(csvParseResults) {
-  const clipDataObjectsArrayWithHeader = csvParseResults.data.map((data, i) => {
+  const clipDataObjectsArrayWithTitle = csvParseResults.data.map((data, i) => {
     return {
       fileName: data[1],
       partNumber: data[2],
       title: data[3],
       director: data[4]
+      // Each key corresponds to a column in the CSV file
     };
   });
 
   // Slice to get rid of the first entry, which is the CSV's column
-  // headers
-  const clipDataObjectsArray = clipDataObjectsArrayWithHeader.slice(1);
+  // title
+  const clipDataObjectsArray = clipDataObjectsArrayWithTitle.slice(1);
 
   return clipDataObjectsArray;
 }
