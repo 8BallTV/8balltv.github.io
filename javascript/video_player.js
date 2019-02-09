@@ -1,4 +1,4 @@
-import findFilenameAndCalculatePlaybackTime from './current_clip.js';
+import findFilenameAndCalculatePlaybackTime from './find_clip_info.js';
 import * as TIME_UTIL from './utils/time.js';
 import { parseCSV } from './parser.js';
 
