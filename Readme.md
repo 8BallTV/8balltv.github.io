@@ -13,7 +13,7 @@ To prove that this mapping works, let's use an example.
 5. This logic applies to any timeslot. Try it out oN other timeslots to to convince yourself
 
 
-<h2>Note about logic in calculatePlaybackStartTime</h2>
+<h2>Note about logic in calculatePlaybackTime</h2>
 
 
 	 The way this function works is best explained via example. Say it's
