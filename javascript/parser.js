@@ -55,11 +55,10 @@ export function findFileNameAndCalculatePlaybackStartTime(csvParseResults, date,
 }
 
 /* Returns number of seconds to wait until querying for new clip*/
-function findTimeToQueryForNewClip(date) {
+export function findTimeToQueryForNewClip(date) {
 	const [minutes, seconds] = [date.getMinutes(), date.getSeconds()];
 	return (15 - (minutes % 15)) * 60 - seconds;
 }
-
 
 /* Finds the ClipDataObject for the currently scheduled file */
 function findCurrentClipDataObject(clipDataObjectsArray, date) {
