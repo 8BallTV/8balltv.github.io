@@ -15,7 +15,7 @@ const SATURDAY = first + '1613981700' + second;
 * @param {Number} dayOfTheWeek
 * @return {String} (URL)
 */
-export function determineCSV_URL() {
+export default function determineCSV_URL() {
 	const date = new Date();
 	const dayOfTheWeek = date.getDay();
 
