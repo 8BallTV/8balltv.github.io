@@ -36,6 +36,7 @@ function main(csvParseResults) {
 
 /*
 * Schedules the first clipload and all subsequent clip loads.
+*
 * @param {null}, @return {null}
 */
 async function scheduleSubsequentClipLoads() {
