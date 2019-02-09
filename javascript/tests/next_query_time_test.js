@@ -1,4 +1,4 @@
-import { findMillisecondsToQueryForNewClip } from '../parser.js';
+import { findMillisecondsUntilNext15MinuteInterval } from '../utils/time.js';
 import { generateTestMessages } from '../utils/tests.js';
 
 batchTestRunner();
@@ -8,7 +8,7 @@ function batchTestRunner() {
   for(let i = 0; i < testCases.length; i++) {
     const date = testCases[i][0];
     const expectedTime = testCases[i][1];
-    const actualTime = findMillisecondsToQueryForNewClip(date, true);
+    const actualTime = findMillisecondsUntilNext15MinuteInterval(date, true);
 
     let pass = expectedTime === actualTime ? true : false;
     generateTestMessages(pass, i);
