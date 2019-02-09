@@ -1,7 +1,7 @@
 /*
 * Transforms the csvParseResults into an array of clipDataObjects. The
 * clipDataObject keys correspond to the CSV file's column headers.
-
+*
 * @param {Array<Array<String>>} csvParseResults
 * @return {Array<Object>} clipDataObjectsArray
 */

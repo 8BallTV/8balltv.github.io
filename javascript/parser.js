@@ -5,31 +5,35 @@ import * as TIME_UTIL from './utils/time.js';
 import setClipOnVideoPlayer from './video_player.js';
 
 let formattedParseData;
-/*
-	This script loads the 8BallTV Schedule CSV file for the correct day,
-  and determines which clip file to play and the time at which to
-  start playback.
-*/
+
+/* Loads the 8BallTV Schedule CSV file for the correct day */
 export const parseCSV = () => {
 	const CSV_URL = determineCSV_URL();
   Papa.parse(CSV_URL, {
     download: true,
-    complete: results =>  main(results)
+    complete: csvParseResults =>  main(csvParseResults)
   });
 }
 
 /*
-	A callback that gets executed when the 8BallTV scheduling CSV
-	file has been parsed.
+* A callback for parseCSV that initiates entire process of setting
+* the currentClip on the video player and
+* scheduling subsequent clip loads.
+*
+* @param {Array<Array<String>>} csvParseResults
+* @return {null}
 */
-function main(results) {
-	formattedParseData =  formatParseData(results);
+function main(csvParseResults) {
+	formattedParseData =  formatParseData(csvParseResults);
   console.log(formattedParseData);
   setClipOnVideoPlayer(formattedParseData);
   scheduleSubsequentClipLoads();
 }
 
-/* Schedules subsequent clip loads by  */
+/*
+* Schedules the first clipload and all subsequent clip loads.
+* @param {null}, @return {null}
+*/
 async function scheduleSubsequentClipLoads() {
   const millisecondsUntilFirstNewQuery = TIME_UTIL.findMillisecondsToQueryForNewClip();
   let promise = new Promise((resolve, reject) => {
