@@ -1,4 +1,4 @@
-import { determineCSV_URL } from './csv_urls.js';
+import { determineCSV_URL } from './utils/csv_urls.js';
 import { formatParseData } from './format_parse_data.js';
 import findFileNameAndCalculatePlaybackStartTime from './find_clip_info.js';
 import * as TIME_UTIL from './utils/time.js';
