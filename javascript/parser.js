@@ -6,7 +6,11 @@ import setClipOnVideoPlayer from './video_player.js';
 
 let formattedParseData;
 
-/* Loads the 8BallTV Schedule CSV file for the correct day */
+/*
+* Loads the 8BallTV Schedule CSV file for the correct day
+*
+* @param {null}, @return {null}
+*/
 export const parseCSV = () => {
 	const CSV_URL = determineCSV_URL();
   Papa.parse(CSV_URL, {
