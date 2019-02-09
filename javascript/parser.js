@@ -1,9 +1,11 @@
 import { determineCSV_URL } from './csv_urls.js';
 
 /*
-	This script loads the 8BallTV Schedule CSV file and determines
-	which clip file to play and the time at which to start playback.
+	This script loads the 8BallTV Schedule CSV file for the correct day,
+  and determines which clip file to play and the time at which to
+  start playback.
 */
+
 export function parseCSV() {
 	const CSV_URL = determineCSV_URL();
   Papa.parse(CSV_URL, {
@@ -15,19 +17,13 @@ export function parseCSV() {
 /*
 	A callback that gets executed when the 8BallTV scheduling CSV
 	file has been parsed.
-
-	It first finds the file name for the current clip, which will be used
-	to provide the video player with the correct source URL for the clip.
-	The function then finds at which time to play the clip.
 */
 function main(csvParseResults) {
   setClipOnVideoPlayer(csvParseResults);
   scheduleSubsequentClipLoads(csvParseResults);
 }
 
-/*
-
-*/
+/* Schedules subsequent clip loads by  */
 async function scheduleSubsequentClipLoads(csvParseResults) {
   const millisecondsUntilFirstNewQuery = findMillisecondsToQueryForNewClip();
   let promise = new Promise((resolve, reject) => {
@@ -51,10 +47,14 @@ async function scheduleSubsequentClipLoads(csvParseResults) {
 export function setClipOnVideoPlayer(csvParseResults) {
   const date = new Date();
   // If it's midnight, re-parse to load the next day's schedule
-  if(date.getMinutes() === 0 && date.getHours() === 0) parseCSV();
+  if(isItMidnight(date)) parseCSV();
 
   const currentFileNameAndPlaybackStartTime = findFileNameAndCalculatePlaybackStartTime(csvParseResults, date, false);
   //Logic to update the videoplayer
+}
+
+function isItMidnight(date) {
+  return date.getMinutes() === 0 && date.getHours() === 0;
 }
 
 export function findFileNameAndCalculatePlaybackStartTime(csvParseResults, date, test) {
@@ -120,17 +120,15 @@ function calculateMinutesPastMidnight(date) {
 function createClipDataObjectsArray(csvParseResults) {
   const clipDataObjectsArrayWithTitle = csvParseResults.data.map((data, i) => {
     return {
+      // Each key corresponds to a column in the CSV file
       fileName: data[1],
       partNumber: data[2],
       title: data[3],
       director: data[4]
-      // Each key corresponds to a column in the CSV file
     };
   });
-
   // Slice to get rid of the first entry, which is the CSV's column
   // title
   const clipDataObjectsArray = clipDataObjectsArrayWithTitle.slice(1);
-
   return clipDataObjectsArray;
 }
