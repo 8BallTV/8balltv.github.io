@@ -1,10 +1,11 @@
 /* TESTING */
-import { CSV_FILE_URL, findFileNameAndCalculatePlaybackStartTime } from '../parser.js';
+import { findFileNameAndCalculatePlaybackStartTime } from '../parser.js';
+import { MONDAY } from '../constants.js';
 import { generateTestMessages, generateErrorMessageForParserTests } from './utils.js';
 
-Papa.parse( CSV_FILE_URL, {
+Papa.parse( MONDAY, {
 	download: true,
-	complete: csvParseResults => { batchTestRunner(csvParseResults); }
+	complete: csvParseResults =>  batchTestRunner(csvParseResults)
 });
 
 function generateTestCases() {
@@ -15,7 +16,6 @@ function generateTestCases() {
 		[ new Date('Thu, 01 Jan 2019 12:15:00'), "planet.mp3", 900 ],
 		[ new Date('Thu, 01 Jan 2019 11:59:59'), "sunlight.mp3", (45 + 14) * 60 + 59],
 		[ new Date('Thu, 01 Jan 2019 01:30:00'), "future.mp3", 30 * 60],
-
 	]
 
 	return testCasesArray.map( testCase => {

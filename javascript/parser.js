@@ -1,19 +1,22 @@
+import { findURLGivenDay } from './constants.js';
+
 /*
 	This script loads the 8BallTV Schedule CSV file and determines
 	which clip file to play and the time at which to start playback.
 */
-export const CSV_FILE_URL = "https://docs.google.com/spreadsheets/d/e" +
-  "/2PACX-1vRCmu8vTzD_R7L2iqEE0gdD43zbEnTUv5-" +
-  "_f6cHz1zX16JN6c2sdWKagLuOWPO8HBnbghfmInxWN" +
-  "wSz/pub?output=csv";
-
 export function parseCSV() {
-  Papa.parse(CSV_FILE_URL, {
+	const CSV_URL = determineCSV_URL();
+  Papa.parse(CSV_URL, {
     download: true,
     complete: csvParseResults => main(csvParseResults)
   });
 }
 
+function determineCSV_URL() {
+	const date = new Date();
+	const dayOfTheWeek = date.getDay();
+  return findURLGivenDay(dayOfTheWeek);
+}
 /*
 	A callback that gets executed when the 8BallTV scheduling CSV
 	file has been parsed.
@@ -52,7 +55,10 @@ async function scheduleSubsequentClipLoads(csvParseResults) {
  */
 export function setClipOnVideoPlayer(csvParseResults) {
   const date = new Date();
-  const currentClipAndPlaybackStartTime = findFileNameAndCalculatePlaybackStartTime(csvParseResults, date, false);
+  // This ensures that next day's sheet will get pulled at midnight
+  if(date.getMinutes() === 0 && date.getHours() === 0) parseCSV();
+
+  const currentFileNameAndPlaybackStartTime = findFileNameAndCalculatePlaybackStartTime(csvParseResults, date, false);
   //Logic to update the videoplayer
 }
 
@@ -60,10 +66,7 @@ export function findFileNameAndCalculatePlaybackStartTime(csvParseResults, date,
   const clipDataObjectsArray = createClipDataObjectsArray(csvParseResults);
 
   const currentClipDataObject = findCurrentClipDataObject(clipDataObjectsArray, date);
-  const {
-    fileName,
-    partNumber
-  } = currentClipDataObject;
+  const { fileName, partNumber } = currentClipDataObject;
   const timeToStartPlayingVideo = calculatePlaybackStartTime(partNumber, date);
 
   return {
