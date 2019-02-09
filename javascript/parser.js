@@ -35,7 +35,7 @@ function main(csvParseResults) {
 * @param {null}, @return {null}
 */
 async function scheduleSubsequentClipLoads() {
-  const millisecondsUntilFirstNewQuery = TIME_UTIL.findMillisecondsToQueryForNewClip();
+  const millisecondsUntilFirstNewQuery = TIME_UTIL.findMillisecondsUntilNext15MinuteInterval();
   let promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       console.log(`Setting first new video, the time is: ${JSON.stringify(new Date())}`);

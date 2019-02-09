@@ -3,9 +3,8 @@
 * clipDataObject keys correspond to the CSV file's column headers.
 *
 * @param {Array<Array<String>>} csvParseResults
-* @return {Array<Object>} clipDataObjectsArray
+* @return {Array<ClipDataObject>} formattedParseData
 */
-
 export function formatParseData(csvParseResults) {
   const clipDataObjectsArrayWithTitle = csvParseResults.data.map((data, i) => {
     return {
@@ -18,6 +17,6 @@ export function formatParseData(csvParseResults) {
   });
   // Slice to get rid of the first entry,
   // which is the CSV's column title
-  const clipDataObjectsArray = clipDataObjectsArrayWithTitle.slice(1);
-  return clipDataObjectsArray;
+  const formattedParseData = clipDataObjectsArrayWithTitle.slice(1);
+  return formattedParseData;
 }

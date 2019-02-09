@@ -1,11 +1,21 @@
 import * as TIME_UTIL from './utils/time.js';
 
+/*
+* Finds a clip's filename and playback time for a specific time.
+* The test parameter is true, if the function is being called from a
+* test case.
+*
+* @param {Array<ClipDataObject>} formattedParseData
+* @param {DateObject} date
+* @param {Boolean} test
+* @return {ClipDataObject} clipDataObject
+*/
 export default function findFilenameAndCalculatePlaybackTime(formattedParseData, date, test) {
   const currentClipDataObject = findClipDataObject(formattedParseData, date);
   const { fileName, partNumber } = currentClipDataObject;
-  const timeToStartPlayingVideo = calculatePlaybackTime(partNumber, date);
+  const playbackTime = calculatePlaybackTime(partNumber, date);
 
-  return { fileName, timeToStartPlayingVideo };
+  return { fileName, playbackTime };
 }
 
 /* Finds a clipDataObject for a given time */
