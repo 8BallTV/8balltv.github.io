@@ -1,6 +1,5 @@
 import findFilenameAndCalculatePlaybackTime from '../find_clip_info.js';
 import { parseCSV } from '../parser.js';
-import { MONDAY } from '../csv_urls.js';
 import { generateTestMessages, generateErrorMessageForParserTests } from '../utils/tests.js';
 
 parseCSV(batchTestRunner);

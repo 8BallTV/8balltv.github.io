@@ -4,7 +4,8 @@ import findFileNameAndCalculatePlaybackStartTime from './find_clip_info.js';
 import * as TIME_UTIL from './utils/time.js';
 import setClipOnVideoPlayer from './video_player.js';
 
-let formattedParseData;
+// TODO(samdealy): delete
+//let formattedParseData;
 /*
 * Loads the 8BallTV Schedule CSV file for the correct day
 *
@@ -30,9 +31,9 @@ export const parseCSV = (callback) => {
 * @param {Array<Array<String>>} csvParseResults
 * @return {null}
 */
-export function main(csvParseResults) {
+export function main(formattedParseData) {
   setClipOnVideoPlayer(formattedParseData);
-  scheduleSubsequentClipLoads();
+  scheduleSubsequentClipLoads(formattedParseData);
 };
 
 /*
@@ -40,7 +41,7 @@ export function main(csvParseResults) {
 *
 * @param {null}, @return {null}
 */
-async function scheduleSubsequentClipLoads() {
+async function scheduleSubsequentClipLoads(formattedParseData) {
   const millisecondsUntilFirstNewQuery = TIME_UTIL.findMillisecondsUntilNext15MinuteInterval();
   let promise = new Promise((resolve, reject) => {
     setTimeout(() => {
