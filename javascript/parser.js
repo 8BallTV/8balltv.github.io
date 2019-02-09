@@ -27,10 +27,10 @@ export function parseCSV() {
 */
 function main(csvParseResults) {
 	// 1) find the current clip and play it
-	const date = new Date();
-	setClipOnVideoPlayer(csvParseResults, date);
+	setClipOnVideoPlayer(csvParseResults);
 	// updateVideoPlayerSrc
 	// 2) Find the next clip and play it using setTimeout;
+	const date = new Date();
 	const millisecondsUntilNextQuery = findMillisecondsToQueryForNewClip(date);
 	// setTimeout(() => {
 	//  console.log('settingNewVideo!');
@@ -44,9 +44,10 @@ function main(csvParseResults) {
 function handleSubsequentFileLoads(csvParseResults, millisecondsUntilNextQuery) {
 	(new Promise( (resolve, reject) => {
 		setTimeout( () => {
-			 console.log('settingNewVideo!');
+			 console.log('settingNewVideo for the first time!');
 			 setClipOnVideoPlayer(csvParseResults);
-		}, millisecondsUntilNextQuery)
+			 resolve();
+		}, millisecondsUntilNextQuery);
 	})).then(
 		setInterval(setClipOnVideoPlayer(csvParseResults), 15 * 60 * 1000)
 	);
