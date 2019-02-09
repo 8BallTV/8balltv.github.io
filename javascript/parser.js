@@ -11,8 +11,7 @@ export function parseCSV() {
 	Papa.parse( CSV_FILE_URL, {
 		download: true,
 		complete: csvParseResults => {
-			const currentTimeDateObject = new Date();
-			main(csvParseResults, currentTimeDateObject);
+			main(csvParseResults);
 			// findFileNameAndCalculatePlaybackStartTime(csvParseResults, currentTimeDateObject);
 		}
 	});
@@ -26,16 +25,40 @@ export function parseCSV() {
 	to provide the video player with the correct source URL for the clip.
 	The function then finds at which time to play the clip.
 */
-function main(csvParseResults, date) {
+function main(csvParseResults) {
 	// 1) find the current clip and play it
-	const currentClipAndPlaybackStartTime = findFileNameAndCalculatePlaybackStartTime(csvParseResults, date, false);
+	const date = new Date();
+	setClipOnVideoPlayer(csvParseResults, date);
 	// updateVideoPlayerSrc
 	// 2) Find the next clip and play it using setTimeout;
-	const timeToQueryForNewClip = findTimeToQueryForNewClip(date);
-	console.log(`time right now is: ${JSON.stringify(date)}`);
-	console.log(`timeToQueryForNewClip: ${timeToQueryForNewClip}`);
-	// setTimeOut(updateVideoPlayerSrc, timeToQueryForNewClip)
+	const millisecondsUntilNextQuery = findMillisecondsToQueryForNewClip(date);
+	// setTimeout(() => {
+	//  console.log('settingNewVideo!');
+	//  setClipOnVideoPlayer(csvParseResults);
+	//  setInterval(setClipOnVideoPlayer(csvParseResults), 15 * 60 * 1000)
+ // }, milliseconds);
+	// setTimeout(setClipOnVideoPlayer(csvParseResults), )
 	// 3) Find all subsequent clips and play it using setInterval of 15 min
+}
+
+function handleSubsequentFileLoads(csvParseResults, millisecondsUntilNextQuery) {
+	(new Promise( (resolve, reject) => {
+		setTimeout( () => {
+			 console.log('settingNewVideo!');
+			 setClipOnVideoPlayer(csvParseResults);
+		}, millisecondsUntilNextQuery)
+	})).then(
+		setInterval(setClipOnVideoPlayer(csvParseResults), 15 * 60 * 1000)
+	);
+}
+
+
+// Given the current time, set the html5 video player to play the clip
+// file at the correct time.
+export function setClipOnVideoPlayer(csvParseResults) {
+	const date = new Date();
+	const currentClipAndPlaybackStartTime = findFileNameAndCalculatePlaybackStartTime(csvParseResults, date, false);
+	//Logic to update the videoplayer
 }
 
 export function findFileNameAndCalculatePlaybackStartTime(csvParseResults, date, test) {
@@ -54,10 +77,11 @@ export function findFileNameAndCalculatePlaybackStartTime(csvParseResults, date,
 	return { fileName, timeToStartPlayingVideo };
 }
 
-/* Returns number of seconds to wait until querying for new clip*/
-export function findTimeToQueryForNewClip(date) {
+/* Returns number of milliseconds to wait until querying for new clip*/
+export function findMillisecondsToQueryForNewClip(date) {
 	const [minutes, seconds] = [date.getMinutes(), date.getSeconds()];
-	return (15 - (minutes % 15)) * 60 - seconds;
+	const secondsUntilNextQuery = (15 - (minutes % 15)) * 60 - seconds;
+	return secondsUntilNextQuery * 1000;
 }
 
 /* Finds the ClipDataObject for the currently scheduled file */
