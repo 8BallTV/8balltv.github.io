@@ -1,5 +1,5 @@
 /* TESTING */
-import { CSV_FILE_URL, findFileNameAndCalculatePlaybackStartTime } from './parser.js';
+import { CSV_FILE_URL, findFileNameAndCalculatePlaybackStartTime } from '../parser.js';
 
 Papa.parse( CSV_FILE_URL, {
 	download: true,

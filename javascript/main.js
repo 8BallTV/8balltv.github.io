@@ -1,3 +1,3 @@
-import { onPageLoad } from './parser.js';
+import { parseCSV } from './parser.js';
 
-onPageLoad();
+parseCSV();

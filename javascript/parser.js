@@ -7,44 +7,59 @@ export const CSV_FILE_URL = "https://docs.google.com/spreadsheets/d/e" +
 											"_f6cHz1zX16JN6c2sdWKagLuOWPO8HBnbghfmInxWN" +
 											"wSz/pub?output=csv";
 
-export function onPageLoad() {
+export function parseCSV() {
 	Papa.parse( CSV_FILE_URL, {
 		download: true,
 		complete: csvParseResults => {
 			const currentTimeDateObject = new Date();
-			findFileNameAndCalculatePlaybackStartTime(csvParseResults, currentTimeDateObject);
+			main(csvParseResults, currentTimeDateObject);
+			// findFileNameAndCalculatePlaybackStartTime(csvParseResults, currentTimeDateObject);
 		}
 	});
 }
 
 /*
-	A callback function that gets called when the 8BallTV scheduling CSV
+	A callback that gets executed when the 8BallTV scheduling CSV
 	file has been parsed.
 
 	It first finds the file name for the current clip, which will be used
 	to provide the video player with the correct source URL for the clip.
 	The function then finds at which time to play the clip.
 */
+function main(csvParseResults, date) {
+	// 1) find the current clip and play it
+	const currentClipAndPlaybackStartTime = findFileNameAndCalculatePlaybackStartTime(csvParseResults, date, false);
+	// updateVideoPlayerSrc
+	// 2) Find the next clip and play it using setTimeout;
+	const timeToQueryForNewClip = findTimeToQueryForNewClip(date);
+	console.log(`time right now is: ${JSON.stringify(date)}`);
+	console.log(`timeToQueryForNewClip: ${timeToQueryForNewClip}`);
+	// setTimeOut(updateVideoPlayerSrc, timeToQueryForNewClip)
+	// 3) Find all subsequent clips and play it using setInterval of 15 min
+}
+
 export function findFileNameAndCalculatePlaybackStartTime(csvParseResults, date, test) {
 	const clipDataObjectsArray = createClipDataObjectsArray(csvParseResults);
 
 	const currentClipDataObject = findCurrentClipDataObject(clipDataObjectsArray, date);
 	const { fileName, partNumber } = currentClipDataObject;
- 	// TODO: figure out if the playback time should be in seconds or milliseconds
 	const timeToStartPlayingVideo = calculatePlaybackStartTime(partNumber, date);
 
+	//TODO: delete once done
 	if(!test) {
 		console.log(`Current File name is: ${fileName}`);
 		console.log(`Current Time to start playing video is: ${timeToStartPlayingVideo}`);
 	}
-	if(!test) {
-		//function handleSubsequentClipLoads(csvParseResults, date )
-	}
+
 	return { fileName, timeToStartPlayingVideo };
-
-
-	// TODO: Figure out how to schedule an update
 }
+
+/* Returns number of seconds to wait until querying for new clip*/
+function findTimeToQueryForNewClip(date) {
+	const [minutes, seconds] = [date.getMinutes(), date.getSeconds()];
+	return (15 - (minutes % 15)) * 60 - seconds;
+}
+
 
 /* Finds the ClipDataObject for the currently scheduled file */
 function findCurrentClipDataObject(clipDataObjectsArray, date) {
