@@ -46,7 +46,8 @@ async function scheduleSubsequentClipLoads(csvParseResults) {
  */
 export function setClipOnVideoPlayer(csvParseResults) {
   const date = new Date();
-  // If it's midnight, re-parse to load the next day's schedule
+  // If it's midnight, re-parse to load the next day's schedule.
+  // Otherwise, at midnight you'd start playing the previous day's schedule
   if(isItMidnight(date)) parseCSV();
 
   const currentFileNameAndPlaybackStartTime = findFileNameAndCalculatePlaybackStartTime(csvParseResults, date, false);
