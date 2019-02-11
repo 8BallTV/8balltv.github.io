@@ -17,6 +17,7 @@ export const parseCSV = (callback, csv_url) => {
 	csv_url = csv_url || determineCSV_URL();
   Papa.parse(csv_url, {
     download: true,
+		fastMode: true,
     complete: csvParseResults =>  {
 			const formattedParseData = formatParseData(csvParseResults);
 			callback(formattedParseData);
