@@ -3,6 +3,23 @@ Welcome to the 8BallTV Scheduler repository. The scheduler is a
 client-side, JavaScript approach to finding and playing the scheduled
 8BallTV video at the correct playback time.
 
+## Set-up
+Follow these steps to test out the scheduler on your own machine
+1. Git Clone this project. For help, click [here](https://help.github.com/articles/cloning-a-repository/).
+	 Note the directory where you cloned the project on your local machine.
+2. Open the Terminal application.
+3. Use the "cd" command to navigate to the directory of the project.
+4. On your terminal application, run `python -m http.server 8000`
+	 * If you get a `-bash: python command not found`, that means
+	   you don't have the Python interpreter installed on your computer.
+	   To do so, go [here](https://www.python.org/downloads/).
+5. Open up Google Chrome
+6. Go to "http://localhost:8000/"
+7. Open the developer console using CMD + Option + i.
+8. You'll notice that the console is logging the current video and playback
+	 time, in accordance with the Google Sheets Schedule.
+
+
 ## System Design
 At a high-level, we parse the Google Sheet file, find the correct video
 and its playback time for the current time, and set the video on the
