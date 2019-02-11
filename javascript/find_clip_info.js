@@ -1,4 +1,5 @@
 import * as TIME_UTIL from './utils/time.js';
+import formatAndPrintToConsole from './utils/console_set_up_test.js';
 
 /*
 * Finds a clip's filename and playback time for a specific time.
@@ -15,6 +16,9 @@ export default function findFilenameAndCalculatePlaybackTime(formattedParseData,
   const { fileName, partNumber } = currentClipDataObject;
   const playbackTime = calculatePlaybackTime(partNumber, date);
 
+  // TODO: Delete in production
+  formatAndPrintToConsole(date, fileName, partNumber, playbackTime);
+  
   return new VideoPlayerClipInfo(fileName, playbackTime);
 }
 
