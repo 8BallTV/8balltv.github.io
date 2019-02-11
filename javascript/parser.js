@@ -7,7 +7,7 @@ import setClipOnVideoPlayer from './video_player.js';
 /*
 * Loads the 8BallTV Schedule CSV file for the correct day. Calls the
 * provided callback once CSV_Parse completes.
-* 	Note: Callers, like tests, can provide csv_urls
+* 	Note: Callers can provide csv_urls. This is used in the tests.
 *
 * @param {Function} Callback
 * @optional_param {String} csv_url
