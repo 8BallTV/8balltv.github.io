@@ -1,7 +1,8 @@
 import findFilenameAndCalculatePlaybackTime from './find_clip_info.js';
 import * as TIME_UTIL from './utils/time.js';
 import constructSrcURL from './utils/video_player.js';
-import { parseCSV, main } from './parser.js';
+import parseCSV from './parser.js';
+import scheduleClipLoads from './schedule_clip_loads.js';
 
 /*
 *	Set the html5 video player to play the current

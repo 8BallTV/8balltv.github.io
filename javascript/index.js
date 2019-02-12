@@ -1,3 +1,4 @@
-import { parseCSV, main } from './parser.js';
+import parseCSV from './parser.js';
+import scheduleClipLoads from './schedule_clip_loads.js';
 
-parseCSV(main);
+parseCSV(scheduleClipLoads);
