@@ -1,5 +1,5 @@
 import determineCSV_URL from './utils/csv_urls.js';
-import { formatParseData } from './format_parse_data.js';
+import formatParseData from './format_parse_data.js';
 
 /*
 * Loads the 8BallTV Schedule CSV file for the correct day. Calls the

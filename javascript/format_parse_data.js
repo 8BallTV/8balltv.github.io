@@ -7,7 +7,7 @@
 * @param {Array<Array<String>>} csvParseResults
 * @return {Array<ClipDataObject>} formattedParseData
 */
-export function formatParseData(csvParseResults) {
+export default function formatParseData(csvParseResults) {
   const clipDataObjectsArrayWithTitle = csvParseResults.data.map((data, i) => {
     return new ClipDataObject(data[1], data[2], data[3], data[4]);
   });
