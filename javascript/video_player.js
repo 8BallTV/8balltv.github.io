@@ -24,7 +24,7 @@ export default function setClipOnVideoPlayer(formattedParseData) {
 * that should be currently playing
 *
 * @param {Array<ClipDataObject>} formattedParseData
-* @return {Object} (fileNameAndPlaybackTime)
+* @return {VideoPlayerClipInfo} (un-named)
 */
 function getCurrentFilenameAndPlaybackTime(formattedParseData) {
   const date = new Date();
