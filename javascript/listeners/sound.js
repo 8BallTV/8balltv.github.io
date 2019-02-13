@@ -36,7 +36,7 @@ function registerTurnSoundOffListener() {
 }
 
 /*
-* Prevent the default action on the event obejct.
+* Prevent the default action on the event object.
 * For the div element that was clicked, change its display to none
 * Make visible the other div element (that wasn't clicked).
 * Then set the sound accordingly on the videoPlayer.
