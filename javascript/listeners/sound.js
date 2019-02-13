@@ -1,5 +1,8 @@
 import { setSoundOnVideoPlayer } from '../video_player.js';
 
+const turnSoundOnButton = document.getElementById("soundon");
+const turnSoundOffButton = document.getElementById("soundoff");
+
 /*
 * Register both the turn sound on and turn sound off button listeners
 * @param{null}, @return{null}
@@ -8,10 +11,6 @@ export default function registerSoundButtonListeners() {
   registerTurnSoundOnButtonListener();
   registerTurnSoundOffButtonListener()
 }
-
-
-const turnSoundOnButton = document.getElementById("soundon");
-const turnSoundOffButton = document.getElementById("soundoff");
 
 /*
 * Register turn sound on button listener
@@ -22,7 +21,6 @@ function registerTurnSoundOnButtonListener() {
     toggleSound(true, turnSoundOnButton, turnSoundOffButton, e);
   });
 }
-
 
 /*
 * Register turn sound off button listener
@@ -37,10 +35,12 @@ function registerTurnSoundOffButtonListener() {
 /*
 * Prevent the default action on the event obejct.
 * For the button that was clicked, change its display to none
-* and inline. Then set the sound accordingly on the videoPlayer.
+* Make visible the other button (that wasn't clicked).
+* Then set the sound accordingly on the videoPlayer.
 *
 * @param{Boolean} areYouTurningSoundOn
-* @param{DOMObject} button
+* @param{DOMObject} clickedButton
+* @param{DOMObject} buttonToDisplay
 * @param{Event} eventObject
 * @return{null}
 */
