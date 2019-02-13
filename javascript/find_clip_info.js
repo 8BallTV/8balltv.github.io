@@ -11,15 +11,14 @@ import formatAndPrintToConsole from './utils/console_set_up_test.js';
 * @param {Boolean} test
 * @return {VideoPlayerClipInfo} ()
 */
-export default function findFilenameAndCalculatePlaybackTime(formattedParseData, date, test) {
+export default function findVideoPlayerClipInfo(formattedParseData, date, test) {
   const currentClipDataObject = findClipDataObject(formattedParseData, date);
-  const { fileName, partNumber } = currentClipDataObject;
-  const playbackTime = calculatePlaybackTime(partNumber, date);
+  const { fileName, partNumber, title } = currentClipDataObject;
 
+  const playbackTime = calculatePlaybackTime(partNumber, date);
   // TODO: Delete in production
-  formatAndPrintToConsole(date, fileName, partNumber, playbackTime);
-  
-  return new VideoPlayerClipInfo(fileName, playbackTime);
+  formatAndPrintToConsole(date, fileName, title, partNumber, playbackTime);
+  return new VideoPlayerClipInfo(fileName, playbackTime, title);
 }
 
 /*
@@ -33,7 +32,7 @@ function findClipDataObject(formattedParseData, date) {
   const minutesPastMidnight = TIME_UTIL.calculateMinutesPastMidnight(date);
   const indexOfClipObject = Math.floor(minutesPastMidnight / 15);
   const clipDataObject = formattedParseData[indexOfClipObject];
-
+  console.log()
   return clipDataObject;
 }
 
@@ -62,8 +61,9 @@ function calculatePlaybackTime(partNumber, date) {
 }
 
 class VideoPlayerClipInfo {
-  constructor(fileName, playbackTime) {
+  constructor(fileName, playbackTime, title) {
     this.fileName = fileName;
     this.playbackTime = playbackTime;
+    this.title = title;
   }
 }

@@ -1,4 +1,4 @@
-import findFilenameAndCalculatePlaybackTime from '../find_clip_info.js';
+import findVideoPlayerClipInfo from '../find_clip_info.js';
 import parseCSV from '../parser.js';
 import { generateTestMessages, generateErrorMessageForParserTests } from '../utils/tests.js';
 import { MONDAY } from '../utils/csv_urls.js';
@@ -10,7 +10,7 @@ function batchTestRunner(formattedParseData) {
 	for(let i = 0; i < testCases.length; i++) {
 		const currentTestCase = testCases[i];
 		const { time, expectedFileName, expectedtimeToStartPlayingVideo } = currentTestCase;
-		const actual = findFilenameAndCalculatePlaybackTime(formattedParseData, time, true);
+		const actual = findVideoPlayerClipInfo(formattedParseData, time, true);
 
 		let pass = false;
 		if(expectedFileName === actual.fileName &&

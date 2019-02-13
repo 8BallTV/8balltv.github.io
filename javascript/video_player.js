@@ -1,4 +1,4 @@
-import findFilenameAndCalculatePlaybackTime from './find_clip_info.js';
+import findVideoPlayerClipInfo from './find_clip_info.js';
 import * as TIME_UTIL from './utils/time.js';
 import constructSrcURL from './utils/video_player.js';
 import parseCSV from './parser.js';
@@ -14,22 +14,22 @@ import scheduleClipLoads from './schedule_clip_loads.js';
 
 const mp4Source =  document.getElementById("mp4_src");
 const videoPlayer = document.getElementById("tv");
+const videoTitleElement = document.getElementById("title");
 let isSoundOn = false;
 
 export default function setClipOnVideoPlayer(formattedParseData) {
   const videoPlayerClipInfo = getCurrentFilenameAndPlaybackTime(formattedParseData);
-  const [fileName, playbackTime] = [videoPlayerClipInfo.fileName, videoPlayerClipInfo.playbackTime];
+  const [fileName, playbackTime, title] = [videoPlayerClipInfo.fileName,
+                                          videoPlayerClipInfo.playbackTime,
+                                          videoPlayerClipInfo.title];
   const srcURL = constructSrcURL(fileName, playbackTime);
+  videoTitleElement.innerHTML = title;
   mp4Source.src = srcURL;
   setSoundOnVideoPlayer();
-  const logString = isSoundOn ? "on" : "off";
-  console.log(`[setClipOnVideoPlayer] The sound is: ${logString}`);
   videoPlayer.load();
 }
 
 export function setSoundOnVideoPlayer(updatedIsSoundOn) {
-  console.log('[setSoundOnVideoPlayer] HI from set setSoundOnVideoPlayer');
-  console.log(`[setSoundOnVideoPlayer] The new updated sound is: ${updatedIsSoundOn}`);
   isSoundOn = updatedIsSoundOn;
   videoPlayer.muted = !isSoundOn;
 }
@@ -47,5 +47,5 @@ function getCurrentFilenameAndPlaybackTime(formattedParseData) {
   // If it's midnight, re-parse to load the next day's schedule.
   // Otherwise, at midnight you'd start playing the previous day's schedule
   if(TIME_UTIL.isItMidnight(date)) parseCSV(main);
-  return findFilenameAndCalculatePlaybackTime(formattedParseData, date, false);
+  return findVideoPlayerClipInfo(formattedParseData, date, false);
 }

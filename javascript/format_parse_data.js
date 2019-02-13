@@ -21,7 +21,7 @@ class ClipDataObject {
   constructor(fileName, partNumber, title, director) {
     this.fileName = fileName;
     this.partNumber = partNumber;
-    this.partNumber = partNumber;
+    this.title = title;
     this.director = director;
   }
 }
