@@ -1,3 +1,6 @@
+const enterFullScreenButton = document.getElementById('go-fs');
+const exitFullScreenButton = document.getElementById('exit-fs');
+
 /*
 * Register both the enter and exit fullscreen listeners
 * @param{null}, @return{null}
@@ -7,18 +10,13 @@ export default function registerFullScreenListeners() {
   registerExitFullScreenListener();
 }
 
-const enterFullScreen = document.getElementById('go-fs');
-const exitFullScreen = document.getElementById('exit-fs');
 /*
 * Register the enter fullscreen listener
 * @param{null}, @return{null}
 */
 function registerEnterFullScreenListener() {
-  enterFullScreen.addEventListener('click', e => {
-    e.preventDefault();
-    requestFullscreen(document.documentElement);
-    exitFullScreen.style.display = 'inline';
-    enterFullScreen.style.display = 'none';
+  enterFullScreenButton.addEventListener('click', e => {
+    toggleFullScreen(requestFullscreenCallback, enterFullScreenButton, exitFullScreenButton, e);
   });
 }
 
@@ -27,27 +25,43 @@ function registerEnterFullScreenListener() {
 * @param{null}, @return{null}
 */
 function registerExitFullScreenListener() {
-  exitFullScreen.addEventListener('click', e => {
-      e.preventDefault();
-      exitFullscreen();
-      exitFullScreen.style.display = 'none';
-      enterFullScreen.style.display = 'inline';
+  exitFullScreenButton.addEventListener('click', e => {
+    toggleFullScreen(exitFullscreenCallback, exitFullScreenButton, enterFullScreenButton, e);
   });
 }
 
 /*
-* Handle DOM enter fullscreen requests for each browswer
+* Prevent the default action on the event obejct.
+* Call the provided browser callback. For the button that was clicked,
+* change its display to none. Make visible the other
+* button (that wasn't clicked).
+*
+* @param{Function} browserCallback
+* @param{Element} clickedButton
+* @param{Element} buttonToDisplay
+* @param{Event} eventObject
+*/
+function toggleFullScreen(browserCallback, clickedButton, buttonToDisplay, eventObject) {
+  eventObject.preventDefault();
+  browserCallback();
+  clickedButton.style.display = 'none';
+  buttonToDisplay.style.display = 'inline';
+}
+
+/*
+* Handle DOM enter fullscreen requests for each browswer.
 * @param{null}, @return{null}
 */
-function requestFullscreen(element) {
-    if (element.requestFullscreen) {
-        element.requestFullscreen();
-    } else if (element.webkitRequestFullscreen) {
-        element.webkitRequestFullscreen();
-    } else if (element.mozRequestFullScreen) {
-        element.mozRequestFullScreen();
-    } else if (element.msRequestFullscreen) {
-        element.msRequestFullscreen();
+let requestFullscreenCallback = () => {
+    const documentElement = document.documentElement;
+    if (documentElement.requestFullscreen) {
+        documentElement.requestFullscreen();
+    } else if (documentElement.webkitRequestFullscreen) {
+        documentElement.webkitRequestFullscreen();
+    } else if (documentElement.mozRequestFullScreen) {
+        documentElement.mozRequestFullScreen();
+    } else if (documentElement.msRequestFullscreen) {
+        documentElement.msRequestFullscreen();
     } else {
         console.log('Fullscreen API is not supported.');
     }
@@ -57,7 +71,7 @@ function requestFullscreen(element) {
 * Handle DOM exit fullscreen requests for each browswer
 * @param{null}, @return{null}
 */
-function exitFullscreen() {
+let exitFullscreenCallback = () => {
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.webkitExitFullscreen) {
