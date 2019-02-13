@@ -11,13 +11,29 @@ import scheduleClipLoads from './schedule_clip_loads.js';
 * @param {Array<ClipDataObject>} formattedParseData
 * @return {null}
 */
+
+const mp4Source =  document.getElementById("mp4_src");
+const videoPlayer = document.getElementById("tv");
+let isSoundOn = false;
+
 export default function setClipOnVideoPlayer(formattedParseData) {
   const videoPlayerClipInfo = getCurrentFilenameAndPlaybackTime(formattedParseData);
   const [fileName, playbackTime] = [videoPlayerClipInfo.fileName, videoPlayerClipInfo.playbackTime];
   const srcURL = constructSrcURL(fileName, playbackTime);
-  document.getElementById("mp4_src").src = srcURL;
-  document.getElementById("tv").load();
+  mp4Source.src = srcURL;
+  setSoundOnVideoPlayer();
+  const logString = isSoundOn ? "on" : "off";
+  console.log(`[setClipOnVideoPlayer] The sound is: ${logString}`);
+  videoPlayer.load();
 }
+
+export function setSoundOnVideoPlayer(updatedIsSoundOn) {
+  console.log('[setSoundOnVideoPlayer] HI from set setSoundOnVideoPlayer');
+  console.log(`[setSoundOnVideoPlayer] The new updated sound is: ${updatedIsSoundOn}`);
+  isSoundOn = updatedIsSoundOn;
+  videoPlayer.muted = !isSoundOn;
+}
+
 
 /*
 * Gets filename and playbacktime for the file
