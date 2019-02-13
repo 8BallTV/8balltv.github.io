@@ -191,7 +191,7 @@ video {
 }
 #schedule a:hover{color: #f400ff;}
 
-#soundon  {
+#turn-sound-on  {
   cursor:pointer;
   position: absolute;
   width:38px;
@@ -211,7 +211,7 @@ video {
   display:inline;
 }
 
-#soundoff  {
+#turn-sound-off  {
   cursor:pointer;
   position: absolute;
   width:38px;
@@ -233,7 +233,7 @@ video {
 }
 
 
-#go-fs  {
+#enter-fullscreen  {
   cursor:pointer;
   position: absolute;
   width:38px;
@@ -253,7 +253,7 @@ video {
   display:inline;
 }
 
-#exit-fs  {
+#exit-fullscreen  {
   cursor:pointer;
   position: absolute;
   width:38px;

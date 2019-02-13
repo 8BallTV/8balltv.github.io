@@ -1,52 +1,55 @@
 import { setSoundOnVideoPlayer } from '../video_player.js';
 
-const turnSoundOnButton = document.getElementById("soundon");
-const turnSoundOffButton = document.getElementById("soundoff");
+const turnSoundOnDivElement = document.getElementById("turn-sound-on");
+const turnSoundOffDivElement = document.getElementById("turn-sound-off");
 
 /*
-* Register both the turn sound on and turn sound off button listeners
+* Register both the turn sound on and turn sound off listeners
+* for the associated div elements.
+*
 * @param{null}, @return{null}
 */
-export default function registerSoundButtonListeners() {
-  registerTurnSoundOnButtonListener();
-  registerTurnSoundOffButtonListener()
+export default function registerSoundListeners() {
+  registerTurnSoundOnListener();
+  registerTurnSoundOffListener()
 }
 
 /*
-* Register turn sound on button listener
+* Register turn sound on div element listener.
+*
 * @param{null}, @return{null}
 */
-function registerTurnSoundOnButtonListener() {
-  turnSoundOnButton.addEventListener('click', e => {
-    toggleSound(true, turnSoundOnButton, turnSoundOffButton, e);
+function registerTurnSoundOnListener() {
+  turnSoundOnDivElement.addEventListener('click', e => {
+    toggleSound(true, turnSoundOnDivElement, turnSoundOffDivElement, e);
   });
 }
 
 /*
-* Register turn sound off button listener
+* Register turn sound off div element listener
 * @param{null}, @return{null}
 */
-function registerTurnSoundOffButtonListener() {
-  turnSoundOffButton.addEventListener('click', e => {
-    toggleSound(false, turnSoundOffButton, turnSoundOnButton, e);
+function registerTurnSoundOffListener() {
+  turnSoundOffDivElement.addEventListener('click', e => {
+    toggleSound(false, turnSoundOffDivElement, turnSoundOnDivElement, e);
   });
 }
 
 /*
 * Prevent the default action on the event obejct.
-* For the button that was clicked, change its display to none
-* Make visible the other button (that wasn't clicked).
+* For the div element that was clicked, change its display to none
+* Make visible the other div element (that wasn't clicked).
 * Then set the sound accordingly on the videoPlayer.
 *
 * @param{Boolean} areYouTurningSoundOn
-* @param{DOMObject} clickedButton
-* @param{DOMObject} buttonToDisplay
+* @param{DOMObject} clickedDivElement
+* @param{DOMObject} divElementToDisplay
 * @param{Event} eventObject
 * @return{null}
 */
-function toggleSound(areYouTurningSoundOn, clickedButton, buttonToDisplay, eventObject) {
+function toggleSound(areYouTurningSoundOn, clickedDivElement, DivElementToDisplay, eventObject) {
   eventObject.preventDefault();
-  clickedButton.style.display = "none";
-  buttonToDisplay.style.display = "inline";
+  clickedDivElement.style.display = "none";
+  DivElementToDisplay.style.display = "inline";
   setSoundOnVideoPlayer(areYouTurningSoundOn);
 }

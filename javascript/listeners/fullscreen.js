@@ -1,5 +1,7 @@
-const enterFullScreenButton = document.getElementById('go-fs');
-const exitFullScreenButton = document.getElementById('exit-fs');
+// Div stands for html "div" element. Remember that it's not an
+// html button element.
+const enterFullScreenDivElement = document.getElementById('enter-fullscreen');
+const exitFullScreenDivElement = document.getElementById('exit-fullscreen');
 
 /*
 * Register both the enter and exit fullscreen listeners
@@ -15,8 +17,8 @@ export default function registerFullScreenListeners() {
 * @param{null}, @return{null}
 */
 function registerEnterFullScreenListener() {
-  enterFullScreenButton.addEventListener('click', e => {
-    toggleFullScreen(requestFullscreenCallback, enterFullScreenButton, exitFullScreenButton, e);
+  enterFullScreenDivElement.addEventListener('click', e => {
+    toggleFullScreen(requestFullscreenCallback, enterFullScreenDivElement, exitFullScreenDivElement, e);
   });
 }
 
@@ -25,27 +27,27 @@ function registerEnterFullScreenListener() {
 * @param{null}, @return{null}
 */
 function registerExitFullScreenListener() {
-  exitFullScreenButton.addEventListener('click', e => {
-    toggleFullScreen(exitFullscreenCallback, exitFullScreenButton, enterFullScreenButton, e);
+  exitFullScreenDivElement.addEventListener('click', e => {
+    toggleFullScreen(exitFullscreenCallback, exitFullScreenDivElement, enterFullScreenDivElement, e);
   });
 }
 
 /*
 * Prevent the default action on the event obejct.
-* Call the provided browser callback. For the button that was clicked,
+* Call the provided browser callback. For the div that was clicked,
 * change its display to none. Make visible the other
-* button (that wasn't clicked).
+* div (that wasn't clicked).
 *
 * @param{Function} browserCallback
-* @param{Element} clickedButton
-* @param{Element} buttonToDisplay
+* @param{Element<Div>} clickedDivElement
+* @param{Element<Div>} divElementToDisplay
 * @param{Event} eventObject
 */
-function toggleFullScreen(browserCallback, clickedButton, buttonToDisplay, eventObject) {
+function toggleFullScreen(browserCallback, clickedDivElement, divElementToDisplay, eventObject) {
   eventObject.preventDefault();
   browserCallback();
-  clickedButton.style.display = 'none';
-  buttonToDisplay.style.display = 'inline';
+  clickedDivElement.style.display = 'none';
+  divElementToDisplay.style.display = 'inline';
 }
 
 /*
