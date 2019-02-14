@@ -18,9 +18,10 @@ let isSoundOn = false;
 */
 export default function setClipOnVideoPlayer(formattedParseData) {
   const currentClip = getCurrentFilenameAndPlaybackTime(formattedParseData);
-  const srcURL = constructSrcURL(currentClip.fileName, currentClip.playbackTime);
 
+  const srcURL = constructSrcURL(currentClip.fileName, currentClip.playbackTime);
   mp4Source.src = srcURL;
+
   videoTitleElement.innerHTML = currentClip.title;
   setSoundOnVideoPlayer();
   videoPlayer.load();

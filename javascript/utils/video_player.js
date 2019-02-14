@@ -1,6 +1,6 @@
-const linker = "http://8balltv.club/content/";
+const LINKER = "http://8balltv.club/content/";
 
 export default function constructSrcURL(filename, playbackTime) {
-  const srcURL = linker + filename + '#t=' + playbackTime.toString();
+  const srcURL = LINKER + filename + '#t=' + playbackTime.toString();
   return srcURL
 }
