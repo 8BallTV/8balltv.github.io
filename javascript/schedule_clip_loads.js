@@ -33,7 +33,7 @@ async function scheduleSecondAndSubsequentClipLoads(formattedParseData) {
 * for each clip load.
 *
 * @param {Array<Array<String>>} formattedParseData
-* @return {null}
+* @return {Promise} secondClipLoadPromise
 */
 function scheduleSecondClipLoad(formattedParseData) {
   const millisecondsUntilFirstNewQuery = TIME_UTIL.findMillisecondsUntilNext15MinuteInterval();
