@@ -1,9 +1,11 @@
 import findVideoPlayerClipInfo from '../find_clip_info.js';
 import parseCSV from '../parser.js';
 import { generateTestMessages, generateErrorMessageForParserTests } from '../utils/tests.js';
-import { MONDAY } from '../utils/csv_urls.js';
+import { createCSVSheetURLsByDay } from '../utils/csv_urls.js';
 
-parseCSV(batchTestRunner, MONDAY);
+const csvSheetURLsByDay = createCSVSheetURLsByDay();
+const monday = csvSheetURLsByDay.monday;
+parseCSV(batchTestRunner, monday);
 
 function batchTestRunner(formattedParseData) {
 	const testCases = generateTestCases();
