@@ -2,7 +2,7 @@
 * Transforms the csvParseResults into an array of clipDataObjects. The
 * clipDataObject keys correspond to the CSV file's column headers.
 *   NOTE: If we add columns to the spreadsheet, then we will need to
-*         add keys to this
+*         add keys to this object
 *
 * @param {Array<Array<String>>} csvParseResults
 * @return {Array<ClipDataObject>} formattedParseData
