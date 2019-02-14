@@ -18,13 +18,10 @@ let isSoundOn = false;
 */
 export default function setClipOnVideoPlayer(formattedParseData) {
   const currentClip = getCurrentFilenameAndPlaybackTime(formattedParseData);
-
-  const srcURL = constructSrcURL(currentClip.fileName, currentClip.playbackTime);
-  mp4Source.src = srcURL;
-
-  videoTitleElement.innerHTML = currentClip.title;
+  setSRC_URL(currentClip.fileName, currentClip.playbackTime);
+  setTitle(currentClip.title);
   setSoundOnVideoPlayer();
-  videoPlayer.load();
+  loadVideoPlayer();
 }
 
 /*
@@ -36,6 +33,37 @@ export default function setClipOnVideoPlayer(formattedParseData) {
 export function setSoundOnVideoPlayer(updatedIsSoundOn) {
   isSoundOn = updatedIsSoundOn;
   videoPlayer.muted = !isSoundOn;
+}
+
+/*
+* Set the current clip's source url on the HTML src element.
+*
+* @param{String} fileName
+* @param{Number} playbackTime
+* @return{null}
+*/
+function setSRC_URL(fileName, playbackTime) {
+  const srcURL = constructSrcURL(fileName, playbackTime);
+  mp4Source.src = srcURL;
+}
+
+/*
+* Set the current title on the title HTML element.
+*
+* @param{String} title
+* @return{null}
+*/
+function setTitle(title) {
+  videoTitleElement.innerHTML = title;
+}
+
+/*
+* Load the videoPlayer.
+*
+* @param{String}, @return{null}
+*/
+function loadVideoPlayer() {
+  videoPlayer.load();
 }
 
 /*
