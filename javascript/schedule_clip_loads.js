@@ -47,7 +47,6 @@ function scheduleSecondClipLoad(formattedParseData) {
   return secondClipLoadPromise;
 }
 
-
 /*
 * Schedule all clip loads after the second clip load. The time between thes
 * second clip load and subsequent clip loads is always 15 minutes.
