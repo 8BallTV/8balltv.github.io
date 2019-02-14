@@ -44,11 +44,12 @@ export default function determineCSV_URL() {
 * @return{Object} csvSheetURLsByDay
 */
 export function createCSVSheetURLsByDay() {
-  let [firstPartOfUrl, secondPartOfUrl, idNumbers] = determineConstants();
+	let [firstPartOfUrl, secondPartOfUrl, idNumbers] = determineConstants();
 	const csvSheetURLsByDay = {};
-	DAYS_OF_THE_WEEK.forEach( (day, i) =>{
+	DAYS_OF_THE_WEEK.forEach( (day, i) => {
 		csvSheetURLsByDay[day] = firstPartOfUrl + idNumbers[i] + secondPartOfUrl;
 	});
+
 	return csvSheetURLsByDay;
 }
 
