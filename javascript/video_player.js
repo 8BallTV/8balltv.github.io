@@ -4,6 +4,11 @@ import constructSrcURL from './utils/video_player.js';
 import parseCSV from './parser.js';
 import scheduleClipLoads from './schedule_clip_loads.js';
 
+const mp4Source =  document.getElementById("mp4_src");
+const videoPlayer = document.getElementById("tv");
+const videoTitleElement = document.getElementById("title");
+let isSoundOn = false;
+
 /*
 *	Set the html5 video player to play the current
 * time's clip at the playback time.
@@ -11,29 +16,26 @@ import scheduleClipLoads from './schedule_clip_loads.js';
 * @param {Array<ClipDataObject>} formattedParseData
 * @return {null}
 */
-
-const mp4Source =  document.getElementById("mp4_src");
-const videoPlayer = document.getElementById("tv");
-const videoTitleElement = document.getElementById("title");
-let isSoundOn = false;
-
 export default function setClipOnVideoPlayer(formattedParseData) {
-  const videoPlayerClipInfo = getCurrentFilenameAndPlaybackTime(formattedParseData);
-  const [fileName, playbackTime, title] = [videoPlayerClipInfo.fileName,
-                                          videoPlayerClipInfo.playbackTime,
-                                          videoPlayerClipInfo.title];
-  const srcURL = constructSrcURL(fileName, playbackTime);
-  videoTitleElement.innerHTML = title;
+  const currentClip = getCurrentFilenameAndPlaybackTime(formattedParseData);
+  const srcURL = constructSrcURL(currentClip.fileName, currentClip.playbackTime);
+
   mp4Source.src = srcURL;
+  videoTitleElement.innerHTML = currentClip.title;
   setSoundOnVideoPlayer();
   videoPlayer.load();
 }
 
+/*
+* Turns the sound on or off the HTML video player.
+*
+* @param{Boolean} updatedIsSoundOn
+* @return{null}
+*/
 export function setSoundOnVideoPlayer(updatedIsSoundOn) {
   isSoundOn = updatedIsSoundOn;
   videoPlayer.muted = !isSoundOn;
 }
-
 
 /*
 * Gets filename and playbacktime for the file
