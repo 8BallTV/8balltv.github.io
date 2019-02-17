@@ -89,7 +89,7 @@ between 8:30am and 8:45am. So the second part should have started at
 the clip (52 - 45 = 7). The variable "playbackMinutesInto15MinuteInterval"
 represents this.
 
-Adding the two variables together, gives us the correct  minute
+Adding the two variables together gives us the correct  minute
 at which to start the playback: 15 + 7 = 22. Now, we just need to add
 the seconds to give us the precise time. Our example time is 8:52:36,
 so that's 36 seconds past the minute.
