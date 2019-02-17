@@ -64,7 +64,7 @@ To prove that this mapping works, let's use an example.
 2. The fourth element in the clipDataObjectsArray is the currentClipDataObject for this timeSlot.
 3. The fourth element in the clipDataObjectsArray occurs at index 3.
 4. For all the minutes in the range 0:45 (inclusive) and 1:00 (un-inclusive):
-    * `Math.floor(time / 15)` === 3
+		* `Math.floor(time / 15)` === 3
 5. This logic applies to any timeslot. Try it out oN other timeslots to to convince yourself
 
 
