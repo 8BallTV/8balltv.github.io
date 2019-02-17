@@ -14,9 +14,9 @@ Follow these steps to test out the scheduler on your own machine
 	 * If you get a `-bash: python command not found`, that means
 	   you don't have the Python interpreter installed on your computer.
 	   To do so, go [here](https://www.python.org/downloads/).
-5. Open up Google Chrome
+5. Open Google Chrome
 6. Go to "http://localhost:8000/"
-7. Open the developer console using CMD + Option + i.
+7. Open the developer console using `CMD + Option + i`.
 8. You'll notice that the console is logging the current video and playback
 	 time, in accordance with the Google Sheets Schedule.
 
@@ -64,7 +64,7 @@ To prove that this mapping works, let's use an example.
 2. The fourth element in the clipDataObjectsArray is the currentClipDataObject for this timeSlot.
 3. The fourth element in the clipDataObjectsArray occurs at index 3.
 4. For all the minutes in the range 0:45 (inclusive) and 1:00 (un-inclusive):
-		* `Math.floor(time / 15)` === 3
+		* Math.floor(time / 15) === 3
 5. This logic applies to any timeslot. Try it out oN other timeslots to to convince yourself
 
 
