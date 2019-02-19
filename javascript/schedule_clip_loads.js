@@ -24,7 +24,7 @@ export default function scheduleClipLoads(formattedParseData) {
 async function scheduleSecondAndSubsequentClipLoads(formattedParseData) {
   let secondClipLoadPromise = scheduleSecondClipLoad(formattedParseData);
   await secondClipLoadPromise;
-  scheduleSubsequentClipLoads();
+  scheduleSubsequentClipLoads(formattedParseData);
 }
 
 /*
