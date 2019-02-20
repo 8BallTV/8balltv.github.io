@@ -15,7 +15,6 @@ export default function formatParseData(csvParseResults) {
   // Slice to get rid of the first entry,
   // which is the CSV's column title
   const formattedParseData = clipDataObjectsArrayWithTitle.slice(1);
-  window.formattedParseData = formattedParseData;
   return formattedParseData;
 }
 
