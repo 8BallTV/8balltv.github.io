@@ -1,11 +1,12 @@
 import findVideoPlayerClipInfo from '../find_clip_info.js';
 import parseCSV from '../parser.js';
 import { generateTestMessages, generateErrorMessageForParserTests } from '../utils/tests.js';
-import { createCSVSheetURLsByDay } from '../utils/csv_urls.js';
+import { testURL } from '../utils/dev_constants.js';
 
-const csvSheetURLsByDay = createCSVSheetURLsByDay();
-const monday = csvSheetURLsByDay.monday;
-parseCSV(batchTestRunner, monday);
+// const csvSheetURLsByDay = createCSVSheetURLsByDay();
+// const monday = csvSheetURLsByDay.monday;
+// const testURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRCmu8vTzD_R7L2iqEE0gdD43zbEnTUv5-_f6cHz1zX16JN6c2sdWKagLuOWPO8HBnbghfmInxWNwSz/pub?gid=438846256&single=true&output=tsv";
+parseCSV(batchTestRunner, testURL);
 
 function batchTestRunner(formattedParseData) {
 	const testCases = generateTestCases();
@@ -13,7 +14,6 @@ function batchTestRunner(formattedParseData) {
 		const currentTestCase = testCases[i];
 		const { time, expectedFileName, expectedtimeToStartPlayingVideo } = currentTestCase;
 		const actual = findVideoPlayerClipInfo(formattedParseData, time, true);
-
 		let pass = false;
 		if(expectedFileName === actual.fileName &&
 			expectedtimeToStartPlayingVideo === actual.playbackTime) {

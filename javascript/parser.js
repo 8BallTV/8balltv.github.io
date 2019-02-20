@@ -13,6 +13,7 @@ import formatParseData from './format_parse_data.js';
 export default function parseCSV(callback, csv_url) {
 	csv_url = csv_url || determineCSV_URL();
   Papa.parse(csv_url, {
+		delimiter: '\t',
     download: true,
 		fastMode: true,
     complete: csvParseResults =>  {
