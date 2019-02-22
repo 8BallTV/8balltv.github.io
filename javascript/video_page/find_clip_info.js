@@ -1,5 +1,6 @@
-import * as TIME_UTIL from './utils/time.js';
-import formatAndPrintToConsole from './utils/console_set_up_test.js';
+import * as TIME_UTIL from '../utils/time.js';
+import { findClipDataObject } from '../parser/format_parse_data.js';
+import formatAndPrintToConsole from '../utils/console_set_up_test.js';
 
 /*
 * Finds a clip's filename and playback time for a specific time of day.
@@ -12,27 +13,14 @@ import formatAndPrintToConsole from './utils/console_set_up_test.js';
 * @return {VideoPlayerClipInfo} ()
 */
 export default function findVideoPlayerClipInfo(formattedParseData, date, test) {
-  const currentClipDataObject = findClipDataObject(formattedParseData, date);
+  const minutesPastMidnight = TIME_UTIL.calculateMinutesPastMidnight(date);
+  const currentClipDataObject = findClipDataObject(formattedParseData, minutesPastMidnight);
   const { fileName, partNumber, title } = currentClipDataObject;
 
   const playbackTime = calculatePlaybackTime(partNumber, date);
   // TODO: Delete in production
   formatAndPrintToConsole(date, fileName, title, partNumber, playbackTime);
   return new VideoPlayerClipInfo(fileName, playbackTime, title);
-}
-
-/*
-* Finds a clipDataObject for a given time
-*
-* @param {Array<ClipDataObject>} formattedParseData
-* @param {DateObject} date
-* @return {ClipDataObject} clipDataObject
-*/
-function findClipDataObject(formattedParseData, date) {
-  const minutesPastMidnight = TIME_UTIL.calculateMinutesPastMidnight(date);
-  const indexOfClipObject = Math.floor(minutesPastMidnight / 15);
-  const clipDataObject = formattedParseData[indexOfClipObject];
-  return clipDataObject;
 }
 
 /*

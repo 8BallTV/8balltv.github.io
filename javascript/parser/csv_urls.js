@@ -1,18 +1,17 @@
-import DEV_CONSTANTS from './dev_constants.js';
-import PROD_CONSTANTS from './prod_constants.js';
+import DEV_CONSTANTS from '../utils/dev_constants.js';
+import PROD_CONSTANTS from '../utils/prod_constants.js';
 
 const DAYS_OF_THE_WEEK = [
 	'sunday',
 	'monday',
 	'tuesday',
 	'wednesday',
-	'thusday',
+	'thursday',
 	'friday',
 	'saturday'
 ]
 
 let areYouInDevelopment = window.location.hostname === 'localhost';
-
 /*
 * Returns correct url for the current day of the week.
 *
@@ -23,7 +22,6 @@ export default function determineCSV_URL() {
 	const date = new Date();
 	const dayOfTheWeek = date.getDay();
 	const csvSheetURLsByDay = createCSVSheetURLsByDay();
-
 	switch(dayOfTheWeek) {
     case 0: return csvSheetURLsByDay.sunday;
     case 1: return csvSheetURLsByDay.monday;
@@ -49,7 +47,6 @@ export function createCSVSheetURLsByDay() {
 	DAYS_OF_THE_WEEK.forEach( (day, i) => {
 		csvSheetURLsByDay[day] = firstPartOfUrl + idNumbers[i] + secondPartOfUrl;
 	});
-
 	return csvSheetURLsByDay;
 }
 

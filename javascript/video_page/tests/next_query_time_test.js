@@ -1,5 +1,5 @@
-import { findMillisecondsUntilNext15MinuteInterval } from '../utils/time.js';
-import { generateTestMessages } from '../utils/tests.js';
+import { findMillisecondsUntilNext15MinuteInterval } from '../../utils/time.js';
+import { generateTestMessages } from '../../utils/tests.js';
 
 batchTestRunner();
 

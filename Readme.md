@@ -35,7 +35,7 @@ columns that are necessary for the parser to function correctly- File
 Name and Part #. Additional columns provide video metadata.
 
 ### Parser
-The parser.js script is the primary script for the scheduler. It asynchronously
+The parser/index.js script is the primary script for the scheduler. It asynchronously
 parses the schedule (by converting the Google Sheet into a CSV file), and formats
 the data for our use. It then
 calls the main callback, in which we find and set the current video

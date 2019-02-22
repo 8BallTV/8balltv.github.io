@@ -1,5 +1,5 @@
 import setClipOnVideoPlayer from './video_player.js';
-import * as TIME_UTIL from './utils/time.js';
+import * as TIME_UTIL from '../utils/time.js';
 
 /*
 * A callback for parseCSV that initiates entire process of setting

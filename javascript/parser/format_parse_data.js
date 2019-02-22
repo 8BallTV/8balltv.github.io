@@ -18,6 +18,19 @@ export default function formatParseData(csvParseResults) {
   return formattedParseData;
 }
 
+/*
+* Finds a clipDataObject for a given number of minutes past midnight.
+*
+* @param {Array<ClipDataObject>} formattedParseData
+* @param {Number} minutesPastMidnight
+* @return {ClipDataObject} clipDataObject
+*/
+export function findClipDataObject(formattedParseData, minutesPastMidnight) {
+  const indexOfClipObject = Math.floor(minutesPastMidnight / 15);
+  const clipDataObject = formattedParseData[indexOfClipObject];
+  return clipDataObject;
+}
+
 class ClipDataObject {
   constructor(id, partNumber,fileName, title, director) {
     this.id = id;

@@ -1,14 +1,14 @@
 import findVideoPlayerClipInfo from './find_clip_info.js';
-import * as TIME_UTIL from './utils/time.js';
-import constructSrcURL from './utils/video_player.js';
-import parseCSV from './parser.js';
+import * as TIME_UTIL from '../utils/time.js';
+import parseCSV from '../parser/index.js';
 import scheduleClipLoads from './schedule_clip_loads.js';
 
 const mp4Source =  document.getElementById("mp4_src");
 const videoPlayer = document.getElementById("tv");
 const videoTitleElement = document.getElementById("title");
-let isSoundOn = false;
 
+let isSoundOn = false;
+const LINKER = "http://8balltv.club/content/";
 /*
 *	Set the html5 video player to play the current
 * time's clip at the playback time.
@@ -79,4 +79,9 @@ function getCurrentFilenameAndPlaybackTime(formattedParseData) {
   // Otherwise, at midnight you'd start playing the previous day's schedule
   if(TIME_UTIL.isItMidnight(date)) parseCSV(main);
   return findVideoPlayerClipInfo(formattedParseData, date, false);
+}
+
+function constructSrcURL(filename, playbackTime) {
+  const srcURL = LINKER + filename + '#t=' + playbackTime.toString();
+  return srcURL
 }

@@ -1,4 +1,4 @@
-import determineCSV_URL from './utils/csv_urls.js';
+import determineCSV_URL from './csv_urls.js';
 import formatParseData from './format_parse_data.js';
 
 /*
