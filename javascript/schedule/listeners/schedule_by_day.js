@@ -5,9 +5,7 @@ import determineCSV_URL from '../../utils/csv_urls.js';
 export const weekTable = document.getElementById("WEEK");
 
 /*
-* For each day link, register an on-click listener that clears the
-* adds the "isToday" css class to the selected day, parses
-* that day's csv file.
+* For each day link, register an on-click listener.
 *
 * @param{null}, @return{null}
 */
@@ -16,11 +14,23 @@ export default function registerSchedulesByDayLinksListener() {
   const dayLinks = weekTable.querySelectorAll("td");
   dayLinks.forEach((dayLink, i) => {
     dayLink.addEventListener('click', e => {
-      setIsToday(dayLink);
-      const csv_url = determineCSV_URL((i + 1) % 7);
-      parseCSV(renderTitlesOnSchedule, csv_url);
+      styleTodayLinkAndParseTodaysSchedule(dayLink, i);
     });
   });
+}
+
+/*
+* Adds the "isToday" css class for the selected day link and parse
+* that day's csv file.
+*
+* @param{DOMElement} dayLink
+* @return{Number} index
+*/
+function styleTodayLinkAndParseTodaysSchedule(dayLink, index) {
+  setIsToday(dayLink);
+  const mondayToSundayIndex = findMondayToSundayIndex(index);
+  const csv_url = determineCSV_URL(index);
+  parseCSV(renderTitlesOnSchedule, csv_url);
 }
 
 /*
@@ -45,4 +55,14 @@ function updateIsTodayOnPrevious() {
   if(previousIsToday) {
     previousIsToday.className = "week";
   }
+}
+
+/*
+* Given an index that corresponds to an array that lists days from
+* Sunday through Monday
+*
+*/
+function findMondayToSundayIndex(index) {
+  const mondayToSundayIndex = (index + 1) % 7;
+  return mondayToSundayIndex;
 }
