@@ -1,6 +1,6 @@
-import DEV_CONSTANTS from '../utils/dev_constants.js';
-import PROD_CONSTANTS from '../utils/prod_constants.js';
-import { DAYS_OF_THE_WEEK } from '../utils/shared_constants.js';
+import DEV_CONSTANTS from './dev_constants.js';
+import PROD_CONSTANTS from './prod_constants.js';
+import { DAYS_OF_THE_WEEK } from './shared_constants.js';
 
 let areYouInDevelopment = window.location.hostname === 'localhost';
 /*
