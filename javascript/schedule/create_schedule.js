@@ -21,7 +21,6 @@ export function setTodayCSS() {
   const todayMondayToSundayIndex = findTodayMondayToSundayIndex();
   const dayLinks = weekTable.querySelectorAll("td");
   const todayDayLink = dayLinks[todayMondayToSundayIndex];
-  debugger
   todayDayLink.className = "istoday"
 }
 

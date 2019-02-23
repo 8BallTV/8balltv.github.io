@@ -6,6 +6,7 @@ import { DAYS_OF_THE_WEEK, MONTHS } from '../utils/shared_constants.js';
 * @param{null}, @return{null}
 */
 export default function scheduleClockUpdate() {
+  displayTime();
   setInterval(displayTime, 500 /* milliseconds */);
 }
 

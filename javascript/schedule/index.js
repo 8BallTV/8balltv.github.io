@@ -4,7 +4,7 @@ import renderTitlesOnSchedule from './create_schedule.js';
 import registerListeners from './listeners/index.js';
 import { setTodayCSS } from './create_schedule.js';
 
-registerListeners();
 scheduleClockUpdate();
+registerListeners();
 setTodayCSS();
 parseCSV(renderTitlesOnSchedule);
