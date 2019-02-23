@@ -11,7 +11,7 @@ import formatParseData from './format_parse_data.js';
 * @return {null}
 */
 export default function parseCSV(callback, csv_url) {
-	csv_url = csv_url || determineCSV_URL();
+	csv_url = csv_url || findScheduleForToday();
   Papa.parse(csv_url, {
 		delimiter: '\t',
     download: true,
@@ -22,3 +22,15 @@ export default function parseCSV(callback, csv_url) {
 		}
   });
 };
+
+/*
+*	Finds the sheet's url for today's schedule
+*
+* @param{null}
+* @return{String} csv_url
+*/
+function findScheduleForToday() {
+	const date = new Date();
+	const dayOfTheWeek = date.getDay();
+	return determineCSV_URL(dayOfTheWeek);
+}

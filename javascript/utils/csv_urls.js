@@ -9,9 +9,7 @@ let areYouInDevelopment = window.location.hostname === 'localhost';
 * @param {Number} dayOfTheWeek
 * @return {String} (URL)
 */
-export default function determineCSV_URL() {
-	const date = new Date();
-	const dayOfTheWeek = date.getDay();
+export default function determineCSV_URL(dayOfTheWeek) {
 	const csvSheetURLsByDay = createCSVSheetURLsByDay();
 	switch(dayOfTheWeek) {
     case 0: return csvSheetURLsByDay.sunday;
