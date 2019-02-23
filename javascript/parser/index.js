@@ -11,6 +11,7 @@ import formatParseData from './format_parse_data.js';
 * @return {null}
 */
 export default function parseCSV(callback, csv_url) {
+	debugger;
 	csv_url = csv_url || findScheduleForToday();
   Papa.parse(csv_url, {
 		delimiter: '\t',

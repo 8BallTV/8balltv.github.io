@@ -22,3 +22,13 @@ export const MONTHS = [
   'november',
   'december'
 ];
+
+export const MONDAY_THROUGH_SUNDAY = createMondayThroughSunday();
+
+function createMondayThroughSunday() {
+  const mondayThroughSunday = DAYS_OF_THE_WEEK.slice();
+  const sunday = mondayThroughSunday.shift();
+  mondayThroughSunday.push(sunday);
+
+  return mondayThroughSunday;
+}
