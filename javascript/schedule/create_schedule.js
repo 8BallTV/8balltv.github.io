@@ -1,4 +1,5 @@
 import { weekTable } from './listeners/schedule_by_day.js';
+import { findMondayToSundayIndex } from '../utils/shared_constants.js';
 
 /*
 * Takes the formatted parse data and sets the title on the "titler"
@@ -14,4 +15,25 @@ export default function renderTitlesOnSchedule(formattedParseData) {
     const title = formattedParseData[i].title;
     titler.innerHTML = title;
   });
+}
+
+export function setTodayCSS() {
+  const todayMondayToSundayIndex = findTodayMondayToSundayIndex();
+  const dayLinks = weekTable.querySelectorAll("td");
+  const todayDayLink = dayLinks[todayMondayToSundayIndex];
+  debugger
+  todayDayLink.className = "istoday"
+}
+
+function findTodayMondayToSundayIndex() {
+  const todayDate = new Date();
+  const todayDay = todayDate.getDay();
+  let todayMondayToSundayIndex;
+  if(todayDay > 0) {
+    todayMondayToSundayIndex = todayDay - 1;
+  } else {
+    todayMondayToSundayIndex = 6;
+  }
+
+  return todayMondayToSundayIndex;
 }

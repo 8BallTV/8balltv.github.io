@@ -1,6 +1,7 @@
 import parseCSV from '../../parser/index.js';
 import renderTitlesOnSchedule from '../create_schedule.js';
 import determineCSV_URL from '../../utils/csv_urls.js';
+import { findMondayToSundayIndex } from '../../utils/shared_constants.js';
 
 export const weekTable = document.getElementById("WEEK");
 
@@ -55,14 +56,4 @@ function updateIsTodayOnPrevious() {
   if(previousIsToday) {
     previousIsToday.className = "week";
   }
-}
-
-/*
-* Given an index that corresponds to an array that lists days from
-* Sunday through Monday
-*
-*/
-function findMondayToSundayIndex(index) {
-  const mondayToSundayIndex = (index + 1) % 7;
-  return mondayToSundayIndex;
 }
