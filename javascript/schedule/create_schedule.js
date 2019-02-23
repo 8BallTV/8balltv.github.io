@@ -15,12 +15,3 @@ export function renderTitlesOnSchedule(formattedParseData) {
     titler.innerHTML = title;
   });
 }
-
-export function determineDayOfTheWeekForSchedule() {
-
-}
-
-// export function setCurrentDayOnInitialPageLoad() {
-//   const today = new Date();
-//   const currentDayOfTheWeek = t
-// }

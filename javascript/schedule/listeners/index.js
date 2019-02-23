@@ -1,5 +1,5 @@
-import registerSchedulesByDayLinks from './schedule_by_day.js';
+import registerSchedulesByDayLinksListener from './schedule_by_day.js';
 
 export default function registerListeners() {
-  registerSchedulesByDayLinks();
+  registerSchedulesByDayLinksListener();
 }

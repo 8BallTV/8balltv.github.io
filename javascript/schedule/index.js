@@ -5,6 +5,4 @@ import registerListeners from './listeners/index.js';
 
 registerListeners();
 scheduleClockUpdate();
-
-
 parseCSV(renderTitlesOnSchedule);
