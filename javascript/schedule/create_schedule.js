@@ -7,7 +7,7 @@ import { weekTable } from './listeners/schedule_by_day.js';
 * @param {Array<Array<String>>} formattedParseData
 * @return {null}
 */
-export function renderTitlesOnSchedule(formattedParseData) {
+export default function renderTitlesOnSchedule(formattedParseData) {
   const scheduleTable = document.getElementById("TODAY");
   const titlers = scheduleTable.querySelectorAll(".titler");
   titlers.forEach((titler, i) => {

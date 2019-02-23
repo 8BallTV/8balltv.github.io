@@ -1,5 +1,5 @@
 import parseCSV from '../../parser/index.js';
-import { renderTitlesOnSchedule } from '../create_schedule.js';
+import renderTitlesOnSchedule from '../create_schedule.js';
 import determineCSV_URL from '../../utils/csv_urls.js';
 
 export const weekTable = document.getElementById("WEEK");
