@@ -1,3 +1,5 @@
+import { DAYS_OF_THE_WEEK, MONTHS } from '../utils/shared_constants.js';
+
 /*
 * Schedules the clock for updates every 500 milliseconds
 *
@@ -14,15 +16,15 @@ export default function scheduleClockUpdate() {
 */
 function displayTime() {
   const date = new Date();
-  document.getElementById('dater').innerHTML = createTimeString(date)+ \
-                                              '<br><br>' + time;
+  const timeAndDate = createTimeString(date) + '<br><br>' + createDateString(date);
+  document.getElementById('dater').innerHTML = timeAndDate;
 }
 
 /*
 * Create a formatted HH:mm:ss time string for the current time
 *
 * @param{DateObject} date
-* @return{null}
+* @return{String} timeString}
 */
 function createTimeString(date) {
   let [hours, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSeconds()];
@@ -31,8 +33,24 @@ function createTimeString(date) {
   return timeString;
 }
 
+/*
+* Create a formatted string for the current date
+*
+* @param{DateObject} date
+* @return{null}
+*/
 function createDateString(date) {
-  
+  const dayOfTheWeekInteger = date.getDay();
+  const dayOfTheWeek = DAYS_OF_THE_WEEK[dayOfTheWeekInteger];
+
+  const monthInteger = date.getMonth();
+  const month = MONTHS[monthInteger];
+
+  const numericalDate = date.getDate();
+  const year = date.getFullYear();
+
+  const dateString = dayOfTheWeek + " " + month + " " + numericalDate + " " + year;
+  return dateString;
 }
 
 /*
