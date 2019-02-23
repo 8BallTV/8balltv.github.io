@@ -13,21 +13,26 @@ export default function scheduleClockUpdate() {
 * @param{null}, @return{null}
 */
 function displayTime() {
-  const time = new Date();
-  document.getElementById('dater').innerHTML = createTimeString(time);
+  const date = new Date();
+  document.getElementById('dater').innerHTML = createTimeString(date)+ \
+                                              '<br><br>' + time;
 }
 
 /*
 * Create a formatted HH:mm:ss time string for the current time
 *
-* @param{Number} time
+* @param{DateObject} date
 * @return{null}
 */
-function createTimeString(time) {
-  let [hours, minutes, seconds] = [time.getHours(), time.getMinutes(), time.getSeconds()];
+function createTimeString(date) {
+  let [hours, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSeconds()];
   [minutes, seconds] = [padDigitIfNecessary(minutes), padDigitIfNecessary(seconds)];
   const timeString = hours + ":" + minutes + ":" + seconds;
   return timeString;
+}
+
+function createDateString(date) {
+  
 }
 
 /*

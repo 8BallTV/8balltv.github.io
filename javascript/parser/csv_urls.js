@@ -1,15 +1,6 @@
 import DEV_CONSTANTS from '../utils/dev_constants.js';
 import PROD_CONSTANTS from '../utils/prod_constants.js';
-
-const DAYS_OF_THE_WEEK = [
-	'sunday',
-	'monday',
-	'tuesday',
-	'wednesday',
-	'thursday',
-	'friday',
-	'saturday'
-]
+import DAYS_OF_THE_WEEK from '../utils/shared_constants.js':
 
 let areYouInDevelopment = window.location.hostname === 'localhost';
 /*
