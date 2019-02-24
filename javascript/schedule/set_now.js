@@ -1,19 +1,24 @@
-import { dayLinks }from './listeners/schedule_by_day.js';
+currentQuarterimport { dayLinks }from './listeners/schedule_by_day.js';
 import { DAYS_OF_THE_WEEK } from '../utils/shared_constants.js';
 import { calculateMinutesPastMidnight } from '../utils/time.js';
 import { findCurrentClipIndex } from '../parser/format_parse_data.js';
 import { findTodayDayString } from '../utils/shared_constants.js';
+import scheduleSecondAndSubsequentActions from '../utils/scheduler.js';
 
 
 export default function scheduleSetNowTextOnCurrentClipQuarter() {
-  setNowTextOnCurrentClipQuarter();
-
+  setOrRemoveNowText();
+  scheduleSecondAndSubsequentActions(setOrRemoveNowText, null);
 }
 
-export function setNowTextOnCurrentClipQuarter() {
+let currentQuarter = null;
+export function setOrRemoveNowText() {
   const currentClipQuarter = findCurrentClipQuarter();
   if(isSelectedQuarterTheCurrentDay()) {
+    currentQuarter = currentClipQuarter.innerHTML;
     currentClipQuarter.innerHTML = "..NOW.....";
+  } else {
+    currentClipQuarter.innerHTML = currentQuarter;
   }
 }
 

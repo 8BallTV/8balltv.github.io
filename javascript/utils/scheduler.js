@@ -8,11 +8,11 @@ import * as TIME_UTIL from '../utils/time.js';
 *  e.g. We use this function to schedule the setClipOnVideoPlayer action
 *       for the second clip load, and all subsequent clip loads.
 *
-* @param {Array<Array<String>>} formattedParseData
 * @param {Function} action
+* @param {Array<Array<String>>} formattedParseData
 * @return {null}
 */
-export default async function scheduleSecondAndSubsequentActions(formattedParseData, action) {
+export default async function scheduleSecondAndSubsequentActions(action, formattedParseData) {
   let secondActionPromise = scheduleSecondAction(formattedParseData, action);
   await secondActionPromise;
   scheduleSubsequentActions(formattedParseData, action);

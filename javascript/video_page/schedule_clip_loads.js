@@ -13,5 +13,5 @@ import scheduleSecondAndSubsequentActions from '../utils/scheduler.js'
 export default function scheduleClipLoads(formattedParseData) {
   // Set the current clip on the video player
   setClipOnVideoPlayer(formattedParseData);
-  scheduleSecondAndSubsequentActions(formattedParseData, setClipOnVideoPlayer);
+  scheduleSecondAndSubsequentActions(setClipOnVideoPlayer, formattedParseData);
 };

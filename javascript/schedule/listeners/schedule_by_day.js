@@ -2,7 +2,7 @@ import parseTSV from '../../parser/index.js';
 import renderTitlesOnSchedule from '../create_schedule.js';
 import determineTSV_URL from '../../utils/tsv_urls.js';
 import { findTodayDayString } from '../../utils/shared_constants.js';
-// import { findMondayToSundayIndex } from '../../utils/shared_constants.js';
+import setOrRemoveNowText from '../set_now.js';
 
 export const weekTable = document.getElementById("WEEK");
 // A day link brings us to another day's schedule
@@ -30,9 +30,9 @@ export default function registerSchedulesByDayLinksListener() {
 */
 function styleTodayLinkAndParseTodaysSchedule(dayLink) {
   setSelected(dayLink);
+  setOrRemoveNowText();
   const dayString = dayLink.id;
   const tsv_url = determineTSV_URL(dayString);
-  debugger
   parseTSV(renderTitlesOnSchedule, tsv_url);
 }
 
