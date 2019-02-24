@@ -33,9 +33,20 @@ export default function formatParseData(tsvParseResults) {
 * @return {ClipDataObject} clipDataObject
 */
 export function findClipDataObject(formattedParseData, minutesPastMidnight) {
-  const indexOfClipObject = Math.floor(minutesPastMidnight / 15);
+  const indexOfClipObject = findCurrentClipIndex(minutesPastMidnight);
   const clipDataObject = formattedParseData[indexOfClipObject];
   return clipDataObject;
+}
+
+/**
+* Finds the current clip's index in the formattedParseData. The currentClipIndex
+* also represents one less than the number video it is for the day.
+*   E.g. If current clip index is 5, then it's the 6th video of the day.
+*
+* @return {Number} CurrentClipIndex
+*/
+export function findCurrentClipIndex(minutesPastMidnight) {
+  return Math.floor(minutesPastMidnight / 15);
 }
 
 class ClipDataObject {
