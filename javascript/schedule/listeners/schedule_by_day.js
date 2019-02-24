@@ -2,7 +2,7 @@ import parseTSV from '../../parser/index.js';
 import renderTitlesOnSchedule from '../create_schedule.js';
 import determineTSV_URL from '../../utils/tsv_urls.js';
 import { findTodayDayString } from '../../utils/shared_constants.js';
-import { setNowText, removeNowText } from '../set_now.js';
+import scheduleNowTextUpdates, { removeNowText } from '../set_now.js';
 
 
 export const weekTable = document.getElementById("WEEK");
@@ -18,8 +18,8 @@ export default function registerSchedulesByDayLinksListener() {
   dayLinks.forEach((dayLink, i) => {
     dayLink.addEventListener('click', e => {
       const clickedDay = e.currentTarget.id;
-      clickedDay == findTodayDayString() ? setNowText() : removeNowText();
       styleLinkAndParseSchedule(dayLink);
+      clickedDay == findTodayDayString() ? scheduleNowTextUpdates() : removeNowText();
     });
   });
 }

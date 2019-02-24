@@ -4,7 +4,8 @@ import * as TIME_UTIL from '../utils/time.js';
 * Keep track of async tasks by referencing their id and the action
 * being performed
 */
-export const ASYNC_TASK_IDs = [];
+// export const ASYNC_TASK_IDs = [];
+window.ASYNC_TASK_IDs = [];
 
 /**
 * Schedules the first action and all subsequent actions for actions that
@@ -59,5 +60,5 @@ function scheduleSubsequentActions(formattedParseData, action) {
 }
 
 function updateAsyncIds(id, action) {
-  ASYNC_TASK_IDs.push({ id, action: action.prototype.name });
+  ASYNC_TASK_IDs.push({ id, action: action.prototype.constructor.name });
 }

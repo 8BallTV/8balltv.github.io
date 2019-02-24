@@ -30,7 +30,7 @@ export function setSelectedCSS() {
 * @param{Null}
 * @return{String} todayDayLink
 */
-function findTodayDayLink() {
+export function findTodayDayLink() {
   const todayDayString = findTodayDayString();
   const todayDayLink = document.getElementById(todayDayString);
   return todayDayLink;

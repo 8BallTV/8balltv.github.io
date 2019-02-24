@@ -1,6 +1,7 @@
 import { findTodayDayString } from '../utils/shared_constants.js';
 import findCurrentQuarter  from '../utils/now_text.js';
 import scheduleSecondAndSubsequentActions from '../utils/scheduler.js';
+import { findTodayDayLink } from './create_schedule.js';
 
 let currentQuarterHTML = "";
 const nowText = "..NOW.....";
@@ -10,7 +11,7 @@ export default function scheduleNowTextUpdates() {
   scheduleSecondAndSubsequentActions(setNowText);
 }
 
-export function setNowText() {
+function setNowText() {
   resetPreviousQuarter();
   updateCurrentQuarter();
 }
@@ -31,6 +32,12 @@ function resetPreviousQuarter() {
 function updateCurrentQuarter() {
   const currentQuarter = findCurrentQuarter();
   currentQuarterHTML = currentQuarter.innerHTML;
-  currentQuarter.classList.add("current-quarter");
-  currentQuarter.innerHTML = nowText;
+  if(isTodaySelected()) {
+    currentQuarter.classList.add("current-quarter");
+    currentQuarter.innerHTML = nowText;
+  }
+}
+
+function isTodaySelected() {
+  return findTodayDayLink().classList.contains("selected");
 }
