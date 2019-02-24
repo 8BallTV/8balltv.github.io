@@ -1,4 +1,4 @@
-import { DAYS_OF_THE_WEEK, MONTHS } from '../utils/shared_constants.js';
+import { findDayString, findMonthString } from '../utils/shared_constants.js';
 
 /**
 * Schedules the clock for updates every 500 milliseconds
@@ -41,16 +41,12 @@ function createTimeString(date) {
 * @return{null}
 */
 function createDateString(date) {
-  const dayOfTheWeekInteger = date.getDay();
-  const dayOfTheWeek = DAYS_OF_THE_WEEK[dayOfTheWeekInteger];
-
-  const monthInteger = date.getMonth();
-  const month = MONTHS[monthInteger];
-
+  const day = findDayString(date.getDay());
+  const month= findMonthString(date.getMonth());
   const numericalDate = date.getDate();
   const year = date.getFullYear();
 
-  const dateString = dayOfTheWeek + " " + month + " " + numericalDate + " " + year;
+  const dateString = day + " " + month + " " + numericalDate + " " + year;
   return dateString;
 }
 

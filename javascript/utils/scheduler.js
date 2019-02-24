@@ -5,7 +5,7 @@ import * as TIME_UTIL from '../utils/time.js';
 * being performed
 */
 const ASYNC_TASKS = [];
-const ASYNC_TYPE = { timeout: 0, interval: 1 }
+const ASYNC_TYPE = { timeout: 0, interval: 1 };
 
 /**
 * Schedules the first action and all subsequent actions for actions that
@@ -19,9 +19,9 @@ const ASYNC_TYPE = { timeout: 0, interval: 1 }
 * @return {null}
 */
 export default async function scheduleSecondAndSubsequentActions(action, formattedParseData) {
-  let secondActionPromise = scheduleSecondAction(formattedParseData, action);
+  let secondActionPromise = scheduleSecondAction(action, formattedParseData);
   await secondActionPromise;
-  scheduleSubsequentActions(formattedParseData, action);
+  scheduleSubsequentActions(action, formattedParseData);
 }
 
 /**
@@ -33,7 +33,7 @@ export default async function scheduleSecondAndSubsequentActions(action, formatt
 * @param {Function} action
 * @return {Promise} secondActionPromise
 */
-function scheduleSecondAction(formattedParseData, action) {
+function scheduleSecondAction(action, formattedParseData) {
   const millisecondsUntilFirstNewQuery = TIME_UTIL.findMillisecondsUntilNext15MinuteInterval();
   let secondClipLoadPromise = new Promise((resolve, reject) => {
     const id = setTimeout(() => {
@@ -53,10 +53,10 @@ function scheduleSecondAction(formattedParseData, action) {
 * @param {Array<Array<String>>} formattedParseData
 * @return {null}
 */
-function scheduleSubsequentActions(formattedParseData, action) {
+function scheduleSubsequentActions(action, formattedParseData) {
   const fifteenMinutesInMilliseconds = 15 * 60 * 1000;
-  let id = setInterval(() => action(formattedParseData), fifteenMinutesInMilliseconds);
-  updateAsyncIds(id, action, AYSNC_TYPE.interval);
+  let id = setInterval(() =>  action(formattedParseData), fifteenMinutesInMilliseconds);
+  updateAsyncIds(id, action, ASYNC_TYPE.interval);
 }
 
 function updateAsyncIds(id, action, asyncType) {

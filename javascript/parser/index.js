@@ -29,7 +29,7 @@ export default function parseTSV(callback, tsv_url) {
 };
 
 /**
-*	Finds the sheet's url for today's schedule
+* Finds the sheet's url for today's schedule
 *
 * @param{null}
 * @return{String} tsv_url

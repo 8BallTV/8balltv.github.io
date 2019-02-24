@@ -45,3 +45,7 @@ export function findTodayDayString() {
 export function findDayString(dayNumber) {
 	return DAYS_OF_THE_WEEK[dayNumber];
 }
+
+export function findMonthString(monthNumber) {
+	return MONTHS[monthNumber];
+}
