@@ -1,39 +1,36 @@
-currentQuarterimport { dayLinks }from './listeners/schedule_by_day.js';
-import { DAYS_OF_THE_WEEK } from '../utils/shared_constants.js';
-import { calculateMinutesPastMidnight } from '../utils/time.js';
-import { findCurrentClipIndex } from '../parser/format_parse_data.js';
 import { findTodayDayString } from '../utils/shared_constants.js';
+import findCurrentQuarter  from '../utils/now_text.js';
 import scheduleSecondAndSubsequentActions from '../utils/scheduler.js';
 
+let currentQuarterHTML = "";
+const nowText = "..NOW.....";
 
-export default function scheduleSetNowTextOnCurrentClipQuarter() {
-  setOrRemoveNowText();
-  scheduleSecondAndSubsequentActions(setOrRemoveNowText, null);
+export default function scheduleNowTextUpdates() {
+  setNowText();
+  scheduleSecondAndSubsequentActions(setNowText);
 }
 
-let currentQuarter = null;
-export function setOrRemoveNowText() {
-  const currentClipQuarter = findCurrentClipQuarter();
-  if(isSelectedQuarterTheCurrentDay()) {
-    currentQuarter = currentClipQuarter.innerHTML;
-    currentClipQuarter.innerHTML = "..NOW.....";
-  } else {
-    currentClipQuarter.innerHTML = currentQuarter;
+export function setNowText() {
+  resetPreviousQuarter();
+  updateCurrentQuarter();
+}
+
+export function removeNowText() {
+  const currentQuarter = findCurrentQuarter();
+  currentQuarter.innerHTML = currentQuarterHTML;
+}
+
+function resetPreviousQuarter() {
+  const previousQuarter = document.querySelector(".current-quarter");
+  if(previousQuarter) {
+    previousQuarter.classList.remove("current-quarter");
+    previousQuarter.innerHTML = currentQuarterHTML;
   }
 }
 
-function findCurrentClipQuarter() {
-  const quarters = document.querySelectorAll(".quarter");
-  const date = new Date();
-  const minutesPastMidnight = calculateMinutesPastMidnight(date);
-  const currentClipIndex = findCurrentClipIndex(minutesPastMidnight);
-  const currentClipQuarter = quarters[currentClipIndex];
-
-  return currentClipQuarter;
-}
-
-function isSelectedQuarterTheCurrentDay() {
-  const selectedQuarter = document.querySelector(".selected");
-  const todayDayString = findTodayDayString();
-  return selectedQuarter.id === todayDayString;
+function updateCurrentQuarter() {
+  const currentQuarter = findCurrentQuarter();
+  currentQuarterHTML = currentQuarter.innerHTML;
+  currentQuarter.classList.add("current-quarter");
+  currentQuarter.innerHTML = nowText;
 }

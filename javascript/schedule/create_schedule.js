@@ -21,7 +21,7 @@ export default function renderTitlesOnSchedule(formattedParseData) {
 
 export function setSelectedCSS() {
   const todayDayLink = findTodayDayLink();
-  todayDayLink.className = "selected"
+  todayDayLink.className = "selected";
 }
 
 /**

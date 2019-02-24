@@ -1,5 +1,10 @@
 import * as TIME_UTIL from '../utils/time.js';
 
+/*
+* Keep track of async tasks by referencing their id and the action
+* being performed
+*/
+export const ASYNC_TASK_IDs = [];
 
 /**
 * Schedules the first action and all subsequent actions for actions that
@@ -30,10 +35,11 @@ export default async function scheduleSecondAndSubsequentActions(action, formatt
 function scheduleSecondAction(formattedParseData, action) {
   const millisecondsUntilFirstNewQuery = TIME_UTIL.findMillisecondsUntilNext15MinuteInterval();
   let secondClipLoadPromise = new Promise((resolve, reject) => {
-    setTimeout(() => {
+    const id = setTimeout(() => {
       action(formattedParseData);
       resolve();
     }, millisecondsUntilFirstNewQuery);
+    updateAsyncIds(id, action);
   });
 
   return secondClipLoadPromise;
@@ -48,5 +54,10 @@ function scheduleSecondAction(formattedParseData, action) {
 */
 function scheduleSubsequentActions(formattedParseData, action) {
   const fifteenMinutesInMilliseconds = 15 * 60 * 1000;
-  setInterval(() => action(formattedParseData), fifteenMinutesInMilliseconds);
+  let id = setInterval(() => action(formattedParseData), fifteenMinutesInMilliseconds);
+  updateAsyncIds(id, action);
+}
+
+function updateAsyncIds(id, action) {
+  ASYNC_TASK_IDs.push({ id, action: action.prototype.name });
 }
