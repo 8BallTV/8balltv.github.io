@@ -396,7 +396,7 @@ video {
 	text-transform: uppercase;
 }
 
-.istoday{
+.selected {
 	width:14%;
 	color: yellow;
 	font-size:20px;
@@ -409,7 +409,7 @@ video {
 	cursor: default;
 }
 
-.istoday a {
+.selected a {
 	width:14%;
 	color: yellow;
 	font-size:20px;

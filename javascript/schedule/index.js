@@ -1,11 +1,12 @@
 import scheduleClockUpdate from './clock.js';
 import parseTSV from '../parser/index.js';
-import renderTitlesOnSchedule, { setNowOnCurrentClipTime } from './create_schedule.js';
+import renderTitlesOnSchedule from './create_schedule.js';
 import registerListeners from './listeners/index.js';
-import { setTodayCSS } from './create_schedule.js';
+import { setSelectedCSS } from './create_schedule.js';
+import scheduleSetNowTextOnCurrentClipQuarter  from './set_now.js';
 
-scheduleClockUpdate();
 registerListeners();
-setTodayCSS();
-setNowOnCurrentClipTime();
+scheduleClockUpdate();
+setSelectedCSS();
+scheduleSetNowTextOnCurrentClipQuarter();
 parseTSV(renderTitlesOnSchedule);

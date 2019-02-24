@@ -5,7 +5,7 @@ export const DAYS_OF_THE_WEEK = [
 	'wednesday',
 	'thursday',
 	'friday',
-	'saturday'
+	'saturday',
 ];
 
 export const MONTHS = [
@@ -24,14 +24,24 @@ export const MONTHS = [
 ];
 
 /**
-* Given an index that corresponds to an array that lists days from
-* Sunday through Saturday, return an index that corresponds to an array
-* that lists days from Monday to Sunday.
+* Find the lowercase string that represents today's day.
+* 	e.g. If today is Saturday, April 10th, this returns "saturday"
 *
-* @param{Number} sundayThroughSaturdayIndex
-* @return{Number} mondayToSundayIndex
+* @param{Null}
+* @return{String} dayString
 */
-export function findMondayToSundayIndex(sundayThroughSaturdayIndex) {
-  const mondayToSundayIndex = (sundayThroughSaturdayIndex + 1) % 7;
-  return mondayToSundayIndex;
+export function findTodayDayString() {
+	const dayNumber = (new Date()).getDay();
+	return DAYS_OF_THE_WEEK[dayNumber];
+}
+/**
+* Given a number in the range [0, 6], return a string that represents
+* that numbers day. We have to do this because Date#getDay returns
+* 0 for Sunday, 1 for Monday, ... 6 for Saturday.
+*
+* @param{Number} dayNumber
+* @return{String} dayString
+*/
+export function findDayString(dayNumber) {
+	return DAYS_OF_THE_WEEK[dayNumber];
 }

@@ -1,5 +1,6 @@
 import determineTSV_URL from '../utils/tsv_urls.js';
 import formatParseData from './format_parse_data.js';
+import { findTodayDayString } from '../utils/shared_constants.js';
 
 /***
 * Loads the 8BallTV Schedule TSV file for the correct day. Calls the
@@ -34,7 +35,6 @@ export default function parseTSV(callback, tsv_url) {
 * @return{String} tsv_url
 */
 function findScheduleForToday() {
-	const date = new Date();
-	const dayOfTheWeek = date.getDay();
-	return determineTSV_URL(dayOfTheWeek);
+	const todayString = findTodayDayString();
+	return determineTSV_URL(todayString);
 }

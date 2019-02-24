@@ -6,20 +6,21 @@ let areYouInDevelopment = window.location.hostname === 'localhost';
 /**
 * Returns correct url for the current day of the week.
 *
-* @param {Number} dayOfTheWeek
+* @param {String} dayString
 * @return {String} (URL)
 */
-export default function determineTSV_URL(dayOfTheWeek) {
+export default function determineTSV_URL(dayString) {
 	const tsvSheetURLsByDay = createTSVSheetURLsByDay();
-	switch(dayOfTheWeek) {
-    case 0: return tsvSheetURLsByDay.sunday;
-    case 1: return tsvSheetURLsByDay.monday;
-    case 2: return tsvSheetURLsByDay.tuesday;
-    case 3: return tsvSheetURLsByDay.wednesday;
-    case 4: return tsvSheetURLsByDay.thursday;
-    case 5: return tsvSheetURLsByDay.friday;
-    case 6: return tsvSheetURLsByDay.saturday;
-  }
+	return tsvSheetURLsByDay[dayString];
+	// switch(dayOfTheWeek) {
+  //   case 'monday': return tsvSheetURLsByDay.monday;
+  //   case 'tuesday': return tsvSheetURLsByDay.tuesday;
+  //   case 'wednesday': return tsvSheetURLsByDay.wednesday;
+  //   case 'thursday': return tsvSheetURLsByDay.thursday;
+  //   case 'friday': return tsvSheetURLsByDay.friday;
+  //   case 'saturday': return tsvSheetURLsByDay.saturday;
+	// 	case 'sunday': return tsvSheetURLsByDay.sunday;
+  // }
 }
 
 /**
@@ -33,9 +34,10 @@ export default function determineTSV_URL(dayOfTheWeek) {
 export function createTSVSheetURLsByDay() {
 	let [firstPartOfUrl, secondPartOfUrl, idNumbers] = determineDevOrProdConstants();
 	const tsvSheetURLsByDay = {};
-	DAYS_OF_THE_WEEK.forEach( (day, i) => {
-		tsvSheetURLsByDay[day] = firstPartOfUrl + idNumbers[i] + secondPartOfUrl;
+	DAYS_OF_THE_WEEK.forEach( day => {
+		tsvSheetURLsByDay[day] = firstPartOfUrl + idNumbers[day] + secondPartOfUrl;
 	});
+
 	return tsvSheetURLsByDay;
 }
 
