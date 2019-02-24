@@ -4,8 +4,8 @@ import * as TIME_UTIL from '../utils/time.js';
 * Keep track of async tasks by referencing their id and the action
 * being performed
 */
-// export const ASYNC_TASK_IDs = [];
-window.ASYNC_TASK_IDs = [];
+const ASYNC_TASKS = [];
+const ASYNC_TYPE = { timeout: 0, interval: 1 }
 
 /**
 * Schedules the first action and all subsequent actions for actions that
@@ -40,7 +40,7 @@ function scheduleSecondAction(formattedParseData, action) {
       action(formattedParseData);
       resolve();
     }, millisecondsUntilFirstNewQuery);
-    updateAsyncIds(id, action);
+    updateAsyncIds(id, action, ASYNC_TYPE.timeout);
   });
 
   return secondClipLoadPromise;
@@ -56,9 +56,19 @@ function scheduleSecondAction(formattedParseData, action) {
 function scheduleSubsequentActions(formattedParseData, action) {
   const fifteenMinutesInMilliseconds = 15 * 60 * 1000;
   let id = setInterval(() => action(formattedParseData), fifteenMinutesInMilliseconds);
-  updateAsyncIds(id, action);
+  updateAsyncIds(id, action, AYSNC_TYPE.interval);
 }
 
-function updateAsyncIds(id, action) {
-  ASYNC_TASK_IDs.push({ id, action: action.prototype.constructor.name });
+function updateAsyncIds(id, action, asyncType) {
+  ASYNC_TASKS.push({ id, action: action.prototype.constructor.name, asyncType });
+}
+
+export function clearSchedulerTasks() {
+  ASYNC_TASKS.forEach( (task, i) => {
+    if(task.action === 'setNowText') {
+      const id = task.id;
+      task.asyncType === "timeout" ?   clearTimeout(id) : clearInterval(id);
+      ASYNC_TASKS.splice(i, 1);
+    }
+  });
 }

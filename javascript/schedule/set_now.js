@@ -2,11 +2,13 @@ import { findTodayDayString } from '../utils/shared_constants.js';
 import findCurrentQuarter  from '../utils/now_text.js';
 import scheduleSecondAndSubsequentActions from '../utils/scheduler.js';
 import { findTodayDayLink } from './create_schedule.js';
+import { clearSchedulerTasks } from '../utils/scheduler.js';
 
 let currentQuarterHTML = "";
 const nowText = "..NOW.....";
 
 export default function scheduleNowTextUpdates() {
+  clearSchedulerTasks();
   setNowText();
   scheduleSecondAndSubsequentActions(setNowText);
 }
