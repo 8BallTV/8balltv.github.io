@@ -1,6 +1,6 @@
 import findVideoPlayerClipInfo from './find_clip_info.js';
 import * as TIME_UTIL from '../utils/time.js';
-import parseCSV from '../parser/index.js';
+import parseTSV from '../parser/index.js';
 import scheduleClipLoads from './schedule_clip_loads.js';
 
 const mp4Source =  document.getElementById("mp4_src");
@@ -9,7 +9,7 @@ const videoTitleElement = document.getElementById("title");
 
 let isSoundOn = false;
 const LINKER = "http://8balltv.club/content/";
-/*
+/**
 *	Set the html5 video player to play the current
 * time's clip at the playback time.
 *
@@ -24,7 +24,7 @@ export default function setClipOnVideoPlayer(formattedParseData) {
   loadVideoPlayer();
 }
 
-/*
+/**
 * Turns the sound on or off the HTML video player.
 *
 * @param{Boolean} updatedIsSoundOn
@@ -35,7 +35,7 @@ export function setSoundOnVideoPlayer(updatedIsSoundOn) {
   videoPlayer.muted = !isSoundOn;
 }
 
-/*
+/**
 * Set the current clip's source url on the HTML src element.
 *
 * @param{String} fileName
@@ -47,7 +47,7 @@ function setSRC_URL(fileName, playbackTime) {
   mp4Source.src = srcURL;
 }
 
-/*
+/**
 * Set the current title on the title HTML element.
 *
 * @param{String} title
@@ -57,7 +57,7 @@ function setTitle(title) {
   videoTitleElement.innerHTML = title;
 }
 
-/*
+/**
 * Load the videoPlayer.
 *
 * @param{String}, @return{null}
@@ -66,7 +66,7 @@ function loadVideoPlayer() {
   videoPlayer.load();
 }
 
-/*
+/**
 * Gets filename and playbacktime for the file
 * that should be currently playing
 *
@@ -77,7 +77,7 @@ function getCurrentFilenameAndPlaybackTime(formattedParseData) {
   const date = new Date();
   // If it's midnight, re-parse to load the next day's schedule.
   // Otherwise, at midnight you'd start playing the previous day's schedule
-  if(TIME_UTIL.isItMidnight(date)) parseCSV(main);
+  if(TIME_UTIL.isItMidnight(date)) parseTSV(main);
   return findVideoPlayerClipInfo(formattedParseData, date, false);
 }
 

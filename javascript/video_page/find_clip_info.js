@@ -2,7 +2,7 @@ import * as TIME_UTIL from '../utils/time.js';
 import { findClipDataObject } from '../parser/format_parse_data.js';
 import formatAndPrintToConsole from '../utils/console_set_up_test.js';
 
-/*
+/**
 * Finds a clip's filename and playback time for a specific time of day.
 * The test parameter is true, if the function is being called from a
 * test case.
@@ -23,7 +23,7 @@ export default function findVideoPlayerClipInfo(formattedParseData, date, test) 
   return new VideoPlayerClipInfo(fileName, playbackTime, title);
 }
 
-/*
+/**
 * Calculate the time (seconds) at which the clip file
 * should start playback.
 *

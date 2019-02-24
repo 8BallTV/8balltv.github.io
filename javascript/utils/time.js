@@ -1,4 +1,4 @@
-/*
+/**
 * Finds the number of milliseconds between the current time and the
 * start of the next 15 minute interval.
 *   e.g. If it's 4:12:20pm, then the start of the next 15 minute
@@ -16,7 +16,7 @@ export function findMillisecondsUntilNext15MinuteInterval(date, test) {
   return secondsUntilNextQuery * 1000;
 }
 
-/* Calculates minutes past midnight for a given date object
+/** Calculates minutes past midnight for a given date object
 * @param {DateObject} date
 * @return {Number} (minutesPastMidnight)
 */
@@ -24,7 +24,7 @@ export function calculateMinutesPastMidnight(date) {
   return date.getHours() * 60 + date.getMinutes();
 }
 
-/*
+/**
 * Determines if the date represents midnight
 * @param {DateObject} date
 * @return {Boolean} (true if it's midnight)

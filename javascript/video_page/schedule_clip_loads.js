@@ -1,8 +1,8 @@
 import setClipOnVideoPlayer from './video_player.js';
 import * as TIME_UTIL from '../utils/time.js';
 
-/*
-* A callback for parseCSV that initiates entire process of setting
+/**
+* A callback for parseTSV that initiates entire process of setting
 * the currentClip on the video player and
 * scheduling second and all subsequent clip loads.
 *
@@ -15,7 +15,7 @@ export default function scheduleClipLoads(formattedParseData) {
   scheduleSecondAndSubsequentClipLoads(formattedParseData);
 };
 
-/*
+/**
 * Schedules the first clipload and all subsequent clip loads.
 *
 * @param {Array<Array<String>>} formattedParseData
@@ -27,7 +27,7 @@ async function scheduleSecondAndSubsequentClipLoads(formattedParseData) {
   scheduleSubsequentClipLoads(formattedParseData);
 }
 
-/*
+/**
 * Schedule the second clip load. Since the time between the first clip
 * load and second clip load is variable, we have to find the millisecondsUntilFirstNewQuery
 * for each clip load.
@@ -47,7 +47,7 @@ function scheduleSecondClipLoad(formattedParseData) {
   return secondClipLoadPromise;
 }
 
-/*
+/**
 * Schedule all clip loads after the second clip load. The time between thes
 * second clip load and subsequent clip loads is always 15 minutes.
 *

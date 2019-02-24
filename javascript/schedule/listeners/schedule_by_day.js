@@ -1,11 +1,11 @@
-import parseCSV from '../../parser/index.js';
+import parseTSV from '../../parser/index.js';
 import renderTitlesOnSchedule from '../create_schedule.js';
-import determineCSV_URL from '../../utils/csv_urls.js';
+import determineTSV_URL from '../../utils/tsv_urls.js';
 import { findMondayToSundayIndex } from '../../utils/shared_constants.js';
 
 export const weekTable = document.getElementById("WEEK");
 
-/*
+/**
 * For each day link, register an on-click listener.
 *
 * @param{null}, @return{null}
@@ -20,9 +20,9 @@ export default function registerSchedulesByDayLinksListener() {
   });
 }
 
-/*
+/**
 * Adds the "isToday" css class for the selected day link and parse
-* that day's csv file.
+* that day's tsv file.
 *
 * @param{DOMElement} dayLink
 * @return{Number} index
@@ -30,11 +30,11 @@ export default function registerSchedulesByDayLinksListener() {
 function styleTodayLinkAndParseTodaysSchedule(dayLink, index) {
   setIsToday(dayLink);
   const mondayToSundayIndex = findMondayToSundayIndex(index);
-  const csv_url = determineCSV_URL(index);
-  parseCSV(renderTitlesOnSchedule, csv_url);
+  const tsv_url = determineTSV_URL(index);
+  parseTSV(renderTitlesOnSchedule, tsv_url);
 }
 
-/*
+/**
 * Clear the  "isToday" css class on the previously selected day link
 * and add the "isToday" css class to the currently selected day link.
 *
@@ -46,7 +46,7 @@ function setIsToday(dayLink) {
   dayLink.className = "isToday";
 }
 
-/*
+/**
 * Clear the  "isToday" css class on the previously selected day link.
 *
 * @param{null}, @return{null}

@@ -1,7 +1,7 @@
 import { weekTable } from './listeners/schedule_by_day.js';
 import { findMondayToSundayIndex } from '../utils/shared_constants.js';
 
-/*
+/**
 * Takes the formatted parse data and sets the title on the "titler"
 * elements.
 *

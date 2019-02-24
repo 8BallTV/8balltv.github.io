@@ -3,7 +3,7 @@ import { setSoundOnVideoPlayer } from '../video_player.js';
 const turnSoundOnDivElement = document.getElementById("turn-sound-on");
 const turnSoundOffDivElement = document.getElementById("turn-sound-off");
 
-/*
+/**
 * Register both the turn sound on and turn sound off listeners
 * for the associated div elements.
 *
@@ -14,7 +14,7 @@ export default function registerSoundListeners() {
   registerTurnSoundOffListener()
 }
 
-/*
+/**
 * Register turn sound on div element listener.
 *
 * @param{null}, @return{null}
@@ -25,7 +25,7 @@ function registerTurnSoundOnListener() {
   });
 }
 
-/*
+/**
 * Register turn sound off div element listener
 * @param{null}, @return{null}
 */
@@ -35,7 +35,7 @@ function registerTurnSoundOffListener() {
   });
 }
 
-/*
+/**
 * Prevent the default action on the event object.
 * For the div element that was clicked, change its display to none
 * Make visible the other div element (that wasn't clicked).

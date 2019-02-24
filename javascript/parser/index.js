@@ -1,36 +1,40 @@
-import determineCSV_URL from '../utils/csv_urls.js';
+import determineTSV_URL from '../utils/tsv_urls.js';
 import formatParseData from './format_parse_data.js';
 
-/*
-* Loads the 8BallTV Schedule CSV file for the correct day. Calls the
-* provided callback once CSV_Parse completes.
-* 	Note: Callers can provide csv_urls. This is used in the tests.
+/***
+* Loads the 8BallTV Schedule TSV file for the correct day. Calls the
+* provided callback once TSV_Parse completes.
+* 	Note: Callers can provide tsv_urls. This is used in the tests.
 *
 * @param {Function} Callback
-* @optional_param {String} csv_url
+* @optional_param {String} tsv_url
 * @return {null}
 */
-export default function parseCSV(callback, csv_url) {
-	csv_url = csv_url || findScheduleForToday();
-  Papa.parse(csv_url, {
+export default function parseTSV(callback, tsv_url) {
+	tsv_url = tsv_url || findScheduleForToday();
+	Papa.parse(tsv_url, {
+		/*
+		* We split on Tabs to protect titles with commas. As such
+		* the Google Sheet schedule is exported as a TSV file.
+		*/
 		delimiter: '\t',
-    download: true,
+		download: true,
 		fastMode: true,
-    complete: csvParseResults =>  {
-			const formattedParseData = formatParseData(csvParseResults);
+		complete: tsvParseResults =>  {
+			const formattedParseData = formatParseData(tsvParseResults);
 			callback(formattedParseData);
 		}
   });
 };
 
-/*
+/**
 *	Finds the sheet's url for today's schedule
 *
 * @param{null}
-* @return{String} csv_url
+* @return{String} tsv_url
 */
 function findScheduleForToday() {
 	const date = new Date();
 	const dayOfTheWeek = date.getDay();
-	return determineCSV_URL(dayOfTheWeek);
+	return determineTSV_URL(dayOfTheWeek);
 }

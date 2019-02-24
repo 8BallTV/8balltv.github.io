@@ -36,10 +36,11 @@ Name and Part #. Additional columns provide video metadata.
 
 ### Parser
 The parser/index.js script is the primary script for the scheduler. It asynchronously
-parses the schedule (by converting the Google Sheet into a CSV file), and formats
-the data for our use. It then
-calls the main callback, in which we find and set the current video
-and schedule subsequent video loads.
+parses the schedule by converting the Google Sheet into a Tab Separated Values (TSV)
+file and formatting the data for our use. We use a TSV file rather
+than a Comma Separated Values (CSV) file because some of our titles have commas in them, and
+using CSV wouldn't be able to parse these titles. It then calls the main callback, in which we find
+ and set the current video and schedule subsequent video loads.
 
 For more information about how we find the correct video file and the
 playback time, consult the Note section below.
@@ -48,9 +49,9 @@ playback time, consult the Note section below.
 
 ### PapaParse
 We use the [PapaParse library](https://www.papaparse.com/) to parse
-the scheduler's CSV file. The library allows us to asynchronously
-parse a remote CSV file, and pass the results into the aforementioned
-main callback. The library claims to be the fatest browser-based CSV parser out there.
+the scheduler's TSV file. The library allows us to asynchronously
+parse a remote TSV file, and pass the results into the aforementioned
+main callback. The library claims to be the fatest browser-based TSV parser out there.
 
 ## Notes
 ### How we find the current clip: explaining the findClipDataObject function

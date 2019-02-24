@@ -3,7 +3,7 @@
 const enterFullScreenDivElement = document.getElementById('enter-fullscreen');
 const exitFullScreenDivElement = document.getElementById('exit-fullscreen');
 
-/*
+/**
 * Register both the enter and exit fullscreen listeners
 * @param{null}, @return{null}
 */
@@ -12,7 +12,7 @@ export default function registerFullScreenListeners() {
   registerExitFullScreenListener();
 }
 
-/*
+/**
 * Register the enter fullscreen listener
 * @param{null}, @return{null}
 */
@@ -22,7 +22,7 @@ function registerEnterFullScreenListener() {
   });
 }
 
-/*
+/**
 * Register the exit fullscreen listener
 * @param{null}, @return{null}
 */
@@ -32,7 +32,7 @@ function registerExitFullScreenListener() {
   });
 }
 
-/*
+/**
 * Prevent the default action on the event obejct.
 * Call the provided browser callback. For the div that was clicked,
 * change its display to none. Make visible the other
@@ -50,7 +50,7 @@ function toggleFullScreen(browserCallback, clickedDivElement, divElementToDispla
   divElementToDisplay.style.display = 'inline';
 }
 
-/*
+/**
 * Handle DOM enter fullscreen requests for each browswer.
 * @param{null}, @return{null}
 */
@@ -69,7 +69,7 @@ let requestFullscreenCallback = () => {
     }
 };
 
-/*
+/**
 * Handle DOM exit fullscreen requests for each browswer
 * @param{null}, @return{null}
 */

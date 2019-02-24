@@ -1,9 +1,9 @@
 import findVideoPlayerClipInfo from '../find_clip_info.js';
-import parseCSV from '../../parser/index.js';
+import parseTSV from '../../parser/index.js';
 import { generateTestMessages, generateErrorMessageForParserTests } from '../../utils/tests.js';
 import { testURL } from '../../utils/dev_constants.js';
 
-parseCSV(batchTestRunner, testURL);
+parseTSV(batchTestRunner, testURL);
 
 function batchTestRunner(formattedParseData) {
 	const testCases = generateTestCases();

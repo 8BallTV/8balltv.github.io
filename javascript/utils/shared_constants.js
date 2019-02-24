@@ -23,7 +23,7 @@ export const MONTHS = [
   'december'
 ];
 
-/*
+/**
 * Given an index that corresponds to an array that lists days from
 * Sunday through Saturday, return an index that corresponds to an array
 * that lists days from Monday to Sunday.
