@@ -92,8 +92,8 @@ video {
 
 #head{
 	position:absolute;
-	top:20px; 
-	left:20px;
+	top: 20px;
+	left: 20px;
 	z-index:100;
 	color: #fff;
 	font-size: 18px;
