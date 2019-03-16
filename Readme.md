@@ -1,5 +1,5 @@
-# 8BallTV Scheduler
-Welcome to the 8BallTV Scheduler repository. The scheduler is a
+# 8BallTV Frontend
+Welcome to the 8BallTV frontend repository. The frontend contains a
 client-side, JavaScript approach to finding and playing the scheduled
 8BallTV video at the correct playback time.
 
