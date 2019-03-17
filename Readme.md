@@ -1,5 +1,5 @@
-# 8BallTV Frontend
-Welcome to the 8BallTV frontend repository. The frontend contains a
+# 8balltv.github.io
+Welcome to the 8balltv.github.io repository. The repo contains a
 client-side, JavaScript approach to finding and playing the scheduled
 8BallTV video at the correct playback time.
 
