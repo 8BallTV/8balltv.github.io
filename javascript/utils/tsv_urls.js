@@ -12,15 +12,6 @@ let areYouInDevelopment = window.location.hostname === 'localhost';
 export default function determineTSV_URL(dayString) {
 	const tsvSheetURLsByDay = createTSVSheetURLsByDay();
 	return tsvSheetURLsByDay[dayString];
-	// switch(dayOfTheWeek) {
-  //   case 'monday': return tsvSheetURLsByDay.monday;
-  //   case 'tuesday': return tsvSheetURLsByDay.tuesday;
-  //   case 'wednesday': return tsvSheetURLsByDay.wednesday;
-  //   case 'thursday': return tsvSheetURLsByDay.thursday;
-  //   case 'friday': return tsvSheetURLsByDay.friday;
-  //   case 'saturday': return tsvSheetURLsByDay.saturday;
-	// 	case 'sunday': return tsvSheetURLsByDay.sunday;
-  // }
 }
 
 /**
