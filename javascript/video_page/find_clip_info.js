@@ -26,6 +26,7 @@ export default function findVideoPlayerClipInfo(formattedParseData, date, test) 
 /**
 * Calculate the time (seconds) at which the clip file
 * should start playback.
+*     NOTE: See Readme for more details
 *
 * @param {Number} partNumber
 *     e.g. if partnumber is 2, then this clip should be playing in

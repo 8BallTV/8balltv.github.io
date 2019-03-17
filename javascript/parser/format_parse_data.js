@@ -27,6 +27,7 @@ export default function formatParseData(tsvParseResults) {
 
 /**
 * Finds a clipDataObject for a given number of minutes past midnight.
+*     NOTE: See Readme for more information 
 *
 * @param {Array<ClipDataObject>} formattedParseData
 * @param {Number} minutesPastMidnight
