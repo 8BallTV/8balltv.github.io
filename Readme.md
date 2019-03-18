@@ -28,7 +28,7 @@ video player.
 
 ### Schedule
 The schedule lives in an Google sheet titled "8BALLTV"
-scheduler, which can be found [here](). There is one sheet per day of
+scheduler, which can be found [here](https://docs.google.com/spreadsheets/d/1mFq_t7V6XY60zDM9IT-wQ2hBTGN8pjjs1zKvj7TG79w/edit?usp=sharing). There is one sheet per day of
 the week, and each day is divided into fifteen minute intervals starting
 at 00:00 and going until 24:00. For each time slot, there are two
 columns that are necessary for the parser to function correctly- File
