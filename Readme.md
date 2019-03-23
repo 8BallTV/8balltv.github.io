@@ -3,7 +3,7 @@ Welcome to the 8balltv.github.io repository. The repo contains a
 client-side, JavaScript approach to finding and playing the scheduled
 8BallTV video at the correct playback time.
 
-## Set-up
+## Local Development Set-up
 Follow these steps to test out the scheduler on your own machine
 1. Git Clone this project.
    * For help, click [here](https://help.github.com/articles/cloning-a-repository/).
