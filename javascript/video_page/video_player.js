@@ -20,7 +20,6 @@ export default function setClipOnVideoPlayer(formattedParseData) {
   const currentClip = getCurrentFilenameAndPlaybackTime(formattedParseData);
   setSRC_URL(currentClip.fileName, currentClip.playbackTime);
   setTitle(currentClip.title);
-  setSoundOnVideoPlayer();
   loadVideoPlayer();
 }
 
