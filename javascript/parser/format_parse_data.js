@@ -44,7 +44,8 @@ export function findClipDataObject(formattedParseData, minutesPastMidnight) {
 * also represents one less than the number video it is for the day.
 *   E.g. If current clip index is 5, then it's the 6th video of the day.
 *
-* @return {Number} CurrentClipIndex
+* @param {Number} minutesPastMidnight
+* @return {Number} currentClipIndex
 */
 export function findCurrentClipIndex(minutesPastMidnight) {
   return Math.floor(minutesPastMidnight / 15);
