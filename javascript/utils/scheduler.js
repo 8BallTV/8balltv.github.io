@@ -13,7 +13,7 @@ const ASYNC_TYPE = { timeout: 0, interval: 1 };
 * that operates on the fomrattedParseData.
 *  e.g. We use this function to schedule the setClipOnVideoPlayer action
 *       for the second clip load, and all subsequent clip loads.
-* @async 
+* @async
 * @param {Function} action
 * @param {Array<Array<String>>} formattedParseData
 * @return {null}

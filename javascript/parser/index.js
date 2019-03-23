@@ -8,7 +8,7 @@ import { findTodayDayString } from '../utils/shared_constants.js';
 * 	Note: Callers can provide tsv_urls. This is used in the tests.
 *
 * @param {Function} Callback
-* @optional_param {String} tsv_url
+* @param {String} tsv_url
 * @return {null}
 */
 export default function parseTSV(callback, tsv_url) {
