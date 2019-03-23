@@ -10,11 +10,11 @@
 export default function formatParseData(tsvParseResults) {
   const clipDataObjectsArrayWithTitle = tsvParseResults.data.map((data, i) => {
     return new ClipDataObject(
-      /**id*/ data[1],
-      /**partNumber*/ data[2],
-      /**fileName*/ data[3],
-      /**title*/ data[4],
-      /**director*/ data[5]
+      /*id*/ data[1],
+      /*partNumber*/ data[2],
+      /*fileName*/ data[3],
+      /*title*/ data[4],
+      /*director*/ data[5]
     );
   });
   /*
@@ -27,7 +27,7 @@ export default function formatParseData(tsvParseResults) {
 
 /**
 * Finds a clipDataObject for a given number of minutes past midnight.
-*     NOTE: See Readme for more information 
+*     NOTE: See Readme for more information
 *
 * @param {Array<ClipDataObject>} formattedParseData
 * @param {Number} minutesPastMidnight
