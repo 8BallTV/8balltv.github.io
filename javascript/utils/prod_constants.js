@@ -8,7 +8,8 @@ const SECOND_PART_OF_SCHEDULE_URL_PROD = '';
 * @const
 * @type {Object<String, String>}
 * @description ID numbers for the specific sheets on the prod schedule
-*/const TSV_SHEET_IDS_PROD = [
+*/
+const TSV_SHEET_IDS_PROD = [
 	/**SUNDAY*/ '',
 	/**MONDAY*/ '',
 	/**TUESDAY*/ '',
