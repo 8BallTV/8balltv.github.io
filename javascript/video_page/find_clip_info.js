@@ -45,8 +45,17 @@ function calculatePlaybackTime(partNumber, date) {
   return playbackSeconds;
 }
 
-
+/**
+* @author samdealy
+* @description Contains the information necessary for the video_player.js to
+*   play the correct file at the correct playback time and dislay its title
+*/
 class VideoPlayerClipInfo {
+  /**
+  * @param {String} fileName - the name of the mp3 file
+  * @param {Number} playbackTime - the time (ms) at which the file should start playback
+  * @param {String} title - the title name ot be displayed while video plays
+  */
   constructor(fileName, playbackTime, title) {
     this.fileName = fileName;
     this.playbackTime = playbackTime;
