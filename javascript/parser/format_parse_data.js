@@ -52,8 +52,9 @@ export function findCurrentClipIndex(minutesPastMidnight) {
 }
 
 /**
+* @author samdealy
 * @description Represents a clip's data fields. We get these fields
-* from the columns on the {@link https://docs.google.com/spreadsheets/d/1mFq_t7V6XY60zDM9IT-wQ2hBTGN8pjjs1zKvj7TG79w/edit#gid=845076906|schedule google sheet}
+*   from the columns on the {@link https://docs.google.com/spreadsheets/d/1mFq_t7V6XY60zDM9IT-wQ2hBTGN8pjjs1zKvj7TG79w/edit#gid=845076906 | schedule google sheet}
 */
 class ClipDataObject {
   /**
