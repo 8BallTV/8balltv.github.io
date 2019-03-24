@@ -4,10 +4,11 @@ const turnSoundOnDivElement = document.getElementById("turn-sound-on");
 const turnSoundOffDivElement = document.getElementById("turn-sound-off");
 
 /**
-* Register both the turn sound on and turn sound off listeners
-* for the associated div elements.
-*
-* @param{null}, @return{null}
+* @author samdealy
+* @description Register both the turn sound on and turn sound off listeners
+*   for the associated div elements.
+* @param {null}
+* @return {null}
 */
 export default function registerSoundListeners() {
   registerTurnSoundOnListener();
@@ -15,9 +16,10 @@ export default function registerSoundListeners() {
 }
 
 /**
-* Register turn sound on div element listener.
-*
-* @param{null}, @return{null}
+* @author samdealy
+* @description Register turn sound on div element listener.
+* @param {null}
+* @return{null}
 */
 function registerTurnSoundOnListener() {
   turnSoundOnDivElement.addEventListener('click', e => {
@@ -26,8 +28,10 @@ function registerTurnSoundOnListener() {
 }
 
 /**
-* Register turn sound off div element listener
-* @param{null}, @return{null}
+* @author samdealy
+* @description Register turn sound off div element listener
+* @param {null}
+* @return{null}
 */
 function registerTurnSoundOffListener() {
   turnSoundOffDivElement.addEventListener('click', e => {
@@ -36,16 +40,16 @@ function registerTurnSoundOffListener() {
 }
 
 /**
-* Prevent the default action on the event object.
-* For the div element that was clicked, change its display to none
-* Make visible the other div element (that wasn't clicked).
-* Then set the sound accordingly on the videoPlayer.
-*
-* @param{Boolean} areYouTurningSoundOn
-* @param{DOMObject} clickedDivElement
-* @param{DOMObject} divElementToDisplay
-* @param{Event} eventObject
-* @return{null}
+* @author samdealy
+* @description Prevent the default action on the event object.
+*   For the div element that was clicked, change its display to none
+*   Make visible the other div element (that wasn't clicked).
+*   Then set the sound accordingly on the videoPlayer.
+* @param {Boolean} areYouTurningSoundOn
+* @param {DOMObject} clickedDivElement
+* @param {DOMObject} divElementToDisplay
+* @param {Event} eventObject
+* @return {null}
 */
 function toggleSound(areYouTurningSoundOn, clickedDivElement, DivElementToDisplay, eventObject) {
   eventObject.preventDefault();

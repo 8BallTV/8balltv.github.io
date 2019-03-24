@@ -2,16 +2,24 @@ import determineTSV_URL from '../utils/tsv_urls.js';
 import formatParseData from './format_parse_data.js';
 import { findTodayDayString } from '../utils/shared_constants.js';
 
-/***
-* Loads the 8BallTV Schedule TSV file for the correct day. Calls the
-* provided callback once TSV_Parse completes.
-* 	Note: Callers can provide tsv_urls. This is used in the tests.
-*
-* @param {Function} Callback
-* @param {String} tsv_url
+/**
+* @author samdealy
+* @description Callback that gets executed when PapaParse has completed parsing the schedule TSV.
+* @callback parseCallback
+* @param {Array<ClipDataObject>} formattedParseData
 * @return {null}
 */
-export default function parseTSV(callback, tsv_url) {
+
+/**
+* @author samdealy
+* @description Loads the 8BallTV Schedule TSV file for the correct day. Calls the
+* provided callback once TSV_Parse completes.
+* NOTE: Callers can provide tsv_urls. This is used in the tests.
+* @param {parseCallback} parseCallback - see above doc 
+* @param {String} [tsv_url]
+* @return {null}
+*/
+export default function parseTSV(parseCallback, tsv_url) {
 	tsv_url = tsv_url || findScheduleForToday();
 	Papa.parse(tsv_url, {
 		/*
@@ -23,16 +31,16 @@ export default function parseTSV(callback, tsv_url) {
 		fastMode: true,
 		complete: tsvParseResults =>  {
 			const formattedParseData = formatParseData(tsvParseResults);
-			callback(formattedParseData);
+			parseCallback(formattedParseData);
 		}
   });
 };
 
 /**
-* Finds the sheet's url for today's schedule
-*
-* @param{null}
-* @return{String} tsv_url
+* @author samdealy
+* @description Finds the sheet's url for today's schedule
+* @param {null}
+* @return {String} tsv_url
 */
 function findScheduleForToday() {
 	const todayString = findTodayDayString();

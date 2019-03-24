@@ -5,6 +5,12 @@ import { testURL } from '../../utils/dev_constants.js';
 
 parseTSV(batchTestRunner, testURL);
 
+/**
+* @author samdealy
+* @description Run the test scenarios for the video_page
+* @param {Array<ClipDataObject>} formattedParseData
+* @return {null}
+*/
 function batchTestRunner(formattedParseData) {
 	const testCases = generateTestCases();
 	for(let i = 0; i < testCases.length; i++) {
@@ -17,7 +23,6 @@ function batchTestRunner(formattedParseData) {
 				pass = true;
 		} else {
 			  pass = false;
-
 		}
 
 		generateTestMessages(pass, i);
@@ -27,6 +32,12 @@ function batchTestRunner(formattedParseData) {
 	}
 }
 
+/**
+* @author samdealy
+* @description Make the test cases for the batchTestRunner
+* @param {null}
+* @return {Array<Object<String, String | Number>} testCases
+*/
 function generateTestCases() {
 	const testCasesArray = [
 		[ new Date('Thu, 03 Jan 2019 23:18:36'), "surface.mp3", 1116],

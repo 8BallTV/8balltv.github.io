@@ -1,9 +1,10 @@
 import { findDayString, findMonthString } from '../utils/shared_constants.js';
 
 /**
-* Schedules the clock for updates every 500 milliseconds
-*
-* @param{null}, @return{null}
+* @author samdealy
+* @description Schedules the clock for updates every 500 milliseconds
+* @param {null}
+* @return {null}
 */
 export default function scheduleClockUpdate() {
   displayTime();
@@ -11,9 +12,10 @@ export default function scheduleClockUpdate() {
 }
 
 /**
-* Displays a ticking clock on the schedule page
-*
-* @param{null}, @return{null}
+* @author samdealy
+* @description Displays a ticking clock on the schedule page
+* @param {null}
+* @return {null}
 */
 function displayTime() {
   const date = new Date();
@@ -22,10 +24,10 @@ function displayTime() {
 }
 
 /**
-* Create a formatted HH:mm:ss time string for the current time
-*
-* @param{DateObject} date
-* @return{String} timeString}
+* @author samdealy
+* @description Create a formatted HH:mm:ss time string for the current time
+* @param {DateObject} date
+* @return {String} timeString
 */
 function createTimeString(date) {
   let [hours, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSeconds()];
@@ -35,10 +37,10 @@ function createTimeString(date) {
 }
 
 /**
-* Create a formatted string for the current date
-*
-* @param{DateObject} date
-* @return{null}
+* @author samdealy
+* @description Create a formatted string for the current date
+* @param {DateObject} date
+* @return {null}
 */
 function createDateString(date) {
   const day = findDayString(date.getDay());
@@ -51,10 +53,10 @@ function createDateString(date) {
 }
 
 /**
-* Add a leading zero to a digit if it is less than 10
-*
-* @param{Number} digit
-* @return{String} ()
+* @author samdealy
+* @description Add a leading zero to a digit if it is less than 10
+* @param {Number} digit
+* @return {String} paddedDigit
 */
 function padDigitIfNecessary(digit) {
   return digit < 10 ? "0" + digit : digit;

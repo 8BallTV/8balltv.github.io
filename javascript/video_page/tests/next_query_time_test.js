@@ -3,6 +3,13 @@ import { generateTestMessages } from '../../utils/tests.js';
 
 batchTestRunner();
 
+/**
+* @author samdealy
+* @description Run the test scenarios for the video_page
+* @param {Array<ClipDataObject>} formattedParseData
+* @return {null}
+* @todo TODO Combine with filename_playbacktests batchTestRunner method
+*/
 function batchTestRunner() {
   const testCases = generateTestCases();
   for(let i = 0; i < testCases.length; i++) {
@@ -16,6 +23,12 @@ function batchTestRunner() {
   }
 }
 
+/**
+* @author samdealy
+* @description Make the test cases for the batchTestRunner
+* @param {null}
+* @return {Array<DateObject, Number>} testCases
+*/
 function generateTestCases() {
   const testCases = [
     [ new Date('Thu, 01 Jan 2019 08:02:36'), 744 * 1000 ],
@@ -29,7 +42,13 @@ function generateTestCases() {
   return testCases;
 }
 
-
+/**
+* @author samdealy
+* @description Generate error messages for the next_query_time test
+* @param {String} expectedTime
+* @param {String} actualTime
+* @return {null}
+*/
 function generateErrorMessages(expectedTime, actualTime) {
   const colorString = "color:red";
   console.log(`    %cExpected time was: ${expectedTime}`, colorString);

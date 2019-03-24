@@ -10,5 +10,6 @@ registerListeners();
 scheduleClockUpdate();
 setSelectedCSS();
 scheduleNowTextUpdates();
+// We go to the fifth most recent quarter, because this appropriately displays the current quarter
 goToFifthMostRecentQuarter();
 parseTSV(renderTitlesOnSchedule);

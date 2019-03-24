@@ -1,11 +1,12 @@
-// Div stands for html "div" element. Remember that it's not an
-// html button element.
+/* Div stands for html "div" element. */
 const enterFullScreenDivElement = document.getElementById('enter-fullscreen');
 const exitFullScreenDivElement = document.getElementById('exit-fullscreen');
 
 /**
-* Register both the enter and exit fullscreen listeners
-* @param{null}, @return{null}
+* @author samdealy
+* @description Register both the enter and exit fullscreen listeners
+* @param {null}
+* @return {null}
 */
 export default function registerFullScreenListeners() {
   registerEnterFullScreenListener();
@@ -13,8 +14,11 @@ export default function registerFullScreenListeners() {
 }
 
 /**
-* Register the enter fullscreen listener
-* @param{null}, @return{null}
+* @author samdealy
+* @description Register the enter fullscreen listener
+* @listens onClick
+* @param {null}
+* @return {null}
 */
 function registerEnterFullScreenListener() {
   enterFullScreenDivElement.addEventListener('click', e => {
@@ -23,8 +27,11 @@ function registerEnterFullScreenListener() {
 }
 
 /**
-* Register the exit fullscreen listener
-* @param{null}, @return{null}
+* @author samdealy
+* @description Register the exit fullscreen listener
+* @listens onClick
+* @param {null}
+* @return {null}
 */
 function registerExitFullScreenListener() {
   exitFullScreenDivElement.addEventListener('click', e => {
@@ -33,15 +40,15 @@ function registerExitFullScreenListener() {
 }
 
 /**
-* Prevent the default action on the event obejct.
+* @author samdealy
+* @description Prevent the default action on the event obejct.
 * Call the provided browser callback. For the div that was clicked,
 * change its display to none. Make visible the other
 * div (that wasn't clicked).
-*
-* @param{Function} browserCallback
-* @param{Element<Div>} clickedDivElement
-* @param{Element<Div>} divElementToDisplay
-* @param{Event} eventObject
+* @param {Function} browserCallback
+* @param {Element<Div>} clickedDivElement
+* @param {Element<Div>} divElementToDisplay
+* @param {Event} eventObject
 */
 function toggleFullScreen(browserCallback, clickedDivElement, divElementToDisplay, eventObject) {
   eventObject.preventDefault();
@@ -51,8 +58,11 @@ function toggleFullScreen(browserCallback, clickedDivElement, divElementToDispla
 }
 
 /**
-* Handle DOM enter fullscreen requests for each browswer.
-* @param{null}, @return{null}
+* @author giuseppeFurcolo
+* @callback
+* @description Handle DOM enter fullscreen requests for each browswer.
+* @param {null}
+* @return{null}
 */
 let requestFullscreenCallback = () => {
     const documentElement = document.documentElement;
@@ -70,8 +80,11 @@ let requestFullscreenCallback = () => {
 };
 
 /**
-* Handle DOM exit fullscreen requests for each browswer
-* @param{null}, @return{null}
+* @author giuseppeFurcolo
+* @callback
+* @description Handle DOM exit fullscreen requests for each browswer
+* @param {null}
+* @return {null}
 */
 let exitFullscreenCallback = () => {
     if (document.exitFullscreen) {

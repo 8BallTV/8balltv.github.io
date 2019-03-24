@@ -7,12 +7,18 @@ const mp4Source =  document.getElementById("mp4_src");
 const videoPlayer = document.getElementById("tv");
 const videoTitleElement = document.getElementById("title");
 
+/** @type {Boolean} */
 let isSoundOn = false;
+
+/**
+* @const @type {String}
+* @description base url for videos
+*/
 const LINKER = "http://8balltv.club/content/";
 /**
-*	Set the html5 video player to play the current
-* time's clip at the playback time.
-*
+* @author samdealy
+*	@description Set the html5 video player to play the current
+*   time's clip at the playback time.
 * @param {Array<ClipDataObject>} formattedParseData
 * @return {null}
 */
@@ -24,10 +30,10 @@ export default function setClipOnVideoPlayer(formattedParseData) {
 }
 
 /**
-* Turns the sound on or off the HTML video player.
-*
-* @param{Boolean} updatedIsSoundOn
-* @return{null}
+* @author samdealy
+* @description Turns the sound on or off the HTML video player.
+* @param {Boolean} updatedIsSoundOn
+* @return {null}
 */
 export function setSoundOnVideoPlayer(updatedIsSoundOn) {
   isSoundOn = updatedIsSoundOn;
@@ -35,11 +41,11 @@ export function setSoundOnVideoPlayer(updatedIsSoundOn) {
 }
 
 /**
-* Set the current clip's source url on the HTML src element.
-*
-* @param{String} fileName
-* @param{Number} playbackTime
-* @return{null}
+* @author samdealy
+* @description Set the current clip's source url on the HTML src element.
+* @param {String} fileName
+* @param {Number} playbackTime
+* @return {null}
 */
 function setSRC_URL(fileName, playbackTime) {
   const srcURL = constructSrcURL(fileName, playbackTime);
@@ -47,30 +53,31 @@ function setSRC_URL(fileName, playbackTime) {
 }
 
 /**
-* Set the current title on the title HTML element.
-*
-* @param{String} title
-* @return{null}
+* @author samdealy
+* @description Set the current title on the title HTML element.
+* @param {String} title
+* @return {null}
 */
 function setTitle(title) {
   videoTitleElement.innerHTML = title;
 }
 
 /**
-* Load the videoPlayer.
-*
-* @param{String}, @return{null}
+* @author samdealy
+* @description Load the videoPlayer.
+* @param {String}
+* @return {null}
 */
 function loadVideoPlayer() {
   videoPlayer.load();
 }
 
 /**
-* Gets filename and playbacktime for the file
-* that should be currently playing
-*
+* @author samdealy
+* @description Gets filename and playbacktime for the file
+*   that should be currently playing
 * @param {Array<ClipDataObject>} formattedParseData
-* @return {VideoPlayerClipInfo} (un-named)
+* @return {VideoPlayerClipInfo} 
 */
 function getCurrentFilenameAndPlaybackTime(formattedParseData) {
   const date = new Date();

@@ -1,3 +1,14 @@
+/**
+* @author samdealy
+* @description Log current clip data to the console.
+* @see {@link ClipDataObject} for more information on the parameters.
+* @param {String} date
+* @param {String} fileName
+* @param {String} title
+* @param {String} partNumber
+* @param {String} playbackTime
+* @return {null}
+*/
 export default function formatAndPrintToConsole(date, fileName, title, partNumber, playbackTime) {
   const minutes = date.getMinutes();
   const minutesString = minutes < 10 ? "0" + minutes : minutes;

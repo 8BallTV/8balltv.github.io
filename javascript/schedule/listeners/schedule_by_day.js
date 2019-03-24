@@ -5,14 +5,17 @@ import { findTodayDayString } from '../../utils/shared_constants.js';
 import scheduleNowTextUpdates, { removeNowText } from '../set_now.js';
 
 
+
 export const weekTable = document.getElementById("WEEK");
 // A day link brings us to another day's schedule
 export const dayLinks = weekTable.querySelectorAll("td");
 
 /**
-* For each day link, register an on-click listener.
-*
-* @param{null}, @return{null}
+* @author samdealy
+* @description For each day link, register an on-click listener.
+* @listens onClick
+* @param {null}
+* @return {null}
 */
 export default function registerSchedulesByDayLinksListener() {
   dayLinks.forEach((dayLink, i) => {
@@ -25,11 +28,11 @@ export default function registerSchedulesByDayLinksListener() {
 }
 
 /**
-* Adds the "selected" css class for the selected day link and parse
+* @author samdealy
+* @description Adds the "selected" css class for the selected day link and parse
 * that day's tsv file.
-*
-* @param{DOMElement} dayLink
-* @return{Number} mondayToSundayIndex
+* @param {DOMElement} dayLink
+* @return {Number} mondayToSundayIndex
 */
 function styleLinkAndParseSchedule(dayLink) {
   setSelected(dayLink);
@@ -39,11 +42,11 @@ function styleLinkAndParseSchedule(dayLink) {
 }
 
 /**
-* Clear the  "selected" css class on the previously selected day link
+* @author samdealy
+* @description Clear the  "selected" css class on the previously selected day link
 * and add the "selected" css class to the currently selected day link.
-*
-* @param{DOMElement} dayLink
-* @return{null}
+* @param {DOMElement} dayLink
+* @return {null}
 */
 function setSelected(dayLink) {
   clearSelectedOnPrevious();
@@ -51,9 +54,10 @@ function setSelected(dayLink) {
 }
 
 /**
-* Clear the  "selected" css class on the previously selected day link.
-*
-* @param{null}, @return{null}
+* @author samdealy
+* @description Clear the  "selected" css class on the previously selected day link.
+* @param {null}
+* @return {null}
 */
 function clearSelectedOnPrevious() {
   const previousSelected = weekTable.querySelector(".selected");
