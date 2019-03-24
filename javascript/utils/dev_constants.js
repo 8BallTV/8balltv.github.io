@@ -1,8 +1,9 @@
 /** @const @type {String} */
 const FIRST_PART_OF_SCHEDULE_URL_DEV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRCmu8vTzD_R7L2iqEE0gdD43zbEnTUv5-_f6cHz1zX16JN6c2sdWKagLuOWPO8HBnbghfmInxWNwSz/pub?gid=';
 
-/** * @const @type {String} */
+/** @const @type {String} */
 const SECOND_PART_OF_SCHEDULE_URL_DEV = '&single=true&output=tsv';
+
 /**
 * @const
 * @type {Object<String, String>}
