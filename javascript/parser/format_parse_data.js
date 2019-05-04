@@ -10,6 +10,8 @@
 export default function formatParseData(tsvParseResults) {
   const clipDataObjectsArrayWithTitle = tsvParseResults.data.map((data, i) => {
     return new ClipDataObject(
+      // We don't use data[0] because that is the "Time" column, which
+      // is not useful to us.
       /*id*/ data[1],
       /*partNumber*/ data[2],
       /*fileName*/ data[3],
