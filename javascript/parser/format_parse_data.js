@@ -14,7 +14,7 @@ export default function formatParseData(tsvParseResults) {
       /*partNumber*/ data[2],
       /*fileName*/ data[3],
       /*title*/ data[4],
-      /*director*/ data[5]
+      /*info*/ data[5]
     );
   });
   /*
@@ -62,13 +62,13 @@ class ClipDataObject {
   * @param {String} partNumber - can be 1,2,3,4. Signifies which 15 minute chunk of the file to seek too when determining playback start time. @see {@link ../video_page/Readme.md|Video Page Readme}
   * @param {String} fileName - the name of the mp3 file
   * @param {String} title - the title name ot be displayed while video plays
-  * @param {String} director
+  * @param {String} info
   */
-  constructor(id, partNumber,fileName, title, director) {
+  constructor(id, partNumber,fileName, title, info) {
     this.id = id;
     this.partNumber = partNumber;
     this.fileName = fileName;
     this.title = title;
-    this.director = director;
+    this.info = info;
   }
 }

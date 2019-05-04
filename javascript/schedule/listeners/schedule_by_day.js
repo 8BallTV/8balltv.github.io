@@ -6,6 +6,10 @@ import scheduleNowTextUpdates, { removeNowText } from '../set_now.js';
 
 
 
+/**
+ Each day is a TD element in a table called "WEEK"
+ In the registerScheduleByDayLinksListener, we add an event listener to each TD (ie: Day) 
+*/
 export const weekTable = document.getElementById("WEEK");
 // A day link brings us to another day's schedule
 export const dayLinks = weekTable.querySelectorAll("td");
