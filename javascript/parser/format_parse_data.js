@@ -17,7 +17,7 @@ export default function formatParseData(tsvParseResults) {
       /* fileName= */ data[3],
       /* title= */ data[4],
       /* director= */ data[5],
-      /* modal= */ data[6],
+      /* modalText = */ data[6],
       /* duration= */ data[7],
     );
   });
@@ -67,12 +67,16 @@ class ClipDataObject {
   * @param {String} fileName - the name of the mp3 file
   * @param {String} title - the title name ot be displayed while video plays
   * @param {String} director
+  * @param {String} modalText - the text that will appear in the modal
+  * @param {String} duration - will also be used in the modal
   */
-  constructor(id, partNumber,fileName, title, director) {
+  constructor(id, partNumber,fileName, title, director, modalText, duration) {
     this.id = id;
     this.partNumber = partNumber;
     this.fileName = fileName;
     this.title = title;
     this.director = director;
+    this.modalText = modalText;
+    this.duration = duration;
   }
 }
