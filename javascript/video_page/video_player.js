@@ -6,6 +6,7 @@ import scheduleClipLoads from './schedule_clip_loads.js';
 const mp4Source =  document.getElementById("mp4_src");
 const videoPlayer = document.getElementById("tv");
 const videoTitleElement = document.getElementById("title");
+const modalDiv = document.getElementById("modal");
 
 /** @type {Boolean} */
 let isSoundOn = false;
@@ -26,6 +27,7 @@ export default function setClipOnVideoPlayer(formattedParseData) {
   const currentClip = getCurrentVideoPlayerClipInfo(formattedParseData);
   setSRC_URL(currentClip.fileName, currentClip.playbackTime);
   setTitle(currentClip.title);
+  setModalText(currentClip.modalText, currentClip.duration);
   loadVideoPlayer();
 }
 
@@ -60,6 +62,17 @@ function setSRC_URL(fileName, playbackTime) {
 */
 function setTitle(title) {
   videoTitleElement.innerHTML = title;
+}
+
+/**
+* @author samdealy
+* @description Set the modal text (which includes the file's duration) on modal.
+* @param {String} modalText
+* @param {String} duration
+* @return {null}
+*/
+function setModalText(modalText, duration) {
+  modalDiv.innerHTML = modalText;
 }
 
 /**
