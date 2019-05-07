@@ -23,7 +23,7 @@ const LINKER = "http://8balltv.club/content/";
 * @return {null}
 */
 export default function setClipOnVideoPlayer(formattedParseData) {
-  const currentClip = getCurrentFilenameAndPlaybackTime(formattedParseData);
+  const currentClip = getCurrentVideoPlayerClipInfo(formattedParseData);
   setSRC_URL(currentClip.fileName, currentClip.playbackTime);
   setTitle(currentClip.title);
   loadVideoPlayer();
@@ -77,9 +77,9 @@ function loadVideoPlayer() {
 * @description Gets filename and playbacktime for the file
 *   that should be currently playing
 * @param {Array<ClipDataObject>} formattedParseData
-* @return {VideoPlayerClipInfo} 
+* @return {VideoPlayerClipInfo}
 */
-function getCurrentFilenameAndPlaybackTime(formattedParseData) {
+function getCurrentVideoPlayerClipInfo(formattedParseData) {
   const date = new Date();
   // If it's midnight, re-parse to load the next day's schedule.
   // Otherwise, at midnight you'd start playing the previous day's schedule

@@ -68,7 +68,7 @@ class ClipDataObject {
   * @param {String} title - the title name ot be displayed while video plays
   * @param {String} director
   * @param {String} modalText - the text that will appear in the modal
-  * @param {String} duration - will also be used in the modal
+  * @param {String} duration - duration of entire file, not just the 15 min clip. Will also be used in modal.
   */
   constructor(id, partNumber,fileName, title, director, modalText, duration) {
     this.id = id;
