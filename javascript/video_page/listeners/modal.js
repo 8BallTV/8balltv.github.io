@@ -1,5 +1,6 @@
 /** @const @type = HTMLElement */
 const infoModal = document.querySelector(".infos");
+let isModalVisible = false;
 
 /**
 * @author samdealy
@@ -25,7 +26,10 @@ function openModalListener() {
   const titleBox = document.querySelector(".titlebox");
   titleBox.addEventListener('click', e => {
     const infoModal = document.querySelector(".infos");
-    infoModal.style.display = "block";
+    infoModal.style.display = isModalVisible ? "block" : "none";
+    // Allows us to close to the modal if it's open, and open the modal
+    // if it's closed.
+    isModalVisible = !isModalVisible;
   });
 }
 
