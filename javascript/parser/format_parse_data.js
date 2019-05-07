@@ -78,6 +78,5 @@ class ClipDataObject {
     this.director = director;
     this.modalText = modalText;
     this.duration = duration;
-    this.info = info;
   }
 }
