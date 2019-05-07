@@ -12,11 +12,13 @@ export default function formatParseData(tsvParseResults) {
     return new ClipDataObject(
       // We don't use data[0] because that is the "Time" column, which
       // is not useful to us.
-      /*id*/ data[1],
-      /*partNumber*/ data[2],
-      /*fileName*/ data[3],
-      /*title*/ data[4],
-      /*info*/ data[5]
+      /* id= */ data[1],
+      /* partNumber= */ data[2],
+      /* fileName= */ data[3],
+      /* title= */ data[4],
+      /* director= */ data[5],
+      /* modalText = */ data[6],
+      /* duration= */ data[7],
     );
   });
   /*
@@ -64,6 +66,11 @@ class ClipDataObject {
   * @param {String} partNumber - can be 1,2,3,4. Signifies which 15 minute chunk of the file to seek too when determining playback start time. @see {@link ../video_page/Readme.md|Video Page Readme}
   * @param {String} fileName - the name of the mp3 file
   * @param {String} title - the title name ot be displayed while video plays
+  * @param {String} director
+  * @param {String} modalText - the text that will appear in the modal
+  * @param {String} duration - duration of entire file, not just the 15 min clip. Will also be used in modal.
+  */
+  constructor(id, partNumber,fileName, title, director, modalText, duration) {
   * @param {String} info
   */
   constructor(id, partNumber,fileName, title, info) {
@@ -71,6 +78,9 @@ class ClipDataObject {
     this.partNumber = partNumber;
     this.fileName = fileName;
     this.title = title;
+    this.director = director;
+    this.modalText = modalText;
+    this.duration = duration;
     this.info = info;
   }
 }

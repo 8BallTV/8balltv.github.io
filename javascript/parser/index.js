@@ -21,7 +21,7 @@ import { findTodayDayString } from '../utils/shared_constants.js';
 */
 export default function parseTSV(parseCallback, tsv_url) {
 	// The schedule page provides a tsv_url, while the video page
-	// just wants to find the current schedule days. 
+	// just wants to find the current schedule days.
 	tsv_url = tsv_url || findScheduleForToday();
 	Papa.parse(tsv_url, {
 		/*

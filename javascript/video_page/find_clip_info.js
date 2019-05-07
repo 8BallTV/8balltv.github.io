@@ -13,12 +13,12 @@ import formatAndPrintToConsole from '../utils/console_set_up_test.js';
 export default function findVideoPlayerClipInfo(formattedParseData, date, test) {
   const minutesPastMidnight = TIME_UTIL.calculateMinutesPastMidnight(date);
   const currentClipDataObject = findClipDataObject(formattedParseData, minutesPastMidnight);
-  const { fileName, partNumber, title } = currentClipDataObject;
+  const { fileName, partNumber, title, modalText, duration } = currentClipDataObject;
 
   const playbackTime = calculatePlaybackTime(partNumber, date);
   // TODO: Delete in production
   formatAndPrintToConsole(date, fileName, title, partNumber, playbackTime);
-  return new VideoPlayerClipInfo(fileName, playbackTime, title);
+  return new VideoPlayerClipInfo(fileName, playbackTime, title, modalText, duration);
 }
 
 /**
@@ -55,10 +55,14 @@ class VideoPlayerClipInfo {
   * @param {String} fileName - the name of the mp3 file
   * @param {Number} playbackTime - the time (ms) at which the file should start playback
   * @param {String} title - the title name ot be displayed while video plays
+  * @param {String} modalText - text to be displayed in modal
+  * @param {String} duration - duration of the entire file, not just the 15 minute clip. Will also be used in modal.
   */
-  constructor(fileName, playbackTime, title) {
+  constructor(fileName, playbackTime, title, modalText, duration) {
     this.fileName = fileName;
     this.playbackTime = playbackTime;
     this.title = title;
+    this.modalText = modalText;
+    this.duration = duration;
   }
 }
