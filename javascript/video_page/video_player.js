@@ -7,7 +7,8 @@ const mp4Source =  document.getElementById("mp4_src");
 const videoPlayer = document.getElementById("tv");
 const videoTitleElement = document.getElementById("title");
 const modalParagraphElement = document.getElementById("modal-text");
-const modalTitle = document.querySelector(".title_content");
+const modalTitleSpan = document.querySelector(".title_content");
+const durationSpan = document.querySelector(".duration");
 
 /** @type {Boolean} */
 let isSoundOn = false;
@@ -28,7 +29,7 @@ export default function setClipOnVideoPlayer(formattedParseData) {
   const currentClip = getCurrentVideoPlayerClipInfo(formattedParseData);
   setSRC_URL(currentClip.fileName, currentClip.playbackTime);
   setTitle(currentClip.title);
-  setModalText(currentClip.modalText, currentClip.duration);
+  setModalText(currentClip.modalText, currentClip.title, currentClip.duration);
   loadVideoPlayer();
 }
 
@@ -69,11 +70,21 @@ function setTitle(title) {
 * @author samdealy
 * @description Set the modal text (which includes the file's duration) on modal.
 * @param {String} modalText
+* @param {String} title
 * @param {String} duration
 * @return {null}
 */
-function setModalText(modalText, duration) {
+function setModalText(modalText, title, duration) {
   modalParagraphElement.innerText = modalText;
+  // We have to use childNodes[0] because the outer-level span (with
+  // class ".title-content" contains the title itself and a span
+  // which contains the duration. Therefore we can't just assign
+  // a value to the innerHTML or innerText to the outer level span, because
+  // doing so would erase the duration span element.
+  const titleText = modalTitleSpan.childNodes[0];
+  titleText.nodeValue = title;
+  // The "m" stands for minutes
+  durationSpan.innerText = duration + "m";
 }
 
 /**
