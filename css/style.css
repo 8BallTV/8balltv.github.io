@@ -730,4 +730,7 @@ ul{  padding:10px;
 .infos a:link {color: yellow;}
 .infos a:hover {color: white;}
 
-.duration{font-size: 20px;}
+.duration{
+  font-size: 20px;
+  margin-left: 1rem;
+}
