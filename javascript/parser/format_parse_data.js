@@ -71,9 +71,6 @@ class ClipDataObject {
   * @param {String} duration - duration of entire file, not just the 15 min clip. Will also be used in modal.
   */
   constructor(id, partNumber,fileName, title, director, modalText, duration) {
-  * @param {String} info
-  */
-  constructor(id, partNumber,fileName, title, info) {
     this.id = id;
     this.partNumber = partNumber;
     this.fileName = fileName;
