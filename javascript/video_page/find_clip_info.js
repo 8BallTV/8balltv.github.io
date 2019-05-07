@@ -14,7 +14,6 @@ export default function findVideoPlayerClipInfo(formattedParseData, date, test) 
   const minutesPastMidnight = TIME_UTIL.calculateMinutesPastMidnight(date);
   const currentClipDataObject = findClipDataObject(formattedParseData, minutesPastMidnight);
   const { fileName, partNumber, title, modalText, duration } = currentClipDataObject;
-  debugger
 
   const playbackTime = calculatePlaybackTime(partNumber, date);
   // TODO: Delete in production

@@ -6,7 +6,8 @@ import scheduleClipLoads from './schedule_clip_loads.js';
 const mp4Source =  document.getElementById("mp4_src");
 const videoPlayer = document.getElementById("tv");
 const videoTitleElement = document.getElementById("title");
-const modalDiv = document.getElementById("modal");
+const modalParagraphElement = document.getElementById("modal-text");
+const modalTitle = document.querySelector(".title_content");
 
 /** @type {Boolean} */
 let isSoundOn = false;
@@ -72,7 +73,7 @@ function setTitle(title) {
 * @return {null}
 */
 function setModalText(modalText, duration) {
-  modalDiv.innerHTML = modalText;
+  modalParagraphElement.innerText = modalText;
 }
 
 /**
