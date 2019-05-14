@@ -13,6 +13,7 @@ const durationSpan = document.querySelector(".duration");
 /** @type {Boolean} */
 let isSoundOn = false;
 
+
 /**
 * @const @type {String}
 * @description base url for videos
@@ -27,11 +28,35 @@ const LINKER = "http://8balltv.club/content/";
 */
 export default function setClipOnVideoPlayer(formattedParseData) {
   const currentClip = getCurrentVideoPlayerClipInfo(formattedParseData);
-  setSRC_URL(currentClip.fileName, currentClip.playbackTime);
+  // setSRC_URL(currentClip.fileName, currentClip.playbackTime);
+  // const srcURL = "https://bhaviksingh.com/Images/Bauhaus/face-suggestion.mp4";
+  setSRC_URL("https://bhaviksingh.com/Images/Bauhaus/face-suggestion.mp4",false);
   setTitle(currentClip.title);
   setModalText(currentClip.modalText, currentClip.title, currentClip.duration);
   loadVideoPlayer();
+  playBumperVideoOnVideoEnd();
 }
+
+/**
+* A function that plays a random bumper when the video loads
+**/
+export function playBumperVideoOnVideoEnd() {
+
+  const testVideoURLSet = ["http://8balltv.club/content/15-Affects.mp4", "http://8balltv.club/content/15-anniversary.mp4"];
+  const randomVideoIndex = Math.floor(Math.random() * testVideoURLSet.length);
+  const testVideoURL = testVideoURLSet[randomVideoIndex];
+
+  console.log("Bumper loaded into video " + testVideoURL);
+
+  videoPlayer.onended = function() {
+    console.log("The video has ended, now playing the bumper " + testVideoURL);
+    setSRC_URL(testVideoURL, false);
+    loadVideoPlayer();
+    // I need to repeat this endlessly somehow because it needs to replay bumpers...
+    // OR we need to make sure that all bumpers are at least 15m long
+  };
+}
+
 
 /**
 * @author samdealy
@@ -48,12 +73,19 @@ export function setSoundOnVideoPlayer(updatedIsSoundOn) {
 * @author samdealy
 * @description Set the current clip's source url on the HTML src element.
 * @param {String} fileName
-* @param {Number} playbackTime
+* @param {Number} playbackTime, if false, then assume its a test URL and just use fileName
 * @return {null}
 */
 function setSRC_URL(fileName, playbackTime) {
-  const srcURL = constructSrcURL(fileName, playbackTime);
-  mp4Source.src = srcURL;
+
+  if (playbackTime != false) {
+    const srcURL = constructSrcURL(fileName, playbackTime);
+    mp4Source.src = srcURL;
+  } else {
+    const srcURL = fileName;
+    mp4Source.src = srcURL;
+  }
+
 }
 
 /**

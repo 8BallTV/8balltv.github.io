@@ -44,7 +44,9 @@ export default async function scheduleSecondAndSubsequentActions(action, formatt
 * @return {Promise} secondActionPromise
 */
 function scheduleSecondAction(action, formattedParseData) {
-  const millisecondsUntilFirstNewQuery = TIME_UTIL.findMillisecondsUntilNext15MinuteInterval();
+  const millisecondsUntilFirstNewQuery = TIME_UTIL.findMillisecondsUntilNext15MinuteInterval();;
+  // const millisecondsUntilFirstNewQuery = 17000;
+  console.log("Set promise to load another video in ms:" + millisecondsUntilFirstNewQuery);
   let secondClipLoadPromise = new Promise((resolve, reject) => {
     const id = setTimeout(() => {
       action(formattedParseData);
