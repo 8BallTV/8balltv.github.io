@@ -16,10 +16,10 @@ import { findTodayDayString } from '../utils/shared_constants.js';
 * provided callback once TSV_Parse completes.
 * NOTE: Callers can provide tsv_urls. This is used in the tests.
 * @param {parseCallback} parseCallback - see above doc
-* @param {String} [tsv_url]
+* @param {String} [tsv_url] - optional
 * @return {null}
 */
-export default function parseTSV(parseCallback, tsv_url) {
+export default function parseTSV(parseCallback, /* optional */ tsv_url) {
 	// The schedule page provides a tsv_url, while the video page
 	// just wants to find the current schedule days.
 	tsv_url = tsv_url || findScheduleForToday();
