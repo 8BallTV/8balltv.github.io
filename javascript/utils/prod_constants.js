@@ -2,7 +2,7 @@
 const FIRST_PART_OF_SCHEDULE_URL_PROD = '';
 
 /** @const @type {String} @todo TODO Fill this in when we have a prod schedule*/
-const SECOND_PART_OF_SCHEDULE_URL_PROD = '';
+const SECOND_PART_OF_SCHEDULE_URL_PROD = '&single=true&output=tsv';
 
 /**
 * @const

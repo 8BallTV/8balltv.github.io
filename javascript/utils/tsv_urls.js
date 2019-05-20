@@ -34,7 +34,6 @@ export function createTSVSheetURLsByDay() {
 	DAYS_OF_THE_WEEK.forEach(day => {
 		tsvSheetURLsByDay[day] = firstPartOfUrl + idNumbers[day] + secondPartOfUrl;
 	});
-	debugger
 	return tsvSheetURLsByDay;
 }
 
