@@ -31,7 +31,7 @@ export default function determineTSV_URL(dayString) {
 export function createTSVSheetURLsByDay() {
 	let [firstPartOfUrl, secondPartOfUrl, idNumbers] = determineDevOrProdConstants();
 	const tsvSheetURLsByDay = {};
-	DAYS_OF_THE_WEEK.forEach( day => {
+	DAYS_OF_THE_WEEK.forEach(day => {
 		tsvSheetURLsByDay[day] = firstPartOfUrl + idNumbers[day] + secondPartOfUrl;
 	});
 
