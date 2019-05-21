@@ -8,7 +8,7 @@ import { DAYS_OF_THE_WEEK } from './shared_constants.js';
 * @type {Boolean}
 * TODO(samdealy): Delete when done with test phase
 */
-let areYouInDevelopment = window.location.hostname === 'localhost' || "8balltv.github.io";
+ let areYouInDevelopment = false // window.location.hostname === 'localhost' // "8balltv.github.io";
 /**
 * @author samdealy
 * @description Returns correct url for the current day of the week.
@@ -34,6 +34,7 @@ export function createTSVSheetURLsByDay() {
 	DAYS_OF_THE_WEEK.forEach(day => {
 		tsvSheetURLsByDay[day] = firstPartOfUrl + idNumbers[day] + secondPartOfUrl;
 	});
+	debugger;
 	return tsvSheetURLsByDay;
 }
 

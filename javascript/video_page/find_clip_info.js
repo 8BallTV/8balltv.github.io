@@ -1,6 +1,5 @@
 import * as TIME_UTIL from '../utils/time.js';
 import { findClipDataObject } from '../parser/format_parse_data.js';
-import formatAndPrintToConsole from '../utils/console_set_up_test.js';
 
 /**
 * @author samdealy
@@ -16,8 +15,6 @@ export default function findVideoPlayerClipInfo(formattedParseData, date, test) 
   const { fileName, partNumber, title, modalText, duration } = currentClipDataObject;
 
   const playbackTime = calculatePlaybackTime(partNumber, date);
-  // TODO: Delete in production
-  formatAndPrintToConsole(date, fileName, title, partNumber, playbackTime);
   return new VideoPlayerClipInfo(fileName, playbackTime, title, modalText, duration);
 }
 

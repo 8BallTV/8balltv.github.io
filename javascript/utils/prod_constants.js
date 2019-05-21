@@ -1,5 +1,5 @@
 /** @const @type {String} @todo TODO Fill this in when we have a prod schedule */
-const FIRST_PART_OF_SCHEDULE_URL_PROD = '';
+const FIRST_PART_OF_SCHEDULE_URL_PROD = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7EnR4fHqDgT3ZqXWXpl4xb7C4tv1PkEMHfxN5sGHponRwH36OALT_MrY3JLn3zPyrqr0oERerBob6/pub?gid=';
 
 /** @const @type {String} @todo TODO Fill this in when we have a prod schedule*/
 const SECOND_PART_OF_SCHEDULE_URL_PROD = '&single=true&output=tsv';
@@ -9,15 +9,16 @@ const SECOND_PART_OF_SCHEDULE_URL_PROD = '&single=true&output=tsv';
 * @type {Object<String, String>}
 * @description ID numbers for the specific sheets on the prod schedule
 */
-const TSV_SHEET_IDS_PROD = [
-	/**SUNDAY*/ '',
-	/**MONDAY*/ '',
-	/**TUESDAY*/ '',
-	/**WEDNESDAY*/ '',
-	/**THURSDAY*/ '',
-	/**FRIDAY*/ '',
-	/**SATURDAY*/ '',
-]
+
+const TSV_SHEET_IDS_PROD = {
+  monday: '192360482' ,
+  tuesday: '1036455868',
+  wednesday: '949173297',
+  thursday: '483801566',
+  friday: '228299691' ,
+  saturday: '1694530893',
+  sunday: '835076295',
+};
 
 /**
 * @const
