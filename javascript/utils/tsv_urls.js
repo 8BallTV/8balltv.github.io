@@ -3,12 +3,10 @@ import PROD_CONSTANTS from './prod_constants.js';
 import { DAYS_OF_THE_WEEK } from './shared_constants.js';
 
 /**
-* @description We check for "8balltv.github.io" as we are using this URL for  our
-* 	testing phase.
+* @description Is true if you are in a local development environment
 * @type {Boolean}
-* TODO(samdealy): Delete when done with test phase
 */
- let areYouInDevelopment = false // window.location.hostname === 'localhost' // "8balltv.github.io";
+ let areYouInDevelopment =  window.location.hostname === 'localhost' ;
 /**
 * @author samdealy
 * @description Returns correct url for the current day of the week.

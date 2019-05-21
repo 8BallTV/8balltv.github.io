@@ -1,7 +1,7 @@
-/** @const @type {String} @todo TODO Fill this in when we have a prod schedule */
+/** @const @type {String}
 const FIRST_PART_OF_SCHEDULE_URL_PROD = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7EnR4fHqDgT3ZqXWXpl4xb7C4tv1PkEMHfxN5sGHponRwH36OALT_MrY3JLn3zPyrqr0oERerBob6/pub?gid=';
 
-/** @const @type {String} @todo TODO Fill this in when we have a prod schedule*/
+/** @const @type {String}
 const SECOND_PART_OF_SCHEDULE_URL_PROD = '&single=true&output=tsv';
 
 /**
