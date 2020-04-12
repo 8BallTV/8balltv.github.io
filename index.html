@@ -27,6 +27,7 @@ Y8a     a8P     88      a8P          88               `888'
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <iframe id="twitch-chat" src="https://www.twitch.tv/embed/8ball_tv/chat?parent=8balltv.club" frameborder="0" scrolling="yes" height="500" width="350"></iframe>
   <div class="connecting">
     connecting
     <span class="dot1">.</span>
@@ -44,7 +45,7 @@ Y8a     a8P     88      a8P          88               `888'
     </p>
   </div>
   <div class="container">
-    <video id="tv" autoplay muted playsinline>
+    <video hidden id="tv" autoplay muted playsinline>
       <source id="mp4_src"  type="video/mp4">
     </video>
     <div class="titlebox">
@@ -56,7 +57,6 @@ Y8a     a8P     88      a8P          88               `888'
     <div id="enter-fullscreen" ></div>
     <div id="exit-fullscreen" ></div>
   </div>
-  <iframe src="https://www.twitch.tv/embed/8ball_tv/chat" parent="8balltv.club" frameborder="0" scrolling="no" height="500" width="350"></iframe>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
