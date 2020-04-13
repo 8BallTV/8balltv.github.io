@@ -1,6 +1,6 @@
 /**
 * @author samdealy
-* @description Register an on-click listner for the schedule link that brings user
+* @description Register an on-click listener for the schedule link that brings user
 *   to the schedule html page.
 * @listens onClick
 * @param {null}

@@ -167,6 +167,26 @@ video {
 	bottom: 6px;
 }
 
+.chat-button {
+	height:38px;
+	cursor:pointer;
+	position: absolute;
+	bottom: 20px;
+	right: 230px;
+	z-index: 102;
+	border: 2px solid #f400ff;
+	-webkit-box-shadow: -6px 6px 0px 0px rgba(244, 0, 255, 1);
+	-moz-box-shadow: -6px 6px 0px 0px rgba(244, 0, 255, 1);
+	box-shadow: -6px 6px 0px 0px rgba(244, 0, 255, 1);
+	background-color:rgba( 00, 00, 00, .3);
+	color: #00ff00;
+	padding: 0 12px 0 12px;
+        display: table-cell;
+        font-family: teletext;
+        font-size: 18px;
+}
+#chat a:hover{color: #f400ff;}
+
 .schedulebox{
 	height:38px;
 	cursor:pointer;
@@ -736,7 +756,8 @@ ul{  padding:10px;
   margin-left: 1rem;
 }
 
-#twitch-chat{
+.chat-box{
   position: absolute;
   z-index: 500;
+  visibility: hidden;
 }
