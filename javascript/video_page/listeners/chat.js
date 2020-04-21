@@ -19,20 +19,44 @@ export default function registerChatButtonListener() {
     registerChatRepositionListener();
 }
 
+/**
+ * @author bhaviksingh
+ * @description Register listeners that enable the chatBox to be moved on both desktop and mobile
+ * @listens mousedown, mouseup, touchstart, touchend
+ * @param {null}
+ * @return {null}
+ */
 function registerChatRepositionListener() {
     const chatRepositionWidget = document.querySelector("#chat-positioning");
-    const chatBox = document.querySelector(".chat-box");
-    let chatDragState = false;
     chatRepositionWidget.addEventListener("mousedown", (e) => {
-        chatDragState = true;
+        document.addEventListener("mousemove", chatRepositionHandler);
     });
     document.addEventListener("mouseup", (e) => {
-        chatDragState = false;
+        document.removeEventListener("mousemove", chatRepositionHandler);
     });
-    document.addEventListener("mousemove", (e) => {
-        if (chatDragState == true) {
-            chatBox.style.left = e.pageX + "px";
-            chatBox.style.top = e.pageY + "px";
-        }
+    chatRepositionWidget.addEventListener("touchstart", (e) => {
+        document.addEventListener("touchmove", chatRepositionHandler);
     });
+    document.addEventListener("touchend", (e) => {
+        document.removeEventListener("touchmove", chatRepositionHandler);
+    });
+}
+
+/**
+ * @author bhaviksingh
+ * @description Handles callback for chat repositioning, moving the chatbox to the right place
+ * @listens touchmove, mousemove
+ * @param {null}
+ * @return {null}
+ */
+function chatRepositionHandler(e) {
+    const chatBox = document.querySelector(".chat-box");
+    if (e.type == "touchmove") {
+        let touch = e.touches[0];
+        chatBox.style.left = touch.pageX + "px";
+        chatBox.style.top = touch.pageY + "px";
+    } else {
+        chatBox.style.left = e.pageX + "px";
+        chatBox.style.top = e.pageY + "px";
+    }
 }
