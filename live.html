@@ -1,0 +1,94 @@
+<!--
+                                                                  
+ ad88888ba      88888888ba      888888888888     8b           d8  
+d8"     "8b     88      "8b          88          `8b         d8'  
+Y8a     a8P     88      ,8P          88           `8b       d8'   
+ "Y8aaa8P"      88aaaaaa8P'          88            `8b     d8'    
+ ,d8"""8b,      88""""""8b,          88             `8b   d8'     
+d8"     "8b     88      `8b          88              `8b d8'      
+Y8a     a8P     88      a8P          88               `888'       
+ "Y88888P"      88888888P"           88                `8'        
+                                                                  
+ 8 BALL TV APP V1.0 / WRITTEN BY GIUSEPPE FURCOLO NOV2016 / ALWAYS SPERIMENT-ALWAYS DIY!                                                       
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+
+    <title>8 BALL TV LIVE!</title>
+
+
+
+    <style>
+        .live-iframe {
+            width: 100vw;
+            height: calc(100vh - 56px);
+        }
+    </style>
+
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+
+<body>
+
+    <div class="connecting">connecting<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span></div>
+
+    <div class="container">
+
+        <div class="chat-box">
+            <div id="chat-positioning" class="pinkborder"></div>
+            <iframe id="8ball_tv" class="pinkborder" src="https://www.twitch.tv/embed/8ball_tv/chat?parent=8balltv.club&darkpopout" frameborder="0" scrolling="no" height="500" width="350"></iframe>
+        </div>
+
+
+        <!-- ✅ YOU CAN EDIT THESE LINES-->
+
+        <!-- 🔥 YOUTUBE IS HERE ↴, uncomment this code and add the url -->
+        <!-- no youtube for now, talk to bhavik -->
+
+        <!-- 🔥 TWITCH↴ -->
+        <iframe class="live-iframe" src="https://player.twitch.tv/?channel=8ball_tv" frameborder="0" scrolling="no"></iframe>
+
+
+        <!-- 🔥 TITLE ↴ -->
+        <div class="titlebox">
+            <p id="titlelive">
+                8Ball Live
+            </p>
+        </div>
+
+        <!-- 🛑 DONT CHANGE ANYTHING BELOW THIS LINE -->
+        <div class="chat-button">
+            <p id="chat-button"><a>Chat</a></p>
+        </div>
+
+    </div>
+    <script src="javascript//video_page/live_index.js" type="module"> </script>
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-90411254-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</body>
+
+</html>
