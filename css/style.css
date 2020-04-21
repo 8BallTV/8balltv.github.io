@@ -836,7 +836,7 @@ ul {
 .chat-box {
     position: absolute;
     z-index: 500;
-    visibility: visible;
+    visibility: hidden;
     top: 32px;
     left: 32px;
 }
