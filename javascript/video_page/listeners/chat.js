@@ -56,7 +56,25 @@ function chatRepositionHandler(e) {
         chatBox.style.left = touch.pageX + "px";
         chatBox.style.top = touch.pageY + "px";
     } else {
-        chatBox.style.left = e.pageX + "px";
-        chatBox.style.top = e.pageY + "px";
-    }
+      chatBox.style.left =
+        calculatePosition(e.pageX, chatBox.offsetWidth, window.innerWidth) + "px";
+      chatBox.style.top =
+        calculatePosition(e.pageY, chatBox.offsetHeight, window.innerHeight) + "px";
+   }
 }
+
+/**
+ * @author samdealy
+ * @description Ensures new position is within the bounds of the window's viewport
+ * @param {Number} coordinate
+ * @param {Number} chatBox
+ * @return {Number} (inBoundsCoordinate)
+ */
+function calculatePosition(coordinate, chatBoxDimension, windowDimension) {
+  if(coordinate < 0) return 0;
+  if(coordinate + chatBoxDimension > windowDimension) {
+    return windowDimension - chatBoxDimension;
+  }
+  return coordinate;
+}
+
