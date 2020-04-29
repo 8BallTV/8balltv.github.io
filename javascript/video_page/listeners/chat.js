@@ -67,7 +67,8 @@ function chatRepositionHandler(e) {
  * @author samdealy
  * @description Ensures new position is within the bounds of the window's viewport
  * @param {Number} coordinate
- * @param {Number} chatBox
+ * @param {Number} chatBoxDimension
+ * @param {Number} windowDimension
  * @return {Number} (inBoundsCoordinate)
  */
 function calculatePosition(coordinate, chatBoxDimension, windowDimension) {
