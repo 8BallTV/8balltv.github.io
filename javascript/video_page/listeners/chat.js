@@ -53,14 +53,25 @@ function chatRepositionHandler(e) {
     const chatBox = document.querySelector(".chat-box");
     if (e.type == "touchmove") {
         let touch = e.touches[0];
-        chatBox.style.left = touch.pageX + "px";
-        chatBox.style.top = touch.pageY + "px";
+        chatBox.style.left =
+            calculatePosition(
+                touch.pageX,
+                chatBox.clientWidth,
+                document.documentElement.clientWidth
+            ) + "px";
+        chatBox.style.top =
+            calculatePosition(
+                touch.pageY,
+                chatBox.clientHeight,
+                document.documentElement.clientHeight
+            ) + "px";
     } else {
-      chatBox.style.left =
-        calculatePosition(e.pageX, chatBox.offsetWidth, window.innerWidth) + "px";
-      chatBox.style.top =
-        calculatePosition(e.pageY, chatBox.offsetHeight, window.innerHeight) + "px";
-   }
+        chatBox.style.left =
+            calculatePosition(e.pageX, chatBox.offsetWidth, window.innerWidth) + "px";
+        chatBox.style.top =
+            calculatePosition(e.pageY, chatBox.offsetHeight, window.innerHeight) +
+            "px";
+    }
 }
 
 /**
@@ -72,10 +83,9 @@ function chatRepositionHandler(e) {
  * @return {Number} (inBoundsCoordinate)
  */
 function calculatePosition(coordinate, chatBoxDimension, windowDimension) {
-  if(coordinate < 0) return 0;
-  if(coordinate + chatBoxDimension > windowDimension) {
-    return windowDimension - chatBoxDimension;
-  }
-  return coordinate;
+    if (coordinate < 0) return 0;
+    if (coordinate + chatBoxDimension > windowDimension) {
+        return windowDimension - chatBoxDimension;
+    }
+    return coordinate;
 }
-
