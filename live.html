@@ -13,87 +13,82 @@
 -->
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Cache-control" content="no-cache">
-    <meta http-equiv="Expires" content="-1">
-    <title>8 BALL TV LIVE!</title>
-    <style>
-        .live-player {
-            width: 100vw;
-            height: calc(100vh - 56px);
-        }
-    </style>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-    <div class="chat-box">
-        <div id="chat-positioning" class="pinkborder"></div>
-        <script id="cid0020000249084881306" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 300px;height: 412px;">
-            {
-                "handle": "8balldottv",
-                "arch": "js",
-                "styles": {
-                    "a": "000000",
-                    "b": 100,
-                    "c": "f400ff",
-                    "d": "f400ff",
-                    "e": "000000",
-                    "g": "33ff33",
-                    "h": "f400ff",
-                    "j": "ffffff",
-                    "k": "000000",
-                    "l": "000000",
-                    "m": "000000",
-                    "n": "FFFFFF",
-                    "p": "10",
-                    "q": "000000",
-                    "r": 100,
-                    "t": 0,
-                    "ab": 0,
-                    "usricon": 0,
-                    "sbc": "33ff33",
-                    "allowpm": 0,
-                    "cvfnt": "font-family: serif"
-                }
-            }
-        </script>
-    </div>
-    <div class="connecting">connecting<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span></div>
-    <div class="container">
-
-        <!-- 🔥🔥🔥 TWITCH and YOUTUBE, just change where it says src="" and put your link in quotes🔥🔥🔥 -->
-        <iframe class="live-player" src="https://player.twitch.tv/?channel=8ball_tv" frameborder="0" scrolling="no"></iframe>
-        <!-- 🔥🔥🔥 Change title 🔥🔥🔥 -->
-        <div class="titlebox">
-            <p id="titlelive"> 8Ball Live
-        </div>
-
-        <!-- 🛑 DONT EDIT BEYOND THIS LINE 🛑🛑 -->
-        <div class="chat-button">
-            <p id="chat-button"><a>Chat</a></p>
-        </div>
-        <div id="soundon" onclick="UNMUTE()"></div>
-        <div id="soundoff" onclick="MUTE()"></div>
-    </div>
-    <script>
-        (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-90411254-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-    <script src="./javascript/video_page/index.js" type="module"></script>
-</body>
-
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="Cache-control" content="no-cache">
+      <meta http-equiv="Expires" content="-1">
+      <title>8 BALL TV LIVE!</title>
+      <style>
+          .live-player {
+              width: 100vw;
+              height: calc(100vh - 56px);
+          }
+      </style>
+      <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+      <div class="chat-box">
+          <div id="chat-positioning" class="pinkborder"></div>
+          <script id="cid0020000249084881306" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 300px;height: 412px;">
+              {
+                  "handle": "8balldottv",
+                  "arch": "js",
+                  "styles": {
+                      "a": "000000",
+                      "b": 100,
+                      "c": "f400ff",
+                      "d": "f400ff",
+                      "e": "000000",
+                      "g": "33ff33",
+                      "h": "f400ff",
+                      "j": "ffffff",
+                      "k": "000000",
+                      "l": "000000",
+                      "m": "000000",
+                      "n": "FFFFFF",
+                      "p": "10",
+                      "q": "000000",
+                      "r": 100,
+                      "t": 0,
+                      "ab": 0,
+                      "usricon": 0,
+                      "sbc": "33ff33",
+                      "allowpm": 0,
+                      "cvfnt": "font-family: serif"
+                  }
+              }
+          </script>
+      </div>
+      <div class="connecting">connecting<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span></div>
+      <div class="container">
+          <!-- 🔥🔥🔥 TWITCH and YOUTUBE, just change where it says src="" and put your link in quotes🔥🔥🔥 -->
+          <iframe class="live-player" src="https://player.twitch.tv/?channel=8ball_tv" frameborder="0" scrolling="no"></iframe>
+          <!-- 🔥🔥🔥 Change title 🔥🔥🔥 -->
+          <div class="titlebox">
+              <p id="titlelive"> 8Ball Live
+          </div>
+          <!-- 🛑 DONT EDIT BEYOND THIS LINE 🛑🛑 -->
+          <div class="chat-button">
+              <p id="chat-button"><a>Chat</a></p>
+          </div>
+          <div id="soundon" onclick="UNMUTE()"></div>
+          <div id="soundoff" onclick="MUTE()"></div>
+      </div>
+      <script>
+          (function(i, s, o, g, r, a, m) {
+              i['GoogleAnalyticsObject'] = r;
+              i[r] = i[r] || function() {
+                  (i[r].q = i[r].q || []).push(arguments)
+              }, i[r].l = 1 * new Date();
+              a = s.createElement(o),
+                  m = s.getElementsByTagName(o)[0];
+              a.async = 1;
+              a.src = g;
+              m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+          ga('create', 'UA-90411254-1', 'auto');
+          ga('send', 'pageview');
+      </script>
+      <script src="./javascript/video_page/index.js" type="module"></script>
+  </body>
 </html>
