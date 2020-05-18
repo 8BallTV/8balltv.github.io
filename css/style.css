@@ -856,3 +856,16 @@ ul {
     background-image: url("move.png");
     cursor: move;
 }
+
+#collection-container {
+    position: absolute;
+    z-index: 502;
+}
+
+#collection-container div {
+    cursor: pointer;
+}
+
+#collection-container div:hover {
+    text-decoration: underline;
+}
