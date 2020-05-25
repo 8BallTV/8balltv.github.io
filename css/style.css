@@ -217,7 +217,7 @@ video {
     cursor: pointer;
     position: absolute;
     bottom: 20px;
-    right: 230px;
+    right: 120px;
     z-index: 102;
     border: 2px solid #f400ff;
     -webkit-box-shadow: -6px 6px 0px 0px rgba(244, 0, 255, 1);
@@ -235,12 +235,13 @@ video {
     color: #f400ff;
 }
 
-.schedulebox {
+.schedulebox,
+.collection-button {
     height: 38px;
     cursor: pointer;
     position: absolute;
     bottom: 20px;
-    right: 118px;
+    right: 200px;
     z-index: 102;
     border: 2px solid #f400ff;
     -webkit-box-shadow: -6px 6px 0px 0px rgba(244, 0, 255, 1);
@@ -252,6 +253,30 @@ video {
     display: table-cell;
     font-family: teletext;
     font-size: 18px;
+}
+
+.collectionlink-button,
+.home-button {
+    height: 38px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    right: 320px;
+    z-index: 102;
+    border: 2px solid #f400ff;
+    -webkit-box-shadow: -6px 6px 0px 0px rgba(244, 0, 255, 1);
+    -moz-box-shadow: -6px 6px 0px 0px rgba(244, 0, 255, 1);
+    box-shadow: -6px 6px 0px 0px rgba(244, 0, 255, 1);
+    background-color: rgba(00, 00, 00, 0.3);
+    color: #00ff00;
+    padding: 0 12px 0 12px;
+    display: table-cell;
+    font-family: teletext;
+    font-size: 18px;
+}
+
+.home-button {
+    right: 350px;
 }
 
 .titlebox:hover {
@@ -833,20 +858,14 @@ ul {
     margin-left: 1rem;
 }
 
-.chat-box {
+.floating-box {
     position: absolute;
     z-index: 500;
-    visibility: hidden;
     top: 32px;
     left: 32px;
 }
 
-.chat-box iframe {
-    border: 4px solid #f400ff;
-    border-right: 3px solid #f400ff;
-}
-
-.chat-box #chat-positioning {
+.floating-box .reposition-container {
     position: absolute;
     background: black;
     width: 38px;
@@ -857,15 +876,86 @@ ul {
     cursor: move;
 }
 
-#collection-container {
-    position: absolute;
-    z-index: 502;
+#chatbox-container {
+    visibility: hidden;
 }
 
-#collection-container div {
+#chatbox-container iframe {
+    border: 4px solid #f400ff;
+    border-right: 3px solid #f400ff;
+}
+
+#collectionbox-container {
+    width: 50%;
+    background: black;
+}
+
+#collection-container {
+    padding: 24px;
+    padding-top: 32px;
+    max-height: 70vh;
+    overflow-y: scroll;
+}
+
+
+/* width */
+
+#collection-container::-webkit-scrollbar {
+    width: 20px;
+}
+
+
+/* Track */
+
+#collection-container::-webkit-scrollbar-track {
+    border-radius: 2px;
+}
+
+
+/* Handle */
+
+#collection-container::-webkit-scrollbar-thumb {
+    background: #f400ff;
+    border-radius: 2px;
+    border: 8px solid black;
+}
+
+#collection-container .collection,
+#collection-container .video-info {
+    border-bottom: 2px dotted #f400ff;
+    margin-top: 24px;
+    padding-bottom: 16px;
     cursor: pointer;
 }
 
-#collection-container div:hover {
-    text-decoration: underline;
+#collection-container .collection:hover,
+#collection-container .video-info:hover {
+    text-shadow: 2px 2px #f400ff;
+}
+
+#collection-container .collection:last-child {
+    border-bottom: none;
+}
+
+#collection-container .titler {
+    padding: 0px;
+    width: 80%;
+}
+
+#collection-container .body {
+    color: #00ff00;
+    font-size: 16px;
+}
+
+#collection-container .length {
+    float: right;
+    font-size: 16px;
+    margin-top: 6px;
+    color: yellow;
+}
+
+#collection-container .back {
+    float: right;
+    cursor: pointer;
+    color: #00ff00;
 }

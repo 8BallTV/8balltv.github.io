@@ -2,10 +2,12 @@ import { determineCollectionInfo_URL, determineCollectionVideos_URL } from "../u
 import parseTSV from "../parser/index.js";
 import setClipOnVideoPlayer from "../video_page/video_player.js";
 const collectionContainer = document.getElementById("collection-container");
-
+const collectionStatusContainer = document.getElementById("connecting-type");
+const collectionBox = document.getElementById("collectionbox-container");
 
 const collectionInfo_URL = determineCollectionInfo_URL();
 const collectionVideo_URL = determineCollectionVideos_URL();
+
 
 let cachedCollectionList, cachedVideoList;
 
@@ -24,6 +26,7 @@ function cacheAndDisplayCollections(collectionList) {
     displayCollections(collectionList);
 }
 
+
 /**
  * @author bhaviksingh
  * @description Takes a list of CollectionInfo objects and displays them in the container
@@ -32,30 +35,43 @@ function cacheAndDisplayCollections(collectionList) {
  */
 function displayCollections(collectionList) {
     collectionContainer.innerHTML = "";
+    collectionStatusContainer.innerHTML = "select a video";
+
+    let titleDom = getTitleDOM("Collections");
+    collectionContainer.appendChild(titleDom);
+
     collectionList.forEach((collectionDataObject) => {
         let collectionDataDom = collectionDataObject.getDOMElement();
         collectionContainer.appendChild(collectionDataDom);
         let collectionID = collectionDataObject.id;
+        let collectionName = collectionDataObject.name;
+
         collectionDataDom.addEventListener("click", (e) => {
-            parseAndDisplayCollectionVideos(collectionID);
+            parseAndDisplayCollectionVideos(collectionID, collectionName);
         }), false;
     });
 }
 
-function parseAndDisplayCollectionVideos(collectionID) {
-    parseTSV((collectionVideoData) => displayCollectionVideos(collectionVideoData, collectionID), collectionVideo_URL);
+function parseAndDisplayCollectionVideos(collectionID, collectionName) {
+    parseTSV((collectionVideoData) => displayCollectionVideos(collectionVideoData, collectionID, collectionName), collectionVideo_URL);
 }
 
-function displayCollectionVideos(collectionVideoData, collectionID) {
+function displayCollectionVideos(collectionVideoData, collectionID, collectionName) {
     collectionContainer.innerHTML = "";
+
     let backButton = getBackButton();
     collectionContainer.appendChild(backButton);
+
+    let titleDom = getTitleDOM(collectionName);
+    collectionContainer.appendChild(titleDom);
+
     collectionVideoData.forEach((clipDataObject) => {
         if (clipDataObject.collectionID == collectionID) {
             let clipDataDom = clipDataObject.getDOMElement();
             collectionContainer.appendChild(clipDataDom);
             clipDataDom.addEventListener("click", (e) => {
                 setClipOnVideoPlayer(null, clipDataObject);
+                collectionBox.style.visibility = "hidden";
             })
         }
 
@@ -64,7 +80,21 @@ function displayCollectionVideos(collectionVideoData, collectionID) {
 
 function getBackButton() {
     let parentDom = document.createElement("div");
+    parentDom.classList = "back";
     parentDom.innerHTML = "back";
     parentDom.addEventListener("click", () => displayCollections(cachedCollectionList));
     return parentDom;
+}
+
+/**
+ * @author bhaviksingh
+ * @description Generates a DOM for the "Title" seection of the collectionContainer
+ * @param {string} title for DOM
+ * @return null
+ */
+function getTitleDOM(title) {
+    let titleContainer = document.createElement("div");
+    titleContainer.classList = "collection-title";
+    titleContainer.innerHTML = title;
+    return titleContainer;
 }

@@ -25,11 +25,14 @@ Y8a     a8P     88      a8P          88               `888'
 </head>
 
 <body>
-    <div id="collection-container">
+    <div id="collectionbox-container" class="floating-box pinkborder">
+        <div id="collection-positioning" class="pinkborder reposition-container"></div>
+        <div id="collection-container">
 
+        </div>
     </div>
-    <div class="chat-box" id="chatbox-container">
-        <div id="chat-positioning" class="pinkborder"></div>
+    <div class="floating-box" id="chatbox-container">
+        <div id="chat-positioning" class="pinkborder reposition-container"></div>
         <script id="cid0020000249084881306" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 300px;height: 412px;">
             {
                 "handle": "8balldottv",
@@ -61,7 +64,7 @@ Y8a     a8P     88      a8P          88               `888'
         </script>
     </div>
     <div class="connecting">
-        select a video
+        <span id="connecting-type">loading collections</span>
         <span class="dot1">.</span>
         <span class="dot2">.</span>
         <span class="dot3">.</span>
@@ -89,11 +92,14 @@ Y8a     a8P     88      a8P          88               `888'
         <div class="titlebox">
             <p id="title">error</p>
         </div>
+        <div class="home-button">
+            <p id="home-button"><a>Home</a></p>
+        </div>
         <div class="chat-button">
             <p id="chat-button"><a>Chat</a></p>
         </div>
-        <div class="schedulebox">
-            <p id="schedule"><a>Schedule</a></p>
+        <div class="collection-button">
+            <p id="collection-button"><a>Collections</a></p>
         </div>
         <div id="turn-sound-on"></div>
         <div id="turn-sound-off"></div>

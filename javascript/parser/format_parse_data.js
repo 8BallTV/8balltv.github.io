@@ -125,7 +125,19 @@ class ClipDataObject {
 
     getDOMElement() {
         let parentContainer = document.createElement("div");
-        parentContainer.innerHTML = this.fileName + " " + this.collectionID + " " + convertMinutesToReadableTime(this.duration);
+        parentContainer.classList = "video-info";
+
+        let timeContainer = document.createElement("div");
+        timeContainer.classList = "length";
+        timeContainer.innerHTML = convertMinutesToReadableTime(this.duration);
+        parentContainer.appendChild(timeContainer);
+
+
+        let titleContainer = document.createElement("div");
+        titleContainer.classList = "titler";
+        titleContainer.innerHTML = this.title;
+        parentContainer.appendChild(titleContainer);
+
         return parentContainer;
     }
 }
@@ -155,7 +167,24 @@ class CollectionDataObject {
 
     getDOMElement() {
         let parentContainer = document.createElement("div");
-        parentContainer.innerHTML = this.name + " " + this.details + " " + convertMinutesToReadableTime(this.duration);
+        parentContainer.classList = "collection";
+
+        let timeContainer = document.createElement("div");
+        timeContainer.classList = "length";
+        timeContainer.innerHTML = convertMinutesToReadableTime(this.duration);
+        parentContainer.appendChild(timeContainer);
+
+        let titleContainer = document.createElement("div");
+        titleContainer.classList = "titler";
+        titleContainer.innerHTML = this.name;
+        parentContainer.appendChild(titleContainer);
+
+        let detailContainer = document.createElement("div");
+        detailContainer.classList = "body";
+        detailContainer.innerHTML = this.details;
+        parentContainer.appendChild(detailContainer);
+
+
         return parentContainer;
     }
 }
