@@ -1,11 +1,15 @@
-import { convertMinutesToReadableTime } from "../utils/time.js"
+import { convertMinutesToReadableTime } from "../utils/time.js";
 /**
  * @author samdealy, bhaviksingh
  * @description Parses tsvObjects and returns them in the correct format, based on parseFormat
  * @param {Array<Array<String>>} tsvParseResults
  * @return {Array<ClipDataObject> or Array<CollectionDataObject} formattedParseData
  */
-export default function formatParseData(tsvParseResults, /* optional */ parseFormat = "clip") {
+export default function formatParseData(
+    tsvParseResults,
+    /* optional */
+    parseFormat = "clip"
+) {
     if (parseFormat == "collections") {
         return formatParseDataAsCollections(tsvParseResults);
     } else if (parseFormat == "clip") {
@@ -19,7 +23,7 @@ export default function formatParseData(tsvParseResults, /* optional */ parseFor
  * clipDataObject & collectionDataObject keys correspond to the TSV file's column headers.
  * NOTE: If we add columns to the {@link https://docs.google.com/spreadsheets/d/1mFq_t7V6XY60zDM9IT-wQ2hBTGN8pjjs1zKvj7TG79w/edit#gid=845076906|spreadsheet},
  *   then we will need to add keys to this object
- * @param {Array<Array<String>>} tsvParseResults 
+ * @param {Array<Array<String>>} tsvParseResults
  */
 function formatParseDataAsClips(tsvParseResults) {
     const clipDataObjectsArrayWithTitle = tsvParseResults.data.map((data, i) => {
@@ -51,7 +55,6 @@ function formatParseDataAsClips(tsvParseResults) {
     return formattedParseData;
 }
 
-
 /**
  * @author samdealy
  * @description Finds a clipDataObject for a given number of minutes past midnight.
@@ -80,6 +83,10 @@ export function findCurrentClipIndex(minutesPastMidnight) {
 
 function formatParseDataAsCollections(tsvParseResults) {
     const collectionDataObjectsWithTitle = tsvParseResults.data.map((data, i) => {
+        //In case the collection is blank, ignore
+        if (data[0] == "") {
+            return;
+        }
         return new CollectionDataObject(
             /* id= */
             data[0],
@@ -89,12 +96,11 @@ function formatParseDataAsCollections(tsvParseResults) {
             data[2],
             /* time */
             data[3]
-        )
+        );
     });
     const formattedParseData = collectionDataObjectsWithTitle.slice(1);
     return formattedParseData;
 }
-
 
 /**
  * @author samdealy
@@ -112,7 +118,16 @@ class ClipDataObject {
      * @param {String} duration - duration of entire file, not just the 15 min clip. Will also be used in modal.
      * @param {String} collectionID - id of a collection. will be overloaded by time in some cases, but not used then
      */
-    constructor(id, partNumber, fileName, title, director, modalText, duration, collectionID) {
+    constructor(
+        id,
+        partNumber,
+        fileName,
+        title,
+        director,
+        modalText,
+        duration,
+        collectionID
+    ) {
         this.id = id;
         this.partNumber = partNumber;
         this.fileName = fileName;
@@ -132,7 +147,6 @@ class ClipDataObject {
         timeContainer.innerHTML = convertMinutesToReadableTime(this.duration);
         parentContainer.appendChild(timeContainer);
 
-
         let titleContainer = document.createElement("div");
         titleContainer.classList = "titler";
         titleContainer.innerHTML = this.title;
@@ -142,15 +156,11 @@ class ClipDataObject {
     }
 }
 
-
-
-
 /**
  * @author bhaviksingh
  * @description Represents information for a  collection
  */
 class CollectionDataObject {
-
     /**
      * @param {String} id - the unique ID for the collection
      * @param {String} name - the name for the collection
@@ -163,7 +173,6 @@ class CollectionDataObject {
         this.details = details;
         this.duration = duration;
     }
-
 
     getDOMElement() {
         let parentContainer = document.createElement("div");
@@ -183,7 +192,6 @@ class CollectionDataObject {
         detailContainer.classList = "body";
         detailContainer.innerHTML = this.details;
         parentContainer.appendChild(detailContainer);
-
 
         return parentContainer;
     }

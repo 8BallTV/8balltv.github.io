@@ -1,9 +1,8 @@
-import { convertClipDataObject } from './find_clip_info.js';
-import findVideoPlayerClipInfo from './find_clip_info.js';
-import * as TIME_UTIL from '../utils/time.js';
-import parseTSV from '../parser/index.js';
-import scheduleClipLoads from './schedule_clip_loads.js';
-
+import { convertClipDataObject } from "./find_clip_info.js";
+import findVideoPlayerClipInfo from "./find_clip_info.js";
+import * as TIME_UTIL from "../utils/time.js";
+import parseTSV from "../parser/index.js";
+import scheduleClipLoads from "./schedule_clip_loads.js";
 
 const mp4Source = document.getElementById("mp4_src");
 const videoPlayer = document.getElementById("tv");
@@ -29,12 +28,26 @@ const LINKER = "http://8balltv.club/content/";
  * @todo There should be a better way to write this function without this overriding
  * @return {null}
  */
-export default function setClipOnVideoPlayer(formattedParseData, selectedClipData) {
-    const currentClip = selectedClipData ? convertClipDataObject(selectedClipData) : getCurrentVideoPlayerClipInfo(formattedParseData);
+export default function setClipOnVideoPlayer(
+    formattedParseData,
+    selectedClipData
+) {
+    const currentClip = selectedClipData ?
+        convertClipDataObject(selectedClipData) :
+        getCurrentVideoPlayerClipInfo(formattedParseData);
     setSRC_URL(currentClip.fileName, currentClip.playbackTime);
     setTitle(currentClip.title);
     setModalText(currentClip.modalText, currentClip.title, currentClip.duration);
     loadVideoPlayer();
+}
+
+/**
+ * @author bhaviksingh
+ * @description ensures that the video player is visible
+ * @return {null}
+ */
+export function showVideoPlayer() {
+    videoPlayer.hidden = false;
 }
 
 /**
@@ -117,6 +130,6 @@ function getCurrentVideoPlayerClipInfo(formattedParseData) {
 }
 
 function constructSrcURL(filename, playbackTime) {
-    const srcURL = LINKER + filename + '#t=' + playbackTime.toString();
-    return srcURL
+    const srcURL = LINKER + filename + "#t=" + playbackTime.toString();
+    return srcURL;
 }

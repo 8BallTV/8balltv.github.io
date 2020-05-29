@@ -1,13 +1,16 @@
-import { determineCollectionInfo_URL, determineCollectionVideos_URL } from "../utils/tsv_urls.js";
+import {
+    determineCollectionInfo_URL,
+    determineCollectionVideos_URL,
+} from "../utils/tsv_urls.js";
 import parseTSV from "../parser/index.js";
 import setClipOnVideoPlayer from "../video_page/video_player.js";
+import { showVideoPlayer } from "../video_page/video_player.js";
 const collectionContainer = document.getElementById("collection-container");
 const collectionStatusContainer = document.getElementById("connecting-type");
 const collectionBox = document.getElementById("collectionbox-container");
 
 const collectionInfo_URL = determineCollectionInfo_URL();
 const collectionVideo_URL = determineCollectionVideos_URL();
-
 
 let cachedCollectionList, cachedVideoList;
 
@@ -26,7 +29,6 @@ function cacheAndDisplayCollections(collectionList) {
     displayCollections(collectionList);
 }
 
-
 /**
  * @author bhaviksingh
  * @description Takes a list of CollectionInfo objects and displays them in the container
@@ -35,6 +37,7 @@ function cacheAndDisplayCollections(collectionList) {
  */
 function displayCollections(collectionList) {
     collectionContainer.innerHTML = "";
+    collectionBox.style.visibility = "visible";
     collectionStatusContainer.innerHTML = "select a video";
 
     let titleDom = getTitleDOM("Collections");
@@ -47,16 +50,29 @@ function displayCollections(collectionList) {
         let collectionName = collectionDataObject.name;
 
         collectionDataDom.addEventListener("click", (e) => {
-            parseAndDisplayCollectionVideos(collectionID, collectionName);
-        }), false;
+                parseAndDisplayCollectionVideos(collectionID, collectionName);
+            }),
+            false;
     });
 }
 
 function parseAndDisplayCollectionVideos(collectionID, collectionName) {
-    parseTSV((collectionVideoData) => displayCollectionVideos(collectionVideoData, collectionID, collectionName), collectionVideo_URL);
+    parseTSV(
+        (collectionVideoData) =>
+        displayCollectionVideos(
+            collectionVideoData,
+            collectionID,
+            collectionName
+        ),
+        collectionVideo_URL
+    );
 }
 
-function displayCollectionVideos(collectionVideoData, collectionID, collectionName) {
+function displayCollectionVideos(
+    collectionVideoData,
+    collectionID,
+    collectionName
+) {
     collectionContainer.innerHTML = "";
 
     let backButton = getBackButton();
@@ -70,19 +86,25 @@ function displayCollectionVideos(collectionVideoData, collectionID, collectionNa
             let clipDataDom = clipDataObject.getDOMElement();
             collectionContainer.appendChild(clipDataDom);
             clipDataDom.addEventListener("click", (e) => {
-                setClipOnVideoPlayer(null, clipDataObject);
-                collectionBox.style.visibility = "hidden";
-            })
+                playCollectionVideo(clipDataObject);
+            });
         }
-
     });
+}
+
+function playCollectionVideo(clipDataObject) {
+    showVideoPlayer();
+    setClipOnVideoPlayer(null, clipDataObject);
+    collectionBox.style.visibility = "hidden";
 }
 
 function getBackButton() {
     let parentDom = document.createElement("div");
     parentDom.classList = "back";
     parentDom.innerHTML = "back";
-    parentDom.addEventListener("click", () => displayCollections(cachedCollectionList));
+    parentDom.addEventListener("click", () =>
+        displayCollections(cachedCollectionList)
+    );
     return parentDom;
 }
 

@@ -888,6 +888,7 @@ ul {
 #collectionbox-container {
     width: 50%;
     background: black;
+    visibility: hidden;
 }
 
 #collection-container {
