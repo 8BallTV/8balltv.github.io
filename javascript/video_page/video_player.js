@@ -1,5 +1,5 @@
 import { convertClipDataObject } from "./find_clip_info.js";
-import findVideoPlayerClipInfo from "./find_clip_info.js";
+import findCurrentClipDataInfo from "./find_clip_info.js";
 import * as TIME_UTIL from "../utils/time.js";
 import parseTSV from "../parser/index.js";
 import scheduleClipLoads from "./schedule_clip_loads.js";
@@ -32,13 +32,56 @@ export default function setClipOnVideoPlayer(
     formattedParseData,
     selectedClipData
 ) {
-    const currentClip = selectedClipData ?
-        convertClipDataObject(selectedClipData) :
-        getCurrentVideoPlayerClipInfo(formattedParseData);
-    setSRC_URL(currentClip.fileName, currentClip.playbackTime);
-    setTitle(currentClip.title);
-    setModalText(currentClip.modalText, currentClip.title, currentClip.duration);
-    loadVideoPlayer();
+    let currentClip;
+    if (selectedClipData) {
+        currentClip = selectedClipData;
+    } else {
+        currentClip = getCurrentClipDataInfo(formattedParseData);
+    }
+
+    console.log(currentClip);
+
+    if (currentClip.isLiveDataObject) {
+        console.log("ISLIVE");
+        loadClipMetadata(currentClip);
+        loadLivePlayer(currentClip);
+    } else {
+        let videoPlayerClip = convertClipDataObject(currentClip);
+        loadClipMetadata(videoPlayerClip);
+        setSRC_URL(videoPlayerClip.fileName, videoPlayer.playbackTime);
+        showVideoPlayer();
+    }
+}
+
+/**
+ * @author bhaviksingh
+ * @description Helper function to load the title and modal text for a clip data/live data object
+ * @param {ClipDataObject/LiveDataObject} clip to render metadata for
+ */
+function loadClipMetadata(clip) {
+    setTitle(clip.title);
+    setModalText(clip.modalText, clip.title, clip.duration);
+}
+
+/**
+ * @author bhaviksingh
+ * @description Loads a given live clip into the page, via an iFrame p
+ */
+function loadLivePlayer(liveClip) {
+    hideVideoPlayer();
+    removeLivePlayerIfExists();
+    let liveClipDom = liveClip.getDOMElement();
+    videoPlayer.parentElement.prepend(liveClipDom);
+}
+
+/** @author bhaviksingh
+ *  @description Removes the live player from the page, by removing the DOM if it exists
+ */
+function removeLivePlayerIfExists() {
+    let livePlayer = document.querySelector("liveplayer-container");
+    if (livePlayer) {
+        livePlayer.remove();
+    }
 }
 
 /**
@@ -47,7 +90,17 @@ export default function setClipOnVideoPlayer(
  * @return {null}
  */
 export function showVideoPlayer() {
+    removeLivePlayerIfExists();
     videoPlayer.hidden = false;
+}
+
+/**
+ * @author bhaviksingh
+ * @description ensures that the video player is visible
+ * @return {null}
+ */
+export function hideVideoPlayer() {
+    videoPlayer.hidden = true;
 }
 
 /**
@@ -121,12 +174,12 @@ function loadVideoPlayer() {
  * @param {Array<ClipDataObject>} formattedParseData
  * @return {VideoPlayerClipInfo}
  */
-function getCurrentVideoPlayerClipInfo(formattedParseData) {
+function getCurrentClipDataInfo(formattedParseData) {
     const date = new Date();
     // If it's midnight, re-parse to load the next day's schedule.
     // Otherwise, at midnight you'd start playing the previous day's schedule
     if (TIME_UTIL.isItMidnight(date)) parseTSV(main);
-    return findVideoPlayerClipInfo(formattedParseData, date, false);
+    return findCurrentClipDataInfo(formattedParseData, date, false);
 }
 
 function constructSrcURL(filename, playbackTime) {

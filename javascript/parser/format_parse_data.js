@@ -27,25 +27,47 @@ export default function formatParseData(
  */
 function formatParseDataAsClips(tsvParseResults) {
     const clipDataObjectsArrayWithTitle = tsvParseResults.data.map((data, i) => {
-        console.log(data);
-        return new ClipDataObject(
-            /* id= */
-            data[1],
-            /* partNumber= */
-            data[2],
-            /* fileName= */
-            data[3],
-            /* title= */
-            data[4],
-            /* director= */
-            data[5],
-            /* modalText = */
-            data[6],
-            /* duration= */
-            data[7],
-            /* either time/collectionID */
-            data[0]
-        );
+        let id = data[1];
+        let dataObject;
+        if (id.includes("LIVE_")) {
+            dataObject = new LiveDataObject(
+                /* id= */
+                data[1],
+                /* url = */
+                data[3],
+                /* title= */
+                data[4],
+                /* director= */
+                data[5],
+                /* modalText = */
+                data[6],
+                /* duration= */
+                data[7],
+                /* time */
+                data[0]
+            );
+            console.log("LIVE" + dataObject);
+        } else {
+            dataObject = new ClipDataObject(
+                /* id= */
+                data[1],
+                /* partNumber= */
+                data[2],
+                /* fileName= */
+                data[3],
+                /* title= */
+                data[4],
+                /* director= */
+                data[5],
+                /* modalText = */
+                data[6],
+                /* duration= */
+                data[7],
+                /* either time/collectionID */
+                data[0]
+            );
+        }
+        return dataObject;
     });
     /*
      * Slice to get rid of the first entry,
@@ -68,7 +90,6 @@ export function findClipDataObject(formattedParseData, minutesPastMidnight) {
     const clipDataObject = formattedParseData[indexOfClipObject];
     return clipDataObject;
 }
-
 /**
  * @author samdealy
  * @description Finds the current clip's index in the formattedParseData. The currentClipIndex
@@ -151,6 +172,44 @@ class ClipDataObject {
         titleContainer.classList = "titler";
         titleContainer.innerHTML = this.title;
         parentContainer.appendChild(titleContainer);
+
+        return parentContainer;
+    }
+}
+
+/**
+ * @author bhaviksingh
+ * @description Represents a LIVE piece of data
+ */
+class LiveDataObject {
+    /**
+     * @param {String} id - the video's unique ID
+     * @param {String} url - the url where the stream will be hosted
+     * @param {String} title - the title name ot be displayed while video plays
+     * @param {String} director - the name of director to be dispalyed while video plays
+     * @param {String} modalText - the text that will appear in the modal
+     * @param {String} duration - duration of entire file, not just the 15 min clip. Will also be used in modal.
+     * @param {String} collectionID - id of a collection. will be overloaded by time in some cases, but not used then
+     */
+    constructor(id, url, title, director, modalText, duration) {
+        this.id = id;
+        this.url = url;
+        this.title = title;
+        this.director = director;
+        this.modalText = modalText;
+        this.duration = duration;
+        this.isLiveDataObject = true;
+    }
+
+    getDOMElement() {
+        let parentContainer = document.createElement("div");
+        parentContainer.classList = "liveplayer-container";
+
+        let iframe = document.createElement("iframe");
+        iframe.setAttribute("src", this.url);
+        iframe.setAttribute("frameborder", 0);
+        iframe.setAttribute("allowfullscreen", true);
+        parentContainer.appendChild(iframe);
 
         return parentContainer;
     }

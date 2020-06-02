@@ -6,8 +6,8 @@ import { DAYS_OF_THE_WEEK } from "./shared_constants.js";
  * @description Is true if you are in a local development environment
  * @type {Boolean}
  */
-// let areYouInDevelopment = window.location.hostname === "localhost";
-let areYouInDevelopment = false;
+let areYouInDevelopment = window.location.hostname === "localhost";
+// let areYouInDevelopment = false;
 
 /**
  * @author samdealy

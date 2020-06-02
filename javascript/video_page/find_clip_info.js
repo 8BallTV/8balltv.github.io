@@ -1,5 +1,5 @@
-import * as TIME_UTIL from '../utils/time.js';
-import { findClipDataObject } from '../parser/format_parse_data.js';
+import * as TIME_UTIL from "../utils/time.js";
+import { findClipDataObject } from "../parser/format_parse_data.js";
 
 /**
  * @author samdealy
@@ -7,26 +7,37 @@ import { findClipDataObject } from '../parser/format_parse_data.js';
  * @param {Array<ClipDataObject>} formattedParseData
  * @param {DateObject} date
  * @param {Boolean} test - true if function is called from a test
- * @return {VideoPlayerClipInfo}
+ * @return {ClipDataObject}
  */
-export default function findVideoPlayerClipInfo(formattedParseData, date, test) {
+export default function findCurrentClipDataInfo(
+    formattedParseData,
+    date,
+    test
+) {
     const minutesPastMidnight = TIME_UTIL.calculateMinutesPastMidnight(date);
-    const currentClipDataObject = findClipDataObject(formattedParseData, minutesPastMidnight);
-    const { fileName, partNumber, title, modalText, duration } = currentClipDataObject;
-    const playbackTime = calculatePlaybackTime(partNumber, date);
-    return new VideoPlayerClipInfo(fileName, playbackTime, title, modalText, duration);
+    const currentClipDataObject = findClipDataObject(
+        formattedParseData,
+        minutesPastMidnight
+    );
+    return currentClipDataObject;
 }
 
 /**
  * @author bhaviksingh
  * @description Given a ClipDataObject convert it to a VideoPlayerClipInfo object with assumed playback at start
- * @param {ClipDataObject} clipDataObject 
+ * @param {ClipDataObject} clipDataObject
  * @return {VideoPlayerClipInfo}
  */
 export function convertClipDataObject(clipDataObject) {
     let playbackTime = 0;
     const { fileName, partNumber, title, modalText, duration } = clipDataObject;
-    return new VideoPlayerClipInfo(fileName, playbackTime, title, modalText, duration);
+    return new VideoPlayerClipInfo(
+        fileName,
+        playbackTime,
+        title,
+        modalText,
+        duration
+    );
 }
 
 /**
