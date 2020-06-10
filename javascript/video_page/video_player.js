@@ -2,7 +2,7 @@ import { convertClipDataObject } from "./find_clip_info.js";
 import findCurrentClipDataInfo from "./find_clip_info.js";
 import * as TIME_UTIL from "../utils/time.js";
 import parseTSV from "../parser/index.js";
-import scheduleClipLoads from "./schedule_clip_loads.js";
+import { loadLivePlayer, removeLivePlayerIfExists } from "./live_player.js";
 
 const mp4Source = document.getElementById("mp4_src");
 const videoPlayer = document.getElementById("tv");
@@ -38,18 +38,17 @@ export default function setClipOnVideoPlayer(
     } else {
         currentClip = getCurrentClipDataInfo(formattedParseData);
     }
-
+    loadClipMetadata(currentClip);
     console.log(currentClip);
 
-    if (currentClip.isLiveDataObject) {
-        console.log("ISLIVE");
-        loadClipMetadata(currentClip);
-        loadLivePlayer(currentClip);
+    if (currentClip.isLive()) {
+        hideVideoPlayer();
+        loadLivePlayer(currentClip, videoPlayer.parentElement);
     } else {
         let videoPlayerClip = convertClipDataObject(currentClip);
-        loadClipMetadata(videoPlayerClip);
         setSRC_URL(videoPlayerClip.fileName, videoPlayer.playbackTime);
         showVideoPlayer();
+        loadVideoPlayer();
     }
 }
 
@@ -61,27 +60,6 @@ export default function setClipOnVideoPlayer(
 function loadClipMetadata(clip) {
     setTitle(clip.title);
     setModalText(clip.modalText, clip.title, clip.duration);
-}
-
-/**
- * @author bhaviksingh
- * @description Loads a given live clip into the page, via an iFrame p
- */
-function loadLivePlayer(liveClip) {
-    hideVideoPlayer();
-    removeLivePlayerIfExists();
-    let liveClipDom = liveClip.getDOMElement();
-    videoPlayer.parentElement.prepend(liveClipDom);
-}
-
-/** @author bhaviksingh
- *  @description Removes the live player from the page, by removing the DOM if it exists
- */
-function removeLivePlayerIfExists() {
-    let livePlayer = document.querySelector("liveplayer-container");
-    if (livePlayer) {
-        livePlayer.remove();
-    }
 }
 
 /**
@@ -183,6 +161,9 @@ function getCurrentClipDataInfo(formattedParseData) {
 }
 
 function constructSrcURL(filename, playbackTime) {
+    if (!playbackTime) {
+        playbackTime = 0;
+    }
     const srcURL = LINKER + filename + "#t=" + playbackTime.toString();
     return srcURL;
 }

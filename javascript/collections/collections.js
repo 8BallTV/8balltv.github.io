@@ -44,7 +44,7 @@ function displayCollections(collectionList) {
     collectionContainer.appendChild(titleDom);
 
     collectionList.forEach((collectionDataObject) => {
-        let collectionDataDom = collectionDataObject.getDOMElement();
+        let collectionDataDom = collectionDataObject.getCollectionInformationDOM();
         collectionContainer.appendChild(collectionDataDom);
         let collectionID = collectionDataObject.id;
         let collectionName = collectionDataObject.name;
@@ -83,7 +83,7 @@ function displayCollectionVideos(
 
     collectionVideoData.forEach((clipDataObject) => {
         if (clipDataObject.collectionID == collectionID) {
-            let clipDataDom = clipDataObject.getDOMElement();
+            let clipDataDom = clipDataObject.getClipInformationDOM();
             collectionContainer.appendChild(clipDataDom);
             clipDataDom.addEventListener("click", (e) => {
                 playCollectionVideo(clipDataObject);

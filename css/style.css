@@ -92,7 +92,13 @@ video {
     margin: 0;
     width: 100%;
     height: auto;
-    //background-color: black;
+}
+
+.container.collections video {
+    height: calc(100% - 72px);
+    width: auto;
+    margin: 0 auto;
+    transform: translateX(calc(0.5 * (100vw - 100%)));
 }
 
 .container {

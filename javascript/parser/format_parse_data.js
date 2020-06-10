@@ -28,45 +28,26 @@ export default function formatParseData(
 function formatParseDataAsClips(tsvParseResults) {
     const clipDataObjectsArrayWithTitle = tsvParseResults.data.map((data, i) => {
         let id = data[1];
-        let dataObject;
-        if (id.includes("LIVE_")) {
-            dataObject = new LiveDataObject(
-                /* id= */
-                data[1],
-                /* url = */
-                data[3],
-                /* title= */
-                data[4],
-                /* director= */
-                data[5],
-                /* modalText = */
-                data[6],
-                /* duration= */
-                data[7],
-                /* time */
-                data[0]
-            );
-            console.log("LIVE" + dataObject);
-        } else {
-            dataObject = new ClipDataObject(
-                /* id= */
-                data[1],
-                /* partNumber= */
-                data[2],
-                /* fileName= */
-                data[3],
-                /* title= */
-                data[4],
-                /* director= */
-                data[5],
-                /* modalText = */
-                data[6],
-                /* duration= */
-                data[7],
-                /* either time/collectionID */
-                data[0]
-            );
-        }
+        let dataObject = new ClipDataObject(
+            /* id= */
+            data[1],
+            /* partNumber= */
+            data[2],
+            /* fileName= */
+            data[3],
+            /* title= */
+            data[4],
+            /* director= */
+            data[5],
+            /* modalText = */
+            data[6],
+            /* duration= */
+            data[7],
+            /* either time/collectionID */
+            data[0],
+            /* Type of object */
+            data[8]
+        );
         return dataObject;
     });
     /*
@@ -138,6 +119,7 @@ class ClipDataObject {
      * @param {String} modalText - the text that will appear in the modal
      * @param {String} duration - duration of entire file, not just the 15 min clip. Will also be used in modal.
      * @param {String} collectionID - id of a collection. will be overloaded by time in some cases, but not used then
+     * @param {String} type - the type of video, which is either empty string (regular clip), or live
      */
     constructor(
         id,
@@ -147,7 +129,8 @@ class ClipDataObject {
         director,
         modalText,
         duration,
-        collectionID
+        collectionID,
+        type
     ) {
         this.id = id;
         this.partNumber = partNumber;
@@ -157,9 +140,14 @@ class ClipDataObject {
         this.modalText = modalText;
         this.duration = duration;
         this.collectionID = collectionID; //Note
+        if (type) {
+            this.type = type;
+        } else {
+            this.type = "CLIP";
+        }
     }
 
-    getDOMElement() {
+    getClipInformationDOM() {
         let parentContainer = document.createElement("div");
         parentContainer.classList = "video-info";
 
@@ -175,43 +163,9 @@ class ClipDataObject {
 
         return parentContainer;
     }
-}
 
-/**
- * @author bhaviksingh
- * @description Represents a LIVE piece of data
- */
-class LiveDataObject {
-    /**
-     * @param {String} id - the video's unique ID
-     * @param {String} url - the url where the stream will be hosted
-     * @param {String} title - the title name ot be displayed while video plays
-     * @param {String} director - the name of director to be dispalyed while video plays
-     * @param {String} modalText - the text that will appear in the modal
-     * @param {String} duration - duration of entire file, not just the 15 min clip. Will also be used in modal.
-     * @param {String} collectionID - id of a collection. will be overloaded by time in some cases, but not used then
-     */
-    constructor(id, url, title, director, modalText, duration) {
-        this.id = id;
-        this.url = url;
-        this.title = title;
-        this.director = director;
-        this.modalText = modalText;
-        this.duration = duration;
-        this.isLiveDataObject = true;
-    }
-
-    getDOMElement() {
-        let parentContainer = document.createElement("div");
-        parentContainer.classList = "liveplayer-container";
-
-        let iframe = document.createElement("iframe");
-        iframe.setAttribute("src", this.url);
-        iframe.setAttribute("frameborder", 0);
-        iframe.setAttribute("allowfullscreen", true);
-        parentContainer.appendChild(iframe);
-
-        return parentContainer;
+    isLive() {
+        return this.type.toLowerCase() === "live";
     }
 }
 
@@ -233,7 +187,7 @@ class CollectionDataObject {
         this.duration = duration;
     }
 
-    getDOMElement() {
+    getCollectionInformationDOM() {
         let parentContainer = document.createElement("div");
         parentContainer.classList = "collection";
 
