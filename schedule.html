@@ -1,844 +1,843 @@
-!<!DOCTYPE html>
+!
+<!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <title>8 BALL TV SCHEDULE</title>
     <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body class="vsc-initialized">
+    <link rel="icon shortcut" type="image/x-icon" href="icons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+
+</head>
+
+<body class="vsc-initialized">
     <!-- The Modal -->
     <div id="myModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <div class="modal-header">
-          <span class="close">×</span>
-          <div id="modaltitle">TITLE</div>
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">×</span>
+                <div id="modaltitle">TITLE</div>
+            </div>
+            <div id="modalbody">
+                error
+            </div>
+            <div class="modal-footer"><a href="index.html">←BACK TO TV</a></div>
         </div>
-        <div id="modalbody">
-          error
-        </div>
-        <div class="modal-footer"><a href="index.html">←BACK TO TV</a></div>
-      </div>
     </div>
     <div class="container">
-      <table id="TICKER" width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tbody>
-          <tr>
-            <td id="tickerleft"><a href="index.html">←BACK TO TV</a></td>
-            <td id="tickercenter" class="green redshad">
-              8 BALL TV
-            </td>
-            <td id="tickerright" class="green">
-              <p id="dater"></p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <table id="HEADWEEKLY" width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tbody>
-          <tr>
-            <td id="headleft"><img src="css/8ball.png"></td>
-            <td id="headcenter" class="white">weekly broadcast</td>
-            <td id="headright"><img src="css/remote.png"></td>
-          </tr>
-        </tbody>
-      </table>
-      <div id="weekinsert">
-        <table id="WEEK" width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tbody>
-            <tr>
-              <td id="monday" class="week"><a>mon</a></td>
-              <td id="tuesday" class="week"><a>tue</a></td>
-              <td id="wednesday" class="week"><a>wed</a></td>
-              <td id="thursday" class="week"><a>thu</a></td>
-              <td id="friday" class="week"><a>fri</a></td>
-              <td id="saturday" class="week"><a>sat</a></td>
-              <td id="sunday" class="week"><a>sun</a></td>
-            </tr>
-          </tbody>
+        <table id="TICKER" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td id="tickerleft"><a href="index.html">←BACK TO TV</a></td>
+                    <td id="tickercenter" class="green redshad">
+                        8 BALL TV
+                    </td>
+                    <td id="tickerright" class="green">
+                        <p id="dater"></p>
+                    </td>
+                </tr>
+            </tbody>
         </table>
-      </div>
-      <table id="TODAY" width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tbody>
-          <tr>
-            <td class="hourno">mid night</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <table id="HEADWEEKLY" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td id="headleft"><img src="css/8ball.png"></td>
+                    <td id="headcenter" class="white">weekly broadcast</td>
+                    <td id="headright"><img src="css/remote.png"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="weekinsert">
+            <table id="WEEK" width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tbody>
-                  <tr>
-                    <td id="h00_00" class="quarter">00:00...</td>
-                    <td id="t00_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h00_15" class="quarter">00:15...</td>
-                    <td id="t00_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h00_30" class="quarter">00:30...</td>
-                    <td id="t00_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h00_45" class="quarter">00:45...</td>
-                    <td id="t00_45" class="titler"></td>
-                  </tr>
+                    <tr>
+                        <td id="monday" class="week"><a>mon</a></td>
+                        <td id="tuesday" class="week"><a>tue</a></td>
+                        <td id="wednesday" class="week"><a>wed</a></td>
+                        <td id="thursday" class="week"><a>thu</a></td>
+                        <td id="friday" class="week"><a>fri</a></td>
+                        <td id="saturday" class="week"><a>sat</a></td>
+                        <td id="sunday" class="week"><a>sun</a></td>
+                    </tr>
                 </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">01<br> AM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h01_00" class="quarter">01:00...</td>
-                    <td id="t01_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h01_15" class="quarter">01:15...</td>
-                    <td id="t01_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h01_30" class="quarter">01:30...</td>
-                    <td id="t01_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h01_45" class="quarter">01:45...</td>
-                    <td id="t01_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">02<br> AM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h02_00" class="quarter">02:00...</td>
-                    <td id="t02_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h02_15" class="quarter">02:15...</td>
-                    <td id="t02_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h02_30" class="quarter">02:30...</td>
-                    <td id="t02_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h02_45" class="quarter">02:45...</td>
-                    <td id="t02_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">03<br> AM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h03_00" class="quarter">03:00...</td>
-                    <td id="t03_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h03_15" class="quarter">03:15...</td>
-                    <td id="t03_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h03_30" class="quarter">03:30...</td>
-                    <td id="t03_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h03_45" class="quarter">03:45...</td>
-                    <td id="t03_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">04<br> AM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h04_00" class="quarter">04:00...</td>
-                    <td id="t04_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h04_15" class="quarter">04:15...</td>
-                    <td id="t04_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h04_30" class="quarter">04:30...</td>
-                    <td id="t04_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h04_45" class="quarter">04:45...</td>
-                    <td id="t04_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">05<br> AM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h05_00" class="quarter">05:00...</td>
-                    <td id="t05_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h05_15" class="quarter">05:15...</td>
-                    <td id="t05_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h05_30" class="quarter">05:30...</td>
-                    <td id="t05_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h05_45" class="quarter">05:45...</td>
-                    <td id="t05_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">06<br> AM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h06_00" class="quarter">06:00...</td>
-                    <td id="t06_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h06_15" class="quarter">06:15...</td>
-                    <td id="t06_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h06_30" class="quarter">06:30...</td>
-                    <td id="t06_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h06_45" class="quarter">06:45...</td>
-                    <td id="t06_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">07<br> AM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h07_00" class="quarter">07:00...</td>
-                    <td id="t07_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h07_15" class="quarter">07:15...</td>
-                    <td id="t07_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h07_30" class="quarter">07:30...</td>
-                    <td id="t07_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h07_45" class="quarter">07:45...</td>
-                    <td id="t07_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">08<br> AM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h08_00" class="quarter">08:00...</td>
-                    <td id="t08_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h08_15" class="quarter">08:15...</td>
-                    <td id="t08_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h08_30" class="quarter">08:30...</td>
-                    <td id="t08_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h08_45" class="quarter">08:45...</td>
-                    <td id="t08_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">09<br> AM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h09_00" class="quarter">09:00...</td>
-                    <td id="t09_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h09_15" class="quarter">09:15...</td>
-                    <td id="t09_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h09_30" class="quarter">09:30...</td>
-                    <td id="t09_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h09_45" class="quarter">09:45...</td>
-                    <td id="t09_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">10<br> AM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h10_00" class="quarter">10:00...</td>
-                    <td id="t10_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h10_15" class="quarter">10:15...</td>
-                    <td id="t10_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h10_30" class="quarter">10:30...</td>
-                    <td id="t10_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h10_45" class="quarter">10:45...</td>
-                    <td id="t10_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">11<br> AM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h11_00" class="quarter">11:00...</td>
-                    <td id="t11_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h11_15" class="quarter">11:15...</td>
-                    <td id="t11_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h11_30" class="quarter">11:30...</td>
-                    <td id="t11_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h11_45" class="quarter">11:45...</td>
-                    <td id="t11_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">noon</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h12_00" class="quarter">12:00...</td>
-                    <td id="t12_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h12_15" class="quarter">12:15...</td>
-                    <td id="t12_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h12_30" class="quarter">12:30...</td>
-                    <td id="t12_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h12_45" class="quarter">12:45...</td>
-                    <td id="t12_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">01<br> PM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h13_00" class="quarter">13:00...</td>
-                    <td id="t13_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h13_15" class="quarter">13:15...</td>
-                    <td id="t13_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h13_30" class="quarter">13:30...</td>
-                    <td id="t13_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h13_45" class="quarter">13:45...</td>
-                    <td id="t13_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">02<br> PM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h14_00" class="quarter">14:00...</td>
-                    <td id="t14_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h14_15" class="quarter">14:15...</td>
-                    <td id="t14_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h14_30" class="quarter">14:30...</td>
-                    <td id="t14_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h14_45" class="quarter">14:45...</td>
-                    <td id="t14_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">03<br> PM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h15_00" class="quarter">15:00...</td>
-                    <td id="t15_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h15_15" class="quarter">15:15...</td>
-                    <td id="t15_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h15_30" class="quarter">15:30...</td>
-                    <td id="t15_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h15_45" class="quarter">15:45...</td>
-                    <td id="t15_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">04<br> PM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h16_00" class="quarter">16:00...</td>
-                    <td id="t16_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h16_15" class="quarter">16:15...</td>
-                    <td id="t16_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h16_30" class="quarter">16:30...</td>
-                    <td id="t16_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h16_45" class="quarter">16:45...</td>
-                    <td id="t16_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">05<br> PM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h17_00" class="quarter">17:00...</td>
-                    <td id="t17_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h17_15" class="quarter">17:15...</td>
-                    <td id="t17_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h17_30" class="quarter">17:30...</td>
-                    <td id="t17_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h17_45" class="quarter">17:45...</td>
-                    <td id="t17_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">06<br> PM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h18_00" class="quarter">18:00...</td>
-                    <td id="t18_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h18_15" class="quarter">18:15...</td>
-                    <td id="t18_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h18_30" class="quarter">18:30...</td>
-                    <td id="t18_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h18_45" class="quarter">18:45...</td>
-                    <td id="t18_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">07<br> PM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h19_00" class="quarter">19:00...</td>
-                    <td id="t19_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h19_15" class="quarter">19:15...</td>
-                    <td id="t19_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h19_30" class="quarter">19:30...</td>
-                    <td id="t19_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h19_45" class="quarter">19:45...</td>
-                    <td id="t19_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">08<br> PM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h20_00" class="quarter">20:00...</td>
-                    <td id="t20_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h20_15" class="quarter">20:15...</td>
-                    <td id="t20_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h20_30" class="quarter">20:30...</td>
-                    <td id="t20_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h20_45" class="quarter">20:45...</td>
-                    <td id="t20_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">09<br> PM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h21_00" class="quarter">21:00...</td>
-                    <td id="t21_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h21_15" class="quarter">21:15...</td>
-                    <td id="t21_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h21_30" class="quarter">21:30...</td>
-                    <td id="t21_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h21_45" class="quarter">21:45...</td>
-                    <td id="t21_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">10<br> PM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h22_00" class="quarter">22:00...</td>
-                    <td id="t22_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h22_15" class="quarter">22:15...</td>
-                    <td id="t22_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h22_30" class="quarter">22:30...</td>
-                    <td id="t22_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h22_45" class="quarter">22:45...</td>
-                    <td id="t22_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga"></td>
-            <td class="riga"></td>
-          </tr>
-          <tr>
-            <td class="hourno">11<br> PM</td>
-            <td class="hourblock">
-              <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td id="h23_00" class="quarter">23:00...</td>
-                    <td id="t23_00" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h23_15" class="quarter">23:15...</td>
-                    <td id="t23_15" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h23_30" class="quarter">23:30...</td>
-                    <td id="t23_30" class="titler"></td>
-                  </tr>
-                  <tr>
-                    <td id="h23_45" class="quarter">23:45...</td>
-                    <td id="t23_45" class="titler"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="riga_end"></td>
-            <td class="riga_end"></td>
-          </tr>
-        </tbody>
-      </table>
-      <!--   <div id="banner"><img src="http://8balltv.club/misc/8BALLFUNDRAISER2018FLYER5SM.jpeg"  width="100%"/> <div> -->
-      <div id="MID">
-        <a class="midshad" href="mailto:8balltelevision@gmail.com" target="_blank">SUBMIT YOUR VIDEOS!</a>
-        <p class="terms">
-          8 Ball TV will attempt to air all submissions, however, we reserve the right to refuse or remove videos that are deemed to be in violation of the 8 Ball Community mission. The promotion of racism, sexism, homophobia, intolerance, xenophobia,
-          or nonconsensual behavior are in direct violation of the 8 Ball Community mission. In these cases, we will attempt to contact the video's creator for an explanation, but due to the volume of our library, this cannot be guaranteed.<br> Any
-          questions: <a href="mailto:8balltelevision@gmail.com" target="new">8balltelevision@gmail.com</a> </p>
-      </div>
-      <table id="ABOUT" width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tbody>
-          <tr>
-            <!--<td id="aboutleft"></td>-->
-            <td id="aboutcenter">
-              <p class="about">
-                ....8 Ball TV is an online public access station.<br><br>
-                ....Everyone is invited to participate, either by submitting original content or filming in our NY studio.<br><br>
-                ....We will provide equipment, support, and studio time as needed to the best of our ability.<br><br>
-                ....You can send a one-off video or host a regular show.<br><br>
-                ....We will attempt to air everything that is submitted.<br><br>
-                ....No commercial or branded videos allowed.<br><br>
-                ....You will retain and own the rights to your content.<br><br>
-                ....8 Ball TV is a platform for and exists to support community broadcasting.<br><br>
-                ....We do not intend to censor anyone and content may be submitted anonymously.<br><br><br><br>
-              </p>
-              <p class="community"><a href="http://8ballcommunity.club" target="_blank">→8BALL COMMUNITY</a></p>
-            </td>
-            <!--<td id="aboutright"></td>-->
-          </tr>
-        </tbody>
-      </table>
-      <table id="TEAM" width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tbody>
-          <tr>
-            <td id="teamleft"></td>
-            <td id="teamcenter">
-              <p class="centered">...............................</p>
-              <p class="team">
-                8 Ball TV team: Mason Wilson, Tommi Kelly, Andrew Balasia, Dennis Lynch, Emily Miller, Eric Alexander, Rajiv Rao, Cameron Cuchulainn, Jungjoo Park, Justine Reyes, Thuto Durkac-Somo, Giuseppe Furcolo, Lele Saveri, Emerson Rosenthal,
-                Carly Lovejoy, Daniel Cordani, Ole Vezina, Kimar Hazward
-              </p>
-              <p class="centered">...............................</p>
-            </td>
-            <td id="teamright"></td>
-          </tr>
-        </tbody>
-      </table>
-      <div id="DONATION">
-        We are a 501c3 non-profit, <a href="https://www.fracturedatlas.org/site/fiscal/profile?id=14927" target="_blank">SUPPORT US! </a>
-      </div>
-      <table id="FOOTER" width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tbody>
-          <tr>
-            <td id="footerleft"><a href="index.html">←BACK TO TV</a></td>
-            <td id="footercenter" class="green redshad">8BALLTV</td>
-            <td id="footerright"> <a href="mailto:8balltelevision@gmail.com" target="_blank">submit content</a></td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="last">
-        8 BALL TV app V_2.0 written and designed by Giuseppe Furcolo, Nov 2016. Updated by Sam Dealy in February 2019.
-        Thanks to Coby Santos and Louis Shannon.
-      </p>
+            </table>
+        </div>
+        <table id="TODAY" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td class="hourno">mid night</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h00_00" class="quarter">00:00...</td>
+                                    <td id="t00_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h00_15" class="quarter">00:15...</td>
+                                    <td id="t00_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h00_30" class="quarter">00:30...</td>
+                                    <td id="t00_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h00_45" class="quarter">00:45...</td>
+                                    <td id="t00_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">01<br> AM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h01_00" class="quarter">01:00...</td>
+                                    <td id="t01_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h01_15" class="quarter">01:15...</td>
+                                    <td id="t01_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h01_30" class="quarter">01:30...</td>
+                                    <td id="t01_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h01_45" class="quarter">01:45...</td>
+                                    <td id="t01_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">02<br> AM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h02_00" class="quarter">02:00...</td>
+                                    <td id="t02_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h02_15" class="quarter">02:15...</td>
+                                    <td id="t02_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h02_30" class="quarter">02:30...</td>
+                                    <td id="t02_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h02_45" class="quarter">02:45...</td>
+                                    <td id="t02_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">03<br> AM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h03_00" class="quarter">03:00...</td>
+                                    <td id="t03_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h03_15" class="quarter">03:15...</td>
+                                    <td id="t03_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h03_30" class="quarter">03:30...</td>
+                                    <td id="t03_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h03_45" class="quarter">03:45...</td>
+                                    <td id="t03_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">04<br> AM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h04_00" class="quarter">04:00...</td>
+                                    <td id="t04_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h04_15" class="quarter">04:15...</td>
+                                    <td id="t04_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h04_30" class="quarter">04:30...</td>
+                                    <td id="t04_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h04_45" class="quarter">04:45...</td>
+                                    <td id="t04_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">05<br> AM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h05_00" class="quarter">05:00...</td>
+                                    <td id="t05_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h05_15" class="quarter">05:15...</td>
+                                    <td id="t05_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h05_30" class="quarter">05:30...</td>
+                                    <td id="t05_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h05_45" class="quarter">05:45...</td>
+                                    <td id="t05_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">06<br> AM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h06_00" class="quarter">06:00...</td>
+                                    <td id="t06_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h06_15" class="quarter">06:15...</td>
+                                    <td id="t06_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h06_30" class="quarter">06:30...</td>
+                                    <td id="t06_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h06_45" class="quarter">06:45...</td>
+                                    <td id="t06_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">07<br> AM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h07_00" class="quarter">07:00...</td>
+                                    <td id="t07_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h07_15" class="quarter">07:15...</td>
+                                    <td id="t07_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h07_30" class="quarter">07:30...</td>
+                                    <td id="t07_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h07_45" class="quarter">07:45...</td>
+                                    <td id="t07_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">08<br> AM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h08_00" class="quarter">08:00...</td>
+                                    <td id="t08_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h08_15" class="quarter">08:15...</td>
+                                    <td id="t08_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h08_30" class="quarter">08:30...</td>
+                                    <td id="t08_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h08_45" class="quarter">08:45...</td>
+                                    <td id="t08_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">09<br> AM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h09_00" class="quarter">09:00...</td>
+                                    <td id="t09_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h09_15" class="quarter">09:15...</td>
+                                    <td id="t09_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h09_30" class="quarter">09:30...</td>
+                                    <td id="t09_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h09_45" class="quarter">09:45...</td>
+                                    <td id="t09_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">10<br> AM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h10_00" class="quarter">10:00...</td>
+                                    <td id="t10_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h10_15" class="quarter">10:15...</td>
+                                    <td id="t10_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h10_30" class="quarter">10:30...</td>
+                                    <td id="t10_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h10_45" class="quarter">10:45...</td>
+                                    <td id="t10_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">11<br> AM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h11_00" class="quarter">11:00...</td>
+                                    <td id="t11_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h11_15" class="quarter">11:15...</td>
+                                    <td id="t11_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h11_30" class="quarter">11:30...</td>
+                                    <td id="t11_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h11_45" class="quarter">11:45...</td>
+                                    <td id="t11_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">noon</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h12_00" class="quarter">12:00...</td>
+                                    <td id="t12_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h12_15" class="quarter">12:15...</td>
+                                    <td id="t12_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h12_30" class="quarter">12:30...</td>
+                                    <td id="t12_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h12_45" class="quarter">12:45...</td>
+                                    <td id="t12_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">01<br> PM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h13_00" class="quarter">13:00...</td>
+                                    <td id="t13_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h13_15" class="quarter">13:15...</td>
+                                    <td id="t13_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h13_30" class="quarter">13:30...</td>
+                                    <td id="t13_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h13_45" class="quarter">13:45...</td>
+                                    <td id="t13_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">02<br> PM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h14_00" class="quarter">14:00...</td>
+                                    <td id="t14_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h14_15" class="quarter">14:15...</td>
+                                    <td id="t14_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h14_30" class="quarter">14:30...</td>
+                                    <td id="t14_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h14_45" class="quarter">14:45...</td>
+                                    <td id="t14_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">03<br> PM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h15_00" class="quarter">15:00...</td>
+                                    <td id="t15_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h15_15" class="quarter">15:15...</td>
+                                    <td id="t15_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h15_30" class="quarter">15:30...</td>
+                                    <td id="t15_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h15_45" class="quarter">15:45...</td>
+                                    <td id="t15_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">04<br> PM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h16_00" class="quarter">16:00...</td>
+                                    <td id="t16_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h16_15" class="quarter">16:15...</td>
+                                    <td id="t16_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h16_30" class="quarter">16:30...</td>
+                                    <td id="t16_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h16_45" class="quarter">16:45...</td>
+                                    <td id="t16_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">05<br> PM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h17_00" class="quarter">17:00...</td>
+                                    <td id="t17_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h17_15" class="quarter">17:15...</td>
+                                    <td id="t17_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h17_30" class="quarter">17:30...</td>
+                                    <td id="t17_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h17_45" class="quarter">17:45...</td>
+                                    <td id="t17_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">06<br> PM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h18_00" class="quarter">18:00...</td>
+                                    <td id="t18_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h18_15" class="quarter">18:15...</td>
+                                    <td id="t18_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h18_30" class="quarter">18:30...</td>
+                                    <td id="t18_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h18_45" class="quarter">18:45...</td>
+                                    <td id="t18_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">07<br> PM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h19_00" class="quarter">19:00...</td>
+                                    <td id="t19_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h19_15" class="quarter">19:15...</td>
+                                    <td id="t19_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h19_30" class="quarter">19:30...</td>
+                                    <td id="t19_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h19_45" class="quarter">19:45...</td>
+                                    <td id="t19_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">08<br> PM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h20_00" class="quarter">20:00...</td>
+                                    <td id="t20_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h20_15" class="quarter">20:15...</td>
+                                    <td id="t20_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h20_30" class="quarter">20:30...</td>
+                                    <td id="t20_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h20_45" class="quarter">20:45...</td>
+                                    <td id="t20_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">09<br> PM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h21_00" class="quarter">21:00...</td>
+                                    <td id="t21_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h21_15" class="quarter">21:15...</td>
+                                    <td id="t21_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h21_30" class="quarter">21:30...</td>
+                                    <td id="t21_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h21_45" class="quarter">21:45...</td>
+                                    <td id="t21_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">10<br> PM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h22_00" class="quarter">22:00...</td>
+                                    <td id="t22_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h22_15" class="quarter">22:15...</td>
+                                    <td id="t22_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h22_30" class="quarter">22:30...</td>
+                                    <td id="t22_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h22_45" class="quarter">22:45...</td>
+                                    <td id="t22_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga"></td>
+                    <td class="riga"></td>
+                </tr>
+                <tr>
+                    <td class="hourno">11<br> PM</td>
+                    <td class="hourblock">
+                        <table id="HOURS" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td id="h23_00" class="quarter">23:00...</td>
+                                    <td id="t23_00" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h23_15" class="quarter">23:15...</td>
+                                    <td id="t23_15" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h23_30" class="quarter">23:30...</td>
+                                    <td id="t23_30" class="titler"></td>
+                                </tr>
+                                <tr>
+                                    <td id="h23_45" class="quarter">23:45...</td>
+                                    <td id="t23_45" class="titler"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="riga_end"></td>
+                    <td class="riga_end"></td>
+                </tr>
+            </tbody>
+        </table>
+        <!--   <div id="banner"><img src="http://8balltv.club/misc/8BALLFUNDRAISER2018FLYER5SM.jpeg"  width="100%"/> <div> -->
+        <div id="MID">
+            <a class="midshad" href="mailto:8balltelevision@gmail.com" target="_blank">SUBMIT YOUR VIDEOS!</a>
+            <p class="terms">
+                8 Ball TV will attempt to air all submissions, however, we reserve the right to refuse or remove videos that are deemed to be in violation of the 8 Ball Community mission. The promotion of racism, sexism, homophobia, intolerance, xenophobia, or nonconsensual
+                behavior are in direct violation of the 8 Ball Community mission. In these cases, we will attempt to contact the video's creator for an explanation, but due to the volume of our library, this cannot be guaranteed.<br> Any
+                questions: <a href="mailto:8balltelevision@gmail.com" target="new">8balltelevision@gmail.com</a> </p>
+        </div>
+        <table id="ABOUT" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <!--<td id="aboutleft"></td>-->
+                    <td id="aboutcenter">
+                        <p class="about">
+                            ....8 Ball TV is an online public access station.<br><br> ....Everyone is invited to participate, either by submitting original content or filming in our NY studio.<br><br> ....We will provide equipment, support, and studio
+                            time as needed to the best of our ability.<br><br> ....You can send a one-off video or host a regular show.<br><br> ....We will attempt to air everything that is submitted.<br><br> ....No commercial or branded videos allowed.<br><br>                            ....You will retain and own the rights to your content.<br><br> ....8 Ball TV is a platform for and exists to support community broadcasting.<br><br> ....We do not intend to censor anyone and content may be submitted anonymously.<br><br><br><br>
+                        </p>
+                        <p class="community"><a href="http://8ballcommunity.club" target="_blank">→8BALL COMMUNITY</a></p>
+                    </td>
+                    <!--<td id="aboutright"></td>-->
+                </tr>
+            </tbody>
+        </table>
+        <table id="TEAM" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td id="teamleft"></td>
+                    <td id="teamcenter">
+                        <p class="centered">...............................</p>
+                        <p class="team">
+                            8 Ball TV team: Mason Wilson, Tommi Kelly, Andrew Balasia, Dennis Lynch, Emily Miller, Eric Alexander, Rajiv Rao, Cameron Cuchulainn, Jungjoo Park, Justine Reyes, Thuto Durkac-Somo, Giuseppe Furcolo, Lele Saveri, Emerson Rosenthal, Carly Lovejoy, Daniel
+                            Cordani, Ole Vezina, Kimar Hazward
+                        </p>
+                        <p class="centered">...............................</p>
+                    </td>
+                    <td id="teamright"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="DONATION">
+            We are a 501c3 non-profit, <a href="https://www.fracturedatlas.org/site/fiscal/profile?id=14927" target="_blank">SUPPORT US! </a>
+        </div>
+        <table id="FOOTER" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td id="footerleft"><a href="index.html">←BACK TO TV</a></td>
+                    <td id="footercenter" class="green redshad">8BALLTV</td>
+                    <td id="footerright"> <a href="mailto:8balltelevision@gmail.com" target="_blank">submit content</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="last">
+            8 BALL TV app V_2.0 written and designed by Giuseppe Furcolo, Nov 2016. Updated by Sam Dealy in February 2019. Thanks to Coby Santos and Louis Shannon.
+        </p>
     </div>
     <script async="" src="https://www.google-analytics.com/analytics.js"></script>
     <script>
-      (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-          (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-          m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-      ga('create', 'UA-90411254-1', 'auto');
-      ga('send', 'pageview');
+        ga('create', 'UA-90411254-1', 'auto');
+        ga('send', 'pageview');
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.min.js"></script>
     <script src="./javascript/schedule/index.js" type="module"></script>
-  </body>
+</body>
+
 </html>
