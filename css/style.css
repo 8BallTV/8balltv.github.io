@@ -219,12 +219,12 @@ video {
     display: table-cell;
     font-family: teletext;
     font-size: 16px;
-    //line-height: 20px;
+    /* //line-height: 20px; */
     text-align: left;
 }
 
 #title {
-    //position: absolute;
+    /* position: absolute; */
     bottom: 6px;
 }
 
@@ -582,13 +582,22 @@ video {
 
 .titler {
     color: #38ffff;
-    //background-color: yellow;
+    /* //background-color: yellow; */
     font-size: 26px;
     font-family: teletext;
     text-align: left;
     padding: 10px 0 10px 0;
     border: 0 #000;
     border-style: solid solid solid solid;
+}
+
+.titler .live {
+    background: #f400ff;
+    color: white;
+    font-size: 20px;
+    padding: 3px;
+    margin-top: -2px;
+    margin-right: 12px;
 }
 
 .ident {
