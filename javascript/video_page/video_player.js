@@ -32,21 +32,21 @@ export default function setClipOnVideoPlayer(
     formattedParseData,
     selectedClipData
 ) {
-    let currentClip;
+    let currentClip, date;
     if (selectedClipData) {
         currentClip = selectedClipData;
+        date = undefined;
     } else {
         currentClip = getCurrentClipDataInfo(formattedParseData);
+        date = new Date();
     }
     loadClipMetadata(currentClip);
-    console.log(currentClip);
-
     if (currentClip.isLive()) {
         hideVideoPlayer();
         loadLivePlayer(currentClip, videoPlayer.parentElement);
     } else {
-        let videoPlayerClip = convertClipDataObject(currentClip);
-        setSRC_URL(videoPlayerClip.fileName, videoPlayer.playbackTime);
+        let videoPlayerClip = convertClipDataObject(currentClip, date);
+        setSRC_URL(videoPlayerClip.fileName, videoPlayerClip.playbackTime);
         showVideoPlayer();
         loadVideoPlayer();
     }
@@ -161,9 +161,6 @@ function getCurrentClipDataInfo(formattedParseData) {
 }
 
 function constructSrcURL(filename, playbackTime) {
-    if (!playbackTime) {
-        playbackTime = 0;
-    }
     const srcURL = LINKER + filename + "#t=" + playbackTime.toString();
     return srcURL;
 }

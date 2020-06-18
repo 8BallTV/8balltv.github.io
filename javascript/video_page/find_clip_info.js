@@ -28,9 +28,18 @@ export default function findCurrentClipDataInfo(
  * @param {ClipDataObject} clipDataObject
  * @return {VideoPlayerClipInfo}
  */
-export function convertClipDataObject(clipDataObject) {
-    let playbackTime = 0;
+export function convertClipDataObject(clipDataObject, date) {
     const { fileName, partNumber, title, modalText, duration } = clipDataObject;
+
+    let playbackTime;
+    if (!date) playbackTime = 0;
+    else playbackTime = calculatePlaybackTime(partNumber, date);
+    console.log(
+        `Playing video ${title} at ${parseInt(playbackTime / 60)}:${
+      playbackTime % 60
+    }, with filename: ${fileName}`
+    );
+
     return new VideoPlayerClipInfo(
         fileName,
         playbackTime,
