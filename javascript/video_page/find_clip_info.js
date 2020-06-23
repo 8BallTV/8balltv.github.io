@@ -24,21 +24,18 @@ export default function findCurrentClipDataInfo(
 
 /**
  * @author bhaviksingh
- * @description Given a ClipDataObject convert it to a VideoPlayerClipInfo object with assumed playback at start
+ * @description Given a clipDataObject, converts it to a videoPlayerClipInfo Object
+ *  If a currentTime is specified, uses it to calculate where to start video. Otherwise just starts video at start.
  * @param {ClipDataObject} clipDataObject
  * @return {VideoPlayerClipInfo}
  */
-export function convertClipDataObject(clipDataObject, date) {
+export function convertClipDataObject(clipDataObject, currentTime) {
     const { fileName, partNumber, title, modalText, duration } = clipDataObject;
 
     let playbackTime;
-    if (!date) playbackTime = 0;
-    else playbackTime = calculatePlaybackTime(partNumber, date);
-    console.log(
-        `Playing video ${title} at ${parseInt(playbackTime / 60)}:${
-      playbackTime % 60
-    }, with filename: ${fileName}`
-    );
+    if (!currentTime) playbackTime = 0;
+    else playbackTime = calculatePlaybackTime(partNumber, currentTime);
+    logConvertedClipInfo(title, playbackTime, fileName);
 
     return new VideoPlayerClipInfo(
         fileName,
@@ -46,6 +43,14 @@ export function convertClipDataObject(clipDataObject, date) {
         title,
         modalText,
         duration
+    );
+}
+
+function logConvertedClipInfo(title, playbackTime, fileName) {
+    console.log(
+        `Playing video ${title} at ${parseInt(playbackTime / 60)}:${
+      playbackTime % 60
+    }, with filename: ${fileName}`
     );
 }
 

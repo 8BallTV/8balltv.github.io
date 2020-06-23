@@ -19,37 +19,61 @@ let isSoundOn = false;
  * @description base url for videos
  */
 const LINKER = "http://8balltv.club/content/";
+
 /**
  * @author samdealy, bhaviksingh
- *	@description Set the html5 video player to play the current
- *   time's clip at the playback time.
+ *	@description Finds the current clip to play. If its a live player, sets up live player, else sets up the clip on the video player
+ * @param {Array<ClipDataObject>} formattedParseData -- The data, a list of todays videos, to parse and find the right clip to play
+ * @return {null}
+ */
+export default function findAndSetClipOnVideoPlayer(formattedParseData) {
+    let currentClip = getCurrentClipDataInfo(formattedParseData);
+    if (currentClip.isLive()) {
+        setLivePlayer(currentClip);
+    } else {
+        setCurrentClipOnVideoPlayer(currentClip);
+    }
+}
+
+/** @author bhaviksingh
+ * @description Sets up the HTML5 video player by converting the currentClip into a playable video clip with playback time
+ *  The playback time is calculated within convertClipDataObject
+ * @param {ClipDataObject} currentClip -- the current clip to play
+ */
+function setCurrentClipOnVideoPlayer(currentClip) {
+    let currentTime = new Date();
+    let videoPlayerClip = convertClipDataObject(currentClip, currentTime);
+    loadClipMetadata(videoPlayerClip);
+    setSRC_URL(videoPlayerClip.fileName, videoPlayerClip.playbackTime);
+    showVideoPlayer();
+    loadVideoPlayer();
+}
+
+/**
+ * @author bhaviksingh
+ * @description Sets up a live player, which is essentially an iFrame pointing to a URL. Hides the video player so the iFrame is visible
+ * @param {ClipDataObject} liveClip  --- a clipDataObject of type LIVE with all the information to load the live player
+ */
+function setLivePlayer(liveClip) {
+    loadClipMetadata(liveClip);
+    hideVideoPlayer();
+    loadLivePlayer(currentClip, videoPlayer.parentElement);
+}
+
+/**
+ * @author bhaviksingh
+ *	@description Set the html5 video player to play a specific clip from a collection
  * @param {Array<ClipDataObject>} formattedParseData -- parse the data, and get the right clip to play
  * @param {<ClipDataObject} selectedClip -- overrides parsing the data
  * @todo There should be a better way to write this function without this overriding
  * @return {null}
  */
-export default function setClipOnVideoPlayer(
-    formattedParseData,
-    selectedClipData
-) {
-    let currentClip, date;
-    if (selectedClipData) {
-        currentClip = selectedClipData;
-        date = undefined;
-    } else {
-        currentClip = getCurrentClipDataInfo(formattedParseData);
-        date = new Date();
-    }
-    loadClipMetadata(currentClip);
-    if (currentClip.isLive()) {
-        hideVideoPlayer();
-        loadLivePlayer(currentClip, videoPlayer.parentElement);
-    } else {
-        let videoPlayerClip = convertClipDataObject(currentClip, date);
-        setSRC_URL(videoPlayerClip.fileName, videoPlayerClip.playbackTime);
-        showVideoPlayer();
-        loadVideoPlayer();
-    }
+export function setCollectionClipOnVideoPlayer(collectionClipData) {
+    loadClipMetadata(collectionClipData);
+    let videoPlayerClip = convertClipDataObject(collectionClipData, null);
+    setSRC_URL(videoPlayerClip.fileName, videoPlayerClip.playbackTime);
+    showVideoPlayer();
+    loadVideoPlayer();
 }
 
 /**
