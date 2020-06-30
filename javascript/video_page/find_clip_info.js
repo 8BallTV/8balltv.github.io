@@ -3,7 +3,7 @@ import { findClipDataObject } from "../parser/format_parse_data.js";
 
 /**
  * @author samdealy
- * @description Finds a clip's filename and playback time for a specific time of day.
+ * @description Finds a clip's filename and playback time for a specific time of day. Checks if there is anything live in New York, to override
  * @param {Array<ClipDataObject>} formattedParseData
  * @param {DateObject} date
  * @param {Boolean} test - true if function is called from a test
@@ -14,6 +14,12 @@ export default function findCurrentClipDataInfo(
   date,
   test
 ) {
+
+  let currentClipInNewYork = getCurrentClipInNewYork(date, formattedParseData);
+  if (currentClipInNewYork && currentClipInNewYork.isLive()) {
+    return currentClipInNewYork;
+  }
+
   const minutesPastMidnight = TIME_UTIL.calculateMinutesPastMidnight(date);
   const currentClipDataObject = findClipDataObject(
     formattedParseData,
@@ -46,6 +52,31 @@ export function convertClipDataObject(clipDataObject, currentTime) {
   );
 }
 
+/**
+ * @description Checks the schedule in New York time. If the schedule has a LIVE clip scheduled in NY time for current local time, returns true. 
+ *      Note an edge case that we return false if the day is not the same day as the local time, because in this case we'd have to download a new schedule
+ * @param {Date} currentDate  current date for where the client is
+ * @param {*} formattedParseData schedule for the current day
+ * @return {currentClipInNewYork or null}  returns the currentClip in New York, or NULL in the edge case described above
+ */
+function getCurrentClipInNewYork(currentDate, formattedParseData) {
+
+  let timeInNY = TIME_UTIL.getDateInNewYork(currentDate);
+  if (timeInNY.getDay() != currentDate.getDay()) {
+    return null;
+  }
+  let minutesPastMidnightInNewYork = TIME_UTIL.calculateMinutesPastMidnight(timeInNY);
+  let currentClipInNewYork = findClipDataObject(formattedParseData, minutesPastMidnightInNewYork);
+  return currentClipInNewYork;
+}
+
+/**
+ * @author bhaviksingh
+ * @description Helper function to log information in the console about the current clip playing
+ * @param {String} title 
+ * @param {Number} playbackTime 
+ * @param {String} fileName 
+ */
 function logConvertedClipInfo(title, playbackTime, fileName) {
   console.log(
     `Playing video ${title} at ${parseInt(playbackTime / 60)}:${

@@ -56,3 +56,15 @@ export function convertMinutesToReadableTime(minutes) {
   let readableTime = readableHours + " " + readableMinutes;
   return readableTime;
 }
+
+/**
+ * @author bhaviksingh
+ * @description Given a specific date, converts it to new york time. Note that the time returned has the correct time, but not the correct date
+ * @param {Date} date Date to be converted to new york time
+ */
+export function getDateInNewYork(date){
+  let localTime = date;
+  let newYorkTimeString = localTime.toLocaleString("en-US", {timeZone: "America/New_York"});
+  let newYorkTime = new Date(newYorkTimeString);
+  return newYorkTime;
+}

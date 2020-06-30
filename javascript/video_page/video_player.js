@@ -57,7 +57,7 @@ function setCurrentClipOnVideoPlayer(currentClip) {
 function setLivePlayer(liveClip) {
   loadClipMetadata(liveClip);
   hideVideoPlayer();
-  loadLivePlayer(currentClip, videoPlayer.parentElement);
+  loadLivePlayer(liveClip, videoPlayer.parentElement);
 }
 
 /**

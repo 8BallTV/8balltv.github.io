@@ -1,3 +1,5 @@
+let overallContainer = document.querySelector(".container");
+
 /**
  * @author bhaviksingh
  * @description Loads a given live clip into the page, via an iFrame page
@@ -6,6 +8,7 @@ export function loadLivePlayer(liveClip, parentDOM) {
   removeLivePlayerIfExists();
   let liveClipDom = getLiveDOM(liveClip);
   parentDOM.prepend(liveClipDom);
+  overallContainer.classList.add("live");
 }
 
 /** @author bhaviksingh
@@ -16,6 +19,7 @@ export function removeLivePlayerIfExists() {
   if (livePlayer) {
     livePlayer.remove();
   }
+  overallContainer.classList.remove("live");
 }
 
 /**
