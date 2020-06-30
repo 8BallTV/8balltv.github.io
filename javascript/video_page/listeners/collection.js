@@ -6,8 +6,8 @@
  * @return {null}
  */
 export default function registerCollectionLinkListener() {
-    const homeButton = document.querySelector(".collectionlink-button");
-    homeButton.addEventListener('click', e => {
-        window.location.pathname = "/collections.html";
-    });
+  const homeButton = document.querySelector(".collectionlink-button");
+  homeButton.addEventListener("click", (e) => {
+    window.location.pathname = "/collections.html";
+  });
 }

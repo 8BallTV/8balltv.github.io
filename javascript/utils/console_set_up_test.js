@@ -1,15 +1,21 @@
 /**
-* @author samdealy
-* @description Log current clip data to the console.
-* @see {@link ClipDataObject} for more information on the parameters.
-* @param {String} date
-* @param {String} fileName
-* @param {String} title
-* @param {String} partNumber
-* @param {String} playbackTime
-* @return {null}
-*/
-export default function formatAndPrintToConsole(date, fileName, title, partNumber, playbackTime) {
+ * @author samdealy
+ * @description Log current clip data to the console.
+ * @see {@link ClipDataObject} for more information on the parameters.
+ * @param {String} date
+ * @param {String} fileName
+ * @param {String} title
+ * @param {String} partNumber
+ * @param {String} playbackTime
+ * @return {null}
+ */
+export default function formatAndPrintToConsole(
+  date,
+  fileName,
+  title,
+  partNumber,
+  playbackTime
+) {
   const minutes = date.getMinutes();
   const minutesString = minutes < 10 ? "0" + minutes : minutes;
 
@@ -20,7 +26,15 @@ export default function formatAndPrintToConsole(date, fileName, title, partNumbe
   console.log(`The clip's title is: ${title}`);
   console.log(`The clip is part number: ${partNumber}`);
   console.log(`The playback time is: ${playbackTime} seconds`);
-  console.log(`    which is ${Math.floor(playbackTime / 60)} min and ${playbackTime % 60} seconds`);
-  console.log(`Check out: https://docs.google.com/spreadsheets/d/1mFq_t7V6XY60zDM9IT-wQ2hBTGN8pjjs1zKvj7TG79w/edit#gid=845076906,`);
-  console.log(`and navigate to the correct day and time to see if the correct video is playing at the correct playback time!`);
+  console.log(
+    `    which is ${Math.floor(playbackTime / 60)} min and ${
+      playbackTime % 60
+    } seconds`
+  );
+  console.log(
+    `Check out: https://docs.google.com/spreadsheets/d/1mFq_t7V6XY60zDM9IT-wQ2hBTGN8pjjs1zKvj7TG79w/edit#gid=845076906,`
+  );
+  console.log(
+    `and navigate to the correct day and time to see if the correct video is playing at the correct playback time!`
+  );
 }

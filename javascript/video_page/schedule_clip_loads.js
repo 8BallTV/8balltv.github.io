@@ -11,9 +11,9 @@ import scheduleSecondAndSubsequentActions from "../utils/scheduler.js";
  * @return {null}
  */
 export default function scheduleClipLoads(formattedParseData) {
-    findAndSetClipOnVideoPlayer(formattedParseData);
-    scheduleSecondAndSubsequentActions(
-        findAndSetClipOnVideoPlayer,
-        formattedParseData
-    );
+  findAndSetClipOnVideoPlayer(formattedParseData);
+  scheduleSecondAndSubsequentActions(
+    findAndSetClipOnVideoPlayer,
+    formattedParseData
+  );
 }

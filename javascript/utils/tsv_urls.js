@@ -16,8 +16,8 @@ let areYouInDevelopment = window.location.hostname === "localhost";
  * @return {String} url
  */
 export default function determineTSV_URL(dayString) {
-    const tsvSheetURLsByDay = createTSVSheetURLsByDay();
-    return tsvSheetURLsByDay[dayString];
+  const tsvSheetURLsByDay = createTSVSheetURLsByDay();
+  return tsvSheetURLsByDay[dayString];
 }
 
 /**
@@ -29,16 +29,16 @@ export default function determineTSV_URL(dayString) {
  * @return {Object} tsvSheetURLsByDay
  */
 export function createTSVSheetURLsByDay() {
-    let [
-        firstPartOfUrl,
-        secondPartOfUrl,
-        idNumbers,
-    ] = determineDevOrProdConstants();
-    const tsvSheetURLsByDay = {};
-    DAYS_OF_THE_WEEK.forEach((day) => {
-        tsvSheetURLsByDay[day] = firstPartOfUrl + idNumbers[day] + secondPartOfUrl;
-    });
-    return tsvSheetURLsByDay;
+  let [
+    firstPartOfUrl,
+    secondPartOfUrl,
+    idNumbers,
+  ] = determineDevOrProdConstants();
+  const tsvSheetURLsByDay = {};
+  DAYS_OF_THE_WEEK.forEach((day) => {
+    tsvSheetURLsByDay[day] = firstPartOfUrl + idNumbers[day] + secondPartOfUrl;
+  });
+  return tsvSheetURLsByDay;
 }
 
 /**
@@ -48,7 +48,7 @@ export function createTSVSheetURLsByDay() {
  * @return {Array<String>} contants
  */
 function determineDevOrProdConstants() {
-    return areYouInDevelopment ? DEV_CONSTANTS : PROD_CONSTANTS;
+  return areYouInDevelopment ? DEV_CONSTANTS : PROD_CONSTANTS;
 }
 
 /**
@@ -58,14 +58,14 @@ function determineDevOrProdConstants() {
  * @return {String} url
  */
 function determineCollectionURL(collectionTab) {
-    let [
-        firstPartOfUrl,
-        secondPartOfUrl,
-        idNumbers,
-    ] = determineDevOrProdConstants();
-    let collectionTabID = idNumbers[collectionTab];
-    let collectionURL = firstPartOfUrl + collectionTabID + secondPartOfUrl;
-    return collectionURL;
+  let [
+    firstPartOfUrl,
+    secondPartOfUrl,
+    idNumbers,
+  ] = determineDevOrProdConstants();
+  let collectionTabID = idNumbers[collectionTab];
+  let collectionURL = firstPartOfUrl + collectionTabID + secondPartOfUrl;
+  return collectionURL;
 }
 
 /**
@@ -75,7 +75,7 @@ function determineCollectionURL(collectionTab) {
  * @return {String} url
  */
 export function determineCollectionVideos_URL() {
-    return determineCollectionURL("collectionVideos");
+  return determineCollectionURL("collectionVideos");
 }
 
 /**
@@ -85,5 +85,5 @@ export function determineCollectionVideos_URL() {
  * @return {String} url
  */
 export function determineCollectionInfo_URL() {
-    return determineCollectionURL("collectionInfo");
+  return determineCollectionURL("collectionInfo");
 }

@@ -21,31 +21,31 @@ import { startLoadingScreen, endLoadingScreen } from "./loader.js";
  * @return {null}
  */
 export default function parseTSV(
-    parseCallback,
-    /* optional */
-    tsv_url,
-    /* optional */
-    parseFormat
+  parseCallback,
+  /* optional */
+  tsv_url,
+  /* optional */
+  parseFormat
 ) {
-    // The schedule page provides a tsv_url, while the video page
-    // just wants to find the current schedule days.
-    tsv_url = tsv_url || findScheduleForToday();
+  // The schedule page provides a tsv_url, while the video page
+  // just wants to find the current schedule days.
+  tsv_url = tsv_url || findScheduleForToday();
 
-    startLoadingScreen();
-    Papa.parse(tsv_url, {
-        /*
-         * We split on Tabs to protect titles with commas. As such
-         * the Google Sheet schedule is exported as a TSV file.
-         */
-        delimiter: "\t",
-        download: true,
-        fastMode: true,
-        complete: (tsvParseResults) => {
-            const formattedParseData = formatParseData(tsvParseResults, parseFormat);
-            endLoadingScreen();
-            parseCallback(formattedParseData);
-        },
-    });
+  startLoadingScreen();
+  Papa.parse(tsv_url, {
+    /*
+     * We split on Tabs to protect titles with commas. As such
+     * the Google Sheet schedule is exported as a TSV file.
+     */
+    delimiter: "\t",
+    download: true,
+    fastMode: true,
+    complete: (tsvParseResults) => {
+      const formattedParseData = formatParseData(tsvParseResults, parseFormat);
+      endLoadingScreen();
+      parseCallback(formattedParseData);
+    },
+  });
 }
 
 /**
@@ -55,6 +55,6 @@ export default function parseTSV(
  * @return {String} tsv_url
  */
 function findScheduleForToday() {
-    const todayString = findTodayDayString();
-    return determineTSV_URL(todayString);
+  const todayString = findTodayDayString();
+  return determineTSV_URL(todayString);
 }

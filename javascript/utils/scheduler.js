@@ -29,12 +29,12 @@ const ASYNC_TYPE = { timeout: 0, interval: 1 };
  * @return {null}
  */
 export default async function scheduleSecondAndSubsequentActions(
-    action,
-    formattedParseData
+  action,
+  formattedParseData
 ) {
-    let secondActionPromise = scheduleSecondAction(action, formattedParseData);
-    await secondActionPromise;
-    scheduleSubsequentActions(action, formattedParseData);
+  let secondActionPromise = scheduleSecondAction(action, formattedParseData);
+  await secondActionPromise;
+  scheduleSubsequentActions(action, formattedParseData);
 }
 
 /**
@@ -47,16 +47,16 @@ export default async function scheduleSecondAndSubsequentActions(
  * @return {Promise} secondActionPromise
  */
 function scheduleSecondAction(action, formattedParseData) {
-    const millisecondsUntilFirstNewQuery = TIME_UTIL.findMillisecondsUntilNext15MinuteInterval();
-    let secondClipLoadPromise = new Promise((resolve, reject) => {
-        const id = setTimeout(() => {
-            action(formattedParseData);
-            resolve();
-        }, millisecondsUntilFirstNewQuery);
-        updateAsyncIds(id, action, ASYNC_TYPE.timeout);
-    });
+  const millisecondsUntilFirstNewQuery = TIME_UTIL.findMillisecondsUntilNext15MinuteInterval();
+  let secondClipLoadPromise = new Promise((resolve, reject) => {
+    const id = setTimeout(() => {
+      action(formattedParseData);
+      resolve();
+    }, millisecondsUntilFirstNewQuery);
+    updateAsyncIds(id, action, ASYNC_TYPE.timeout);
+  });
 
-    return secondClipLoadPromise;
+  return secondClipLoadPromise;
 }
 
 /**
@@ -67,12 +67,12 @@ function scheduleSecondAction(action, formattedParseData) {
  * @return {null}
  */
 function scheduleSubsequentActions(action, formattedParseData) {
-    const fifteenMinutesInMilliseconds = 15 * 60 * 1000;
-    let id = setInterval(
-        () => action(formattedParseData),
-        fifteenMinutesInMilliseconds
-    );
-    updateAsyncIds(id, action, ASYNC_TYPE.interval);
+  const fifteenMinutesInMilliseconds = 15 * 60 * 1000;
+  let id = setInterval(
+    () => action(formattedParseData),
+    fifteenMinutesInMilliseconds
+  );
+  updateAsyncIds(id, action, ASYNC_TYPE.interval);
 }
 
 /**
@@ -84,11 +84,11 @@ function scheduleSubsequentActions(action, formattedParseData) {
  * @return {null}
  */
 function updateAsyncIds(id, action, asyncType) {
-    ASYNC_TASKS.push({
-        id,
-        action: action.prototype.constructor.name,
-        asyncType,
-    });
+  ASYNC_TASKS.push({
+    id,
+    action: action.prototype.constructor.name,
+    asyncType,
+  });
 }
 
 /**
@@ -100,11 +100,11 @@ function updateAsyncIds(id, action, asyncType) {
  * @return {null}
  */
 export function clearSchedulerTasks(functionName) {
-    ASYNC_TASKS.forEach((task, i) => {
-        if (task.action === functionName) {
-            const id = task.id;
-            task.asyncType === "timeout" ? clearTimeout(id) : clearInterval(id);
-            ASYNC_TASKS.splice(i, 1);
-        }
-    });
+  ASYNC_TASKS.forEach((task, i) => {
+    if (task.action === functionName) {
+      const id = task.id;
+      task.asyncType === "timeout" ? clearTimeout(id) : clearInterval(id);
+      ASYNC_TASKS.splice(i, 1);
+    }
+  });
 }

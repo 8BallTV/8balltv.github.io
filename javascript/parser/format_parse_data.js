@@ -6,15 +6,15 @@ import { convertMinutesToReadableTime } from "../utils/time.js";
  * @return {Array<ClipDataObject> or Array<CollectionDataObject} formattedParseData
  */
 export default function formatParseData(
-    tsvParseResults,
-    /* optional */
-    parseFormat = "clip"
+  tsvParseResults,
+  /* optional */
+  parseFormat = "clip"
 ) {
-    if (parseFormat == "collections") {
-        return formatParseDataAsCollections(tsvParseResults);
-    } else if (parseFormat == "clip") {
-        return formatParseDataAsClips(tsvParseResults);
-    }
+  if (parseFormat == "collections") {
+    return formatParseDataAsCollections(tsvParseResults);
+  } else if (parseFormat == "clip") {
+    return formatParseDataAsClips(tsvParseResults);
+  }
 }
 
 /**
@@ -26,36 +26,36 @@ export default function formatParseData(
  * @param {Array<Array<String>>} tsvParseResults
  */
 function formatParseDataAsClips(tsvParseResults) {
-    const clipDataObjectsArrayWithTitle = tsvParseResults.data.map((data, i) => {
-        let id = data[1];
-        let dataObject = new ClipDataObject(
-            /* id= */
-            data[1],
-            /* partNumber= */
-            data[2],
-            /* fileName= */
-            data[3],
-            /* title= */
-            data[4],
-            /* director= */
-            data[5],
-            /* modalText = */
-            data[6],
-            /* duration= */
-            data[7],
-            /* either time/collectionID */
-            data[0],
-            /* Type of object */
-            data[8]
-        );
-        return dataObject;
-    });
-    /*
-     * Slice to get rid of the first entry,
-     * which is the TSV's column title
-     */
-    const formattedParseData = clipDataObjectsArrayWithTitle.slice(1);
-    return formattedParseData;
+  const clipDataObjectsArrayWithTitle = tsvParseResults.data.map((data, i) => {
+    let id = data[1];
+    let dataObject = new ClipDataObject(
+      /* id= */
+      data[1],
+      /* partNumber= */
+      data[2],
+      /* fileName= */
+      data[3],
+      /* title= */
+      data[4],
+      /* director= */
+      data[5],
+      /* modalText = */
+      data[6],
+      /* duration= */
+      data[7],
+      /* either time/collectionID */
+      data[0],
+      /* Type of object */
+      data[8]
+    );
+    return dataObject;
+  });
+  /*
+   * Slice to get rid of the first entry,
+   * which is the TSV's column title
+   */
+  const formattedParseData = clipDataObjectsArrayWithTitle.slice(1);
+  return formattedParseData;
 }
 
 /**
@@ -67,9 +67,9 @@ function formatParseDataAsClips(tsvParseResults) {
  * @return {ClipDataObject} clipDataObject
  */
 export function findClipDataObject(formattedParseData, minutesPastMidnight) {
-    const indexOfClipObject = findCurrentClipIndex(minutesPastMidnight);
-    const clipDataObject = formattedParseData[indexOfClipObject];
-    return clipDataObject;
+  const indexOfClipObject = findCurrentClipIndex(minutesPastMidnight);
+  const clipDataObject = formattedParseData[indexOfClipObject];
+  return clipDataObject;
 }
 /**
  * @author samdealy
@@ -80,28 +80,28 @@ export function findClipDataObject(formattedParseData, minutesPastMidnight) {
  * @return {Number} currentClipIndex
  */
 export function findCurrentClipIndex(minutesPastMidnight) {
-    return Math.floor(minutesPastMidnight / 15);
+  return Math.floor(minutesPastMidnight / 15);
 }
 
 function formatParseDataAsCollections(tsvParseResults) {
-    const collectionDataObjectsWithTitle = tsvParseResults.data.map((data, i) => {
-        //In case the collection is blank, ignore
-        if (data[0] == "") {
-            return;
-        }
-        return new CollectionDataObject(
-            /* id= */
-            data[0],
-            /* name= */
-            data[1],
-            /* details */
-            data[2],
-            /* time */
-            data[3]
-        );
-    });
-    const formattedParseData = collectionDataObjectsWithTitle.slice(1);
-    return formattedParseData;
+  const collectionDataObjectsWithTitle = tsvParseResults.data.map((data, i) => {
+    //In case the collection is blank, ignore
+    if (data[0] == "") {
+      return;
+    }
+    return new CollectionDataObject(
+      /* id= */
+      data[0],
+      /* name= */
+      data[1],
+      /* details */
+      data[2],
+      /* time */
+      data[3]
+    );
+  });
+  const formattedParseData = collectionDataObjectsWithTitle.slice(1);
+  return formattedParseData;
 }
 
 /**
@@ -110,63 +110,63 @@ function formatParseDataAsCollections(tsvParseResults) {
  *   from the columns on the {@link https://docs.google.com/spreadsheets/d/1mFq_t7V6XY60zDM9IT-wQ2hBTGN8pjjs1zKvj7TG79w/edit#gid=845076906 | schedule google sheet}
  */
 class ClipDataObject {
-    /**
-     * @param {String} id - the video's unique ID
-     * @param {String} partNumber - can be 1,2,3,4. Signifies which 15 minute chunk of the file to seek too when determining playback start time. @see {@link ../video_page/Readme.md|Video Page Readme}
-     * @param {String} fileName - the name of the mp3 file
-     * @param {String} title - the title name ot be displayed while video plays
-     * @param {String} director
-     * @param {String} modalText - the text that will appear in the modal
-     * @param {String} duration - duration of entire file, not just the 15 min clip. Will also be used in modal.
-     * @param {String} collectionID - id of a collection. will be overloaded by time in some cases, but not used then
-     * @param {String} type - the type of video, which is either empty string (regular clip), or live
-     */
-    constructor(
-        id,
-        partNumber,
-        fileName,
-        title,
-        director,
-        modalText,
-        duration,
-        collectionID,
-        type
-    ) {
-        this.id = id;
-        this.partNumber = partNumber;
-        this.fileName = fileName;
-        this.title = title;
-        this.director = director;
-        this.modalText = modalText;
-        this.duration = duration;
-        this.collectionID = collectionID; //Note
-        if (type) {
-            this.type = type;
-        } else {
-            this.type = "CLIP";
-        }
+  /**
+   * @param {String} id - the video's unique ID
+   * @param {String} partNumber - can be 1,2,3,4. Signifies which 15 minute chunk of the file to seek too when determining playback start time. @see {@link ../video_page/Readme.md|Video Page Readme}
+   * @param {String} fileName - the name of the mp3 file
+   * @param {String} title - the title name ot be displayed while video plays
+   * @param {String} director
+   * @param {String} modalText - the text that will appear in the modal
+   * @param {String} duration - duration of entire file, not just the 15 min clip. Will also be used in modal.
+   * @param {String} collectionID - id of a collection. will be overloaded by time in some cases, but not used then
+   * @param {String} type - the type of video, which is either empty string (regular clip), or live
+   */
+  constructor(
+    id,
+    partNumber,
+    fileName,
+    title,
+    director,
+    modalText,
+    duration,
+    collectionID,
+    type
+  ) {
+    this.id = id;
+    this.partNumber = partNumber;
+    this.fileName = fileName;
+    this.title = title;
+    this.director = director;
+    this.modalText = modalText;
+    this.duration = duration;
+    this.collectionID = collectionID; //Note
+    if (type) {
+      this.type = type;
+    } else {
+      this.type = "CLIP";
     }
+  }
 
-    getClipInformationDOM() {
-        let parentContainer = document.createElement("div");
-        parentContainer.classList = "video-info";
+  getClipInformationDOM() {
+    let parentContainer = document.createElement("div");
+    parentContainer.classList = "video-info";
 
-        let timeContainer = document.createElement("div");
-        timeContainer.classList = "length";
-        timeContainer.innerHTML = convertMinutesToReadableTime(this.duration);
-        parentContainer.appendChild(timeContainer);
+    let timeContainer = document.createElement("div");
+    timeContainer.classList = "length";
+    timeContainer.innerHTML = convertMinutesToReadableTime(this.duration);
+    parentContainer.appendChild(timeContainer);
 
-        let titleContainer = document.createElement("div");
-        titleContainer.classList = "titler";
-        titleContainer.innerHTML = this.title;
-        parentContainer.appendChild(titleContainer);
+    let titleContainer = document.createElement("div");
+    titleContainer.classList = "titler";
+    titleContainer.innerHTML = this.title;
+    parentContainer.appendChild(titleContainer);
 
-        return parentContainer;
-    }
+    return parentContainer;
+  }
 
-    isLive() {
-        return this.type.toLowerCase() === "live";
-    }
+  isLive() {
+    return this.type.toLowerCase() === "live";
+  }
 }
 
 /**
@@ -174,38 +174,38 @@ class ClipDataObject {
  * @description Represents information for a  collection
  */
 class CollectionDataObject {
-    /**
-     * @param {String} id - the unique ID for the collection
-     * @param {String} name - the name for the collection
-     * @param {String} details - the details to display about collection
-     * @param {String} length - the time in minutes for the collections videos.
-     */
-    constructor(id, name, details, duration) {
-        this.id = id;
-        this.name = name;
-        this.details = details;
-        this.duration = duration;
-    }
+  /**
+   * @param {String} id - the unique ID for the collection
+   * @param {String} name - the name for the collection
+   * @param {String} details - the details to display about collection
+   * @param {String} length - the time in minutes for the collections videos.
+   */
+  constructor(id, name, details, duration) {
+    this.id = id;
+    this.name = name;
+    this.details = details;
+    this.duration = duration;
+  }
 
-    getCollectionInformationDOM() {
-        let parentContainer = document.createElement("div");
-        parentContainer.classList = "collection";
+  getCollectionInformationDOM() {
+    let parentContainer = document.createElement("div");
+    parentContainer.classList = "collection";
 
-        let timeContainer = document.createElement("div");
-        timeContainer.classList = "length";
-        timeContainer.innerHTML = convertMinutesToReadableTime(this.duration);
-        parentContainer.appendChild(timeContainer);
+    let timeContainer = document.createElement("div");
+    timeContainer.classList = "length";
+    timeContainer.innerHTML = convertMinutesToReadableTime(this.duration);
+    parentContainer.appendChild(timeContainer);
 
-        let titleContainer = document.createElement("div");
-        titleContainer.classList = "titler";
-        titleContainer.innerHTML = this.name;
-        parentContainer.appendChild(titleContainer);
+    let titleContainer = document.createElement("div");
+    titleContainer.classList = "titler";
+    titleContainer.innerHTML = this.name;
+    parentContainer.appendChild(titleContainer);
 
-        let detailContainer = document.createElement("div");
-        detailContainer.classList = "body";
-        detailContainer.innerHTML = this.details;
-        parentContainer.appendChild(detailContainer);
+    let detailContainer = document.createElement("div");
+    detailContainer.classList = "body";
+    detailContainer.innerHTML = this.details;
+    parentContainer.appendChild(detailContainer);
 
-        return parentContainer;
-    }
+    return parentContainer;
+  }
 }

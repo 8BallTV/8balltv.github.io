@@ -1,9 +1,8 @@
-import registerChatButtonListener from '../../video_page/listeners/chat.js'
-import registerFullScreenListeners from '../../video_page/listeners/fullscreen.js';
-import registerSoundListeners from '../../video_page/listeners/sound.js';
-import registerModalListeners from '../../video_page/listeners/modal.js';
+import registerChatButtonListener from "../../video_page/listeners/chat.js";
+import registerFullScreenListeners from "../../video_page/listeners/fullscreen.js";
+import registerSoundListeners from "../../video_page/listeners/sound.js";
+import registerModalListeners from "../../video_page/listeners/modal.js";
 import { setupRepositionListener } from "../../utils/repositioning.js";
-
 
 /**
  * @author bhaviksingh
@@ -13,12 +12,12 @@ import { setupRepositionListener } from "../../utils/repositioning.js";
  */
 
 export default function registerListeners() {
-    registerChatButtonListener();
-    registerFullScreenListeners();
-    registerSoundListeners();
-    registerModalListeners();
-    registerCollectionButtonListener();
-    registerHomeLinkListener();
+  registerChatButtonListener();
+  registerFullScreenListeners();
+  registerSoundListeners();
+  registerModalListeners();
+  registerCollectionButtonListener();
+  registerHomeLinkListener();
 }
 
 /**
@@ -29,17 +28,19 @@ export default function registerListeners() {
  * @return {null}
  */
 function registerCollectionButtonListener() {
-    const collectionButton = document.querySelector(".collection-button");
-    const collectionBox = document.getElementById("collectionbox-container");
-    collectionButton.addEventListener("click", (e) => {
-        if (window.getComputedStyle(collectionBox).visibility === "hidden") {
-            collectionBox.style.visibility = "visible";
-        } else {
-            collectionBox.style.visibility = "hidden";
-        }
-    });
-    const collectionRepositionWidget = document.querySelector("#collection-positioning");
-    setupRepositionListener(collectionRepositionWidget);
+  const collectionButton = document.querySelector(".collection-button");
+  const collectionBox = document.getElementById("collectionbox-container");
+  collectionButton.addEventListener("click", (e) => {
+    if (window.getComputedStyle(collectionBox).visibility === "hidden") {
+      collectionBox.style.visibility = "visible";
+    } else {
+      collectionBox.style.visibility = "hidden";
+    }
+  });
+  const collectionRepositionWidget = document.querySelector(
+    "#collection-positioning"
+  );
+  setupRepositionListener(collectionRepositionWidget);
 }
 
 /**
@@ -50,8 +51,8 @@ function registerCollectionButtonListener() {
  * @return {null}
  */
 function registerHomeLinkListener() {
-    const homeButton = document.querySelector(".home-button");
-    homeButton.addEventListener('click', e => {
-        window.location.pathname = "/index.html";
-    });
+  const homeButton = document.querySelector(".home-button");
+  homeButton.addEventListener("click", (e) => {
+    window.location.pathname = "/index.html";
+  });
 }

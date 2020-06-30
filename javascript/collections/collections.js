@@ -1,6 +1,6 @@
 import {
-    determineCollectionInfo_URL,
-    determineCollectionVideos_URL,
+  determineCollectionInfo_URL,
+  determineCollectionVideos_URL,
 } from "../utils/tsv_urls.js";
 import parseTSV from "../parser/index.js";
 import { setCollectionClipOnVideoPlayer } from "../video_page/video_player.js";
@@ -21,7 +21,7 @@ let cachedVideoList, cachedCollectionList;
  * @return {null}
  */
 export default function parseAndDisplayCollections() {
-    parseTSV(displayCollections, collectionInfo_URL, "collections");
+  parseTSV(displayCollections, collectionInfo_URL, "collections");
 }
 
 /**
@@ -32,24 +32,24 @@ export default function parseAndDisplayCollections() {
  * @return null
  */
 function displayCollections(collectionList) {
-    cachedCollectionList = collectionList;
-    collectionContainer.innerHTML = "";
-    collectionBox.style.visibility = "visible";
-    collectionStatusContainer.innerHTML = "select a video";
+  cachedCollectionList = collectionList;
+  collectionContainer.innerHTML = "";
+  collectionBox.style.visibility = "visible";
+  collectionStatusContainer.innerHTML = "select a video";
 
-    let titleDom = getTitleDOM("Collections");
-    collectionContainer.appendChild(titleDom);
+  let titleDom = getTitleDOM("Collections");
+  collectionContainer.appendChild(titleDom);
 
-    collectionList.forEach((collectionDataObject) => {
-        let collectionDataDom = collectionDataObject.getCollectionInformationDOM();
-        collectionContainer.appendChild(collectionDataDom);
-        let collectionID = collectionDataObject.id;
-        let collectionName = collectionDataObject.name;
-        collectionDataDom.addEventListener("click", (e) => {
-                parseAndDisplayCollectionVideos(collectionID, collectionName);
-            }),
-            false;
-    });
+  collectionList.forEach((collectionDataObject) => {
+    let collectionDataDom = collectionDataObject.getCollectionInformationDOM();
+    collectionContainer.appendChild(collectionDataDom);
+    let collectionID = collectionDataObject.id;
+    let collectionName = collectionDataObject.name;
+    collectionDataDom.addEventListener("click", (e) => {
+      parseAndDisplayCollectionVideos(collectionID, collectionName);
+    }),
+      false;
+  });
 }
 
 /**
@@ -59,15 +59,15 @@ function displayCollections(collectionList) {
  * @param {String} collectionName The Name of the collection we want to show videos
  */
 function parseAndDisplayCollectionVideos(collectionID, collectionName) {
-    parseTSV(
-        (collectionVideoData) =>
-        displayCollectionVideos(
-            collectionVideoData,
-            collectionID,
-            collectionName
-        ),
-        collectionVideo_URL
-    );
+  parseTSV(
+    (collectionVideoData) =>
+      displayCollectionVideos(
+        collectionVideoData,
+        collectionID,
+        collectionName
+      ),
+    collectionVideo_URL
+  );
 }
 
 /**
@@ -79,27 +79,27 @@ function parseAndDisplayCollectionVideos(collectionID, collectionName) {
  * @param {String} collectionName The name for the collection we are viewing
  */
 function displayCollectionVideos(
-    collectionVideoData,
-    collectionID,
-    collectionName
+  collectionVideoData,
+  collectionID,
+  collectionName
 ) {
-    collectionContainer.innerHTML = "";
+  collectionContainer.innerHTML = "";
 
-    let backButton = getBackButton();
-    collectionContainer.appendChild(backButton);
+  let backButton = getBackButton();
+  collectionContainer.appendChild(backButton);
 
-    let titleDom = getTitleDOM(collectionName);
-    collectionContainer.appendChild(titleDom);
+  let titleDom = getTitleDOM(collectionName);
+  collectionContainer.appendChild(titleDom);
 
-    collectionVideoData.forEach((clipDataObject) => {
-        if (clipDataObject.collectionID == collectionID) {
-            let clipDataDom = clipDataObject.getClipInformationDOM();
-            collectionContainer.appendChild(clipDataDom);
-            clipDataDom.addEventListener("click", (e) => {
-                playCollectionVideo(clipDataObject);
-            });
-        }
-    });
+  collectionVideoData.forEach((clipDataObject) => {
+    if (clipDataObject.collectionID == collectionID) {
+      let clipDataDom = clipDataObject.getClipInformationDOM();
+      collectionContainer.appendChild(clipDataDom);
+      clipDataDom.addEventListener("click", (e) => {
+        playCollectionVideo(clipDataObject);
+      });
+    }
+  });
 }
 
 /**
@@ -108,8 +108,8 @@ function displayCollectionVideos(
  * @param {ClipDataObject} clipDataObject
  */
 function playCollectionVideo(clipDataObject) {
-    setCollectionClipOnVideoPlayer(clipDataObject);
-    collectionBox.style.visibility = "hidden";
+  setCollectionClipOnVideoPlayer(clipDataObject);
+  collectionBox.style.visibility = "hidden";
 }
 
 /**
@@ -119,13 +119,13 @@ function playCollectionVideo(clipDataObject) {
  * @returns {DOM} parentDom
  */
 function getBackButton() {
-    let parentDom = document.createElement("div");
-    parentDom.classList = "back";
-    parentDom.innerHTML = "back";
-    parentDom.addEventListener("click", () =>
-        displayCollections(cachedCollectionList)
-    );
-    return parentDom;
+  let parentDom = document.createElement("div");
+  parentDom.classList = "back";
+  parentDom.innerHTML = "back";
+  parentDom.addEventListener("click", () =>
+    displayCollections(cachedCollectionList)
+  );
+  return parentDom;
 }
 
 /**
@@ -135,8 +135,8 @@ function getBackButton() {
  * @return null
  */
 function getTitleDOM(title) {
-    let titleContainer = document.createElement("div");
-    titleContainer.classList = "collection-title";
-    titleContainer.innerHTML = title;
-    return titleContainer;
+  let titleContainer = document.createElement("div");
+  titleContainer.classList = "collection-title";
+  titleContainer.innerHTML = title;
+  return titleContainer;
 }

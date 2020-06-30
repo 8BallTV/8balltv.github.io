@@ -10,16 +10,16 @@ import { findClipDataObject } from "../parser/format_parse_data.js";
  * @return {ClipDataObject}
  */
 export default function findCurrentClipDataInfo(
-    formattedParseData,
-    date,
-    test
+  formattedParseData,
+  date,
+  test
 ) {
-    const minutesPastMidnight = TIME_UTIL.calculateMinutesPastMidnight(date);
-    const currentClipDataObject = findClipDataObject(
-        formattedParseData,
-        minutesPastMidnight
-    );
-    return currentClipDataObject;
+  const minutesPastMidnight = TIME_UTIL.calculateMinutesPastMidnight(date);
+  const currentClipDataObject = findClipDataObject(
+    formattedParseData,
+    minutesPastMidnight
+  );
+  return currentClipDataObject;
 }
 
 /**
@@ -30,28 +30,28 @@ export default function findCurrentClipDataInfo(
  * @return {VideoPlayerClipInfo}
  */
 export function convertClipDataObject(clipDataObject, currentTime) {
-    const { fileName, partNumber, title, modalText, duration } = clipDataObject;
+  const { fileName, partNumber, title, modalText, duration } = clipDataObject;
 
-    let playbackTime;
-    if (!currentTime) playbackTime = 0;
-    else playbackTime = calculatePlaybackTime(partNumber, currentTime);
-    logConvertedClipInfo(title, playbackTime, fileName);
+  let playbackTime;
+  if (!currentTime) playbackTime = 0;
+  else playbackTime = calculatePlaybackTime(partNumber, currentTime);
+  logConvertedClipInfo(title, playbackTime, fileName);
 
-    return new VideoPlayerClipInfo(
-        fileName,
-        playbackTime,
-        title,
-        modalText,
-        duration
-    );
+  return new VideoPlayerClipInfo(
+    fileName,
+    playbackTime,
+    title,
+    modalText,
+    duration
+  );
 }
 
 function logConvertedClipInfo(title, playbackTime, fileName) {
-    console.log(
-        `Playing video ${title} at ${parseInt(playbackTime / 60)}:${
+  console.log(
+    `Playing video ${title} at ${parseInt(playbackTime / 60)}:${
       playbackTime % 60
     }, with filename: ${fileName}`
-    );
+  );
 }
 
 /**
@@ -65,17 +65,17 @@ function logConvertedClipInfo(title, playbackTime, fileName) {
  * @return {Number} playbackSeconds
  */
 function calculatePlaybackTime(partNumber, date) {
-    const [minutes, seconds] = [date.getMinutes(), date.getSeconds()];
+  const [minutes, seconds] = [date.getMinutes(), date.getSeconds()];
 
-    const playbackOffSetDueToClipPositionInSeries = (partNumber - 1) * 15;
-    const playbackMinutesInto15MinuteInterval = minutes % 15;
+  const playbackOffSetDueToClipPositionInSeries = (partNumber - 1) * 15;
+  const playbackMinutesInto15MinuteInterval = minutes % 15;
 
-    const playbackStartTimeMinutes =
-        playbackOffSetDueToClipPositionInSeries +
-        playbackMinutesInto15MinuteInterval;
+  const playbackStartTimeMinutes =
+    playbackOffSetDueToClipPositionInSeries +
+    playbackMinutesInto15MinuteInterval;
 
-    const playbackSeconds = playbackStartTimeMinutes * 60 + seconds;
-    return playbackSeconds;
+  const playbackSeconds = playbackStartTimeMinutes * 60 + seconds;
+  return playbackSeconds;
 }
 
 /**
@@ -84,18 +84,18 @@ function calculatePlaybackTime(partNumber, date) {
  *   play the correct file at the correct playback time and dislay its title
  */
 class VideoPlayerClipInfo {
-    /**
-     * @param {String} fileName - the name of the mp3 file
-     * @param {Number} playbackTime - the time (ms) at which the file should start playback
-     * @param {String} title - the title name ot be displayed while video plays
-     * @param {String} modalText - text to be displayed in modal
-     * @param {String} duration - duration of the entire file, not just the 15 minute clip. Will also be used in modal.
-     */
-    constructor(fileName, playbackTime, title, modalText, duration) {
-        this.fileName = fileName;
-        this.playbackTime = playbackTime;
-        this.title = title;
-        this.modalText = modalText;
-        this.duration = duration;
-    }
+  /**
+   * @param {String} fileName - the name of the mp3 file
+   * @param {Number} playbackTime - the time (ms) at which the file should start playback
+   * @param {String} title - the title name ot be displayed while video plays
+   * @param {String} modalText - text to be displayed in modal
+   * @param {String} duration - duration of the entire file, not just the 15 minute clip. Will also be used in modal.
+   */
+  constructor(fileName, playbackTime, title, modalText, duration) {
+    this.fileName = fileName;
+    this.playbackTime = playbackTime;
+    this.title = title;
+    this.modalText = modalText;
+    this.duration = duration;
+  }
 }

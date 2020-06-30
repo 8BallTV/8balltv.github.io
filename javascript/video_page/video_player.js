@@ -27,12 +27,12 @@ const LINKER = "http://8balltv.club/content/";
  * @return {null}
  */
 export default function findAndSetClipOnVideoPlayer(formattedParseData) {
-    let currentClip = getCurrentClipDataInfo(formattedParseData);
-    if (currentClip.isLive()) {
-        setLivePlayer(currentClip);
-    } else {
-        setCurrentClipOnVideoPlayer(currentClip);
-    }
+  let currentClip = getCurrentClipDataInfo(formattedParseData);
+  if (currentClip.isLive()) {
+    setLivePlayer(currentClip);
+  } else {
+    setCurrentClipOnVideoPlayer(currentClip);
+  }
 }
 
 /** @author bhaviksingh
@@ -41,12 +41,12 @@ export default function findAndSetClipOnVideoPlayer(formattedParseData) {
  * @param {ClipDataObject} currentClip -- the current clip to play
  */
 function setCurrentClipOnVideoPlayer(currentClip) {
-    let currentTime = new Date();
-    let videoPlayerClip = convertClipDataObject(currentClip, currentTime);
-    loadClipMetadata(videoPlayerClip);
-    setSRC_URL(videoPlayerClip.fileName, videoPlayerClip.playbackTime);
-    showVideoPlayer();
-    loadVideoPlayer();
+  let currentTime = new Date();
+  let videoPlayerClip = convertClipDataObject(currentClip, currentTime);
+  loadClipMetadata(videoPlayerClip);
+  setSRC_URL(videoPlayerClip.fileName, videoPlayerClip.playbackTime);
+  showVideoPlayer();
+  loadVideoPlayer();
 }
 
 /**
@@ -55,9 +55,9 @@ function setCurrentClipOnVideoPlayer(currentClip) {
  * @param {ClipDataObject} liveClip  --- a clipDataObject of type LIVE with all the information to load the live player
  */
 function setLivePlayer(liveClip) {
-    loadClipMetadata(liveClip);
-    hideVideoPlayer();
-    loadLivePlayer(currentClip, videoPlayer.parentElement);
+  loadClipMetadata(liveClip);
+  hideVideoPlayer();
+  loadLivePlayer(currentClip, videoPlayer.parentElement);
 }
 
 /**
@@ -69,11 +69,11 @@ function setLivePlayer(liveClip) {
  * @return {null}
  */
 export function setCollectionClipOnVideoPlayer(collectionClipData) {
-    loadClipMetadata(collectionClipData);
-    let videoPlayerClip = convertClipDataObject(collectionClipData, null);
-    setSRC_URL(videoPlayerClip.fileName, videoPlayerClip.playbackTime);
-    showVideoPlayer();
-    loadVideoPlayer();
+  loadClipMetadata(collectionClipData);
+  let videoPlayerClip = convertClipDataObject(collectionClipData, null);
+  setSRC_URL(videoPlayerClip.fileName, videoPlayerClip.playbackTime);
+  showVideoPlayer();
+  loadVideoPlayer();
 }
 
 /**
@@ -82,8 +82,8 @@ export function setCollectionClipOnVideoPlayer(collectionClipData) {
  * @param {ClipDataObject/LiveDataObject} clip to render metadata for
  */
 function loadClipMetadata(clip) {
-    setTitle(clip.title);
-    setModalText(clip.modalText, clip.title, clip.duration);
+  setTitle(clip.title);
+  setModalText(clip.modalText, clip.title, clip.duration);
 }
 
 /**
@@ -92,8 +92,8 @@ function loadClipMetadata(clip) {
  * @return {null}
  */
 export function showVideoPlayer() {
-    removeLivePlayerIfExists();
-    videoPlayer.hidden = false;
+  removeLivePlayerIfExists();
+  videoPlayer.hidden = false;
 }
 
 /**
@@ -102,7 +102,7 @@ export function showVideoPlayer() {
  * @return {null}
  */
 export function hideVideoPlayer() {
-    videoPlayer.hidden = true;
+  videoPlayer.hidden = true;
 }
 
 /**
@@ -112,8 +112,8 @@ export function hideVideoPlayer() {
  * @return {null}
  */
 export function setSoundOnVideoPlayer(updatedIsSoundOn) {
-    isSoundOn = updatedIsSoundOn;
-    videoPlayer.muted = !isSoundOn;
+  isSoundOn = updatedIsSoundOn;
+  videoPlayer.muted = !isSoundOn;
 }
 
 /**
@@ -124,8 +124,8 @@ export function setSoundOnVideoPlayer(updatedIsSoundOn) {
  * @return {null}
  */
 function setSRC_URL(fileName, playbackTime) {
-    const srcURL = constructSrcURL(fileName, playbackTime);
-    mp4Source.src = srcURL;
+  const srcURL = constructSrcURL(fileName, playbackTime);
+  mp4Source.src = srcURL;
 }
 
 /**
@@ -135,7 +135,7 @@ function setSRC_URL(fileName, playbackTime) {
  * @return {null}
  */
 function setTitle(title) {
-    videoTitleElement.innerHTML = title;
+  videoTitleElement.innerHTML = title;
 }
 
 /**
@@ -147,16 +147,16 @@ function setTitle(title) {
  * @return {null}
  */
 function setModalText(modalText, title, duration) {
-    modalParagraphElement.innerText = modalText;
-    // We have to use childNodes[0] because the outer-level span (with
-    // class ".title-content" contains the title itself and a span
-    // which contains the duration. Therefore we can't just assign
-    // a value to the innerHTML or innerText to the outer level span, because
-    // doing so would erase the duration span element.
-    const titleText = modalTitleSpan.childNodes[0];
-    titleText.nodeValue = title;
-    // The "m" stands for minutes
-    durationSpan.innerText = duration + "m";
+  modalParagraphElement.innerText = modalText;
+  // We have to use childNodes[0] because the outer-level span (with
+  // class ".title-content" contains the title itself and a span
+  // which contains the duration. Therefore we can't just assign
+  // a value to the innerHTML or innerText to the outer level span, because
+  // doing so would erase the duration span element.
+  const titleText = modalTitleSpan.childNodes[0];
+  titleText.nodeValue = title;
+  // The "m" stands for minutes
+  durationSpan.innerText = duration + "m";
 }
 
 /**
@@ -166,7 +166,7 @@ function setModalText(modalText, title, duration) {
  * @return {null}
  */
 function loadVideoPlayer() {
-    videoPlayer.load();
+  videoPlayer.load();
 }
 
 /**
@@ -177,14 +177,14 @@ function loadVideoPlayer() {
  * @return {VideoPlayerClipInfo}
  */
 function getCurrentClipDataInfo(formattedParseData) {
-    const date = new Date();
-    // If it's midnight, re-parse to load the next day's schedule.
-    // Otherwise, at midnight you'd start playing the previous day's schedule
-    if (TIME_UTIL.isItMidnight(date)) parseTSV(main);
-    return findCurrentClipDataInfo(formattedParseData, date, false);
+  const date = new Date();
+  // If it's midnight, re-parse to load the next day's schedule.
+  // Otherwise, at midnight you'd start playing the previous day's schedule
+  if (TIME_UTIL.isItMidnight(date)) parseTSV(main);
+  return findCurrentClipDataInfo(formattedParseData, date, false);
 }
 
 function constructSrcURL(filename, playbackTime) {
-    const srcURL = LINKER + filename + "#t=" + playbackTime.toString();
-    return srcURL;
+  const srcURL = LINKER + filename + "#t=" + playbackTime.toString();
+  return srcURL;
 }

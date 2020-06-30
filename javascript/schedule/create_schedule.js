@@ -11,18 +11,18 @@ import { findCurrentClipIndex } from "../parser/format_parse_data.js";
  * @return {null}
  */
 export default function renderTitlesOnSchedule(formattedParseData) {
-    const scheduleTable = document.getElementById("TODAY");
-    const titlers = scheduleTable.querySelectorAll(".titler");
-    titlers.forEach((titler, i) => {
-        let clip = formattedParseData[i];
-        const title = clip.title;
-        let titleHTML = "";
-        if (clip.isLive()) {
-            titleHTML += "<span class='live'>LIVE</span>";
-        }
-        titleHTML += title;
-        titler.innerHTML = titleHTML;
-    });
+  const scheduleTable = document.getElementById("TODAY");
+  const titlers = scheduleTable.querySelectorAll(".titler");
+  titlers.forEach((titler, i) => {
+    let clip = formattedParseData[i];
+    const title = clip.title;
+    let titleHTML = "";
+    if (clip.isLive()) {
+      titleHTML += "<span class='live'>LIVE</span>";
+    }
+    titleHTML += title;
+    titler.innerHTML = titleHTML;
+  });
 }
 
 /**
@@ -32,8 +32,8 @@ export default function renderTitlesOnSchedule(formattedParseData) {
  * @return {null}
  */
 export function setSelectedCSS() {
-    const todayDayLink = findTodayDayLink();
-    todayDayLink.className = "selected";
+  const todayDayLink = findTodayDayLink();
+  todayDayLink.className = "selected";
 }
 
 /**
@@ -43,7 +43,7 @@ export function setSelectedCSS() {
  * @return {String} todayDayLink
  */
 export function findTodayDayLink() {
-    const todayDayString = findTodayDayString();
-    const todayDayLink = document.getElementById(todayDayString);
-    return todayDayLink;
+  const todayDayString = findTodayDayString();
+  const todayDayLink = document.getElementById(todayDayString);
+  return todayDayLink;
 }
