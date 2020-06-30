@@ -12,7 +12,7 @@ export function loadLivePlayer(liveClip, parentDOM) {
  *  @description Removes the live player from the page, by removing the DOM if it exists
  */
 export function removeLivePlayerIfExists() {
-  let livePlayer = document.querySelector("liveplayer-container");
+  let livePlayer = document.querySelector(".liveplayer-container");
   if (livePlayer) {
     livePlayer.remove();
   }
