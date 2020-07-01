@@ -10,7 +10,7 @@ Follow these steps to test out the scheduler on your own machine
 	   Note the directory where you cloned the project on your local machine.
 2. Open the Terminal application on your MacOS.
 3. Use the "cd" command to navigate to the directory of the project.
-4. On your terminal application, run `python3 -m http.server 8000`
+4. On your terminal application, run `python3 -m http.server 8000 --bind 127.0.0.1`
 	 * If you get a `-bash: python3 command not found`, that means
 	   you don't have the Python interpreter installed on your computer.
 	   To do so, go [here](https://www.python.org/downloads/).
