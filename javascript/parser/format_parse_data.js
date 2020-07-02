@@ -144,11 +144,6 @@ class ClipDataObject {
     this.duration = duration;
     this.collectionID = collectionID; //Note
     this.type = type || "CLIP";
-    if (type) {
-      this.type = type;
-    } else {
-      this.type = "CLIP";
-    }
     this.storageLocation = storageLocation;
   }
 
