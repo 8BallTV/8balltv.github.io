@@ -144,7 +144,7 @@ class ClipDataObject {
     this.duration = duration;
     this.collectionID = collectionID; //Note
     this.type = type || "CLIP";
-    this.storageLocation = storageLocation;
+    this.storageLocation = storageLocation || "GO_DADDY";
   }
 
   getClipInformationDOM() {
