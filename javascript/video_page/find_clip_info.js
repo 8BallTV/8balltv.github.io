@@ -14,7 +14,6 @@ export default function findCurrentClipDataInfo(
   date,
   test
 ) {
-
   let currentClipInNewYork = getCurrentClipInNewYork(date, formattedParseData);
   if (currentClipInNewYork && currentClipInNewYork.isLive()) {
     return currentClipInNewYork;
@@ -36,7 +35,14 @@ export default function findCurrentClipDataInfo(
  * @return {VideoPlayerClipInfo}
  */
 export function convertClipDataObject(clipDataObject, currentTime) {
-  const { fileName, partNumber, title, modalText, duration } = clipDataObject;
+  const {
+    fileName,
+    partNumber,
+    title,
+    modalText,
+    duration,
+    storageLocation,
+  } = clipDataObject;
 
   let playbackTime;
   if (!currentTime) playbackTime = 0;
@@ -48,34 +54,39 @@ export function convertClipDataObject(clipDataObject, currentTime) {
     playbackTime,
     title,
     modalText,
-    duration
+    duration,
+    storageLocation
   );
 }
 
 /**
- * @description Checks the schedule in New York time. If the schedule has a LIVE clip scheduled in NY time for current local time, returns true. 
+ * @description Checks the schedule in New York time. If the schedule has a LIVE clip scheduled in NY time for current local time, returns true.
  *      Note an edge case that we return false if the day is not the same day as the local time, because in this case we'd have to download a new schedule
  * @param {Date} currentDate  current date for where the client is
  * @param {*} formattedParseData schedule for the current day
  * @return {currentClipInNewYork or null}  returns the currentClip in New York, or NULL in the edge case described above
  */
 function getCurrentClipInNewYork(currentDate, formattedParseData) {
-
   let timeInNY = TIME_UTIL.getDateInNewYork(currentDate);
   if (timeInNY.getDay() != currentDate.getDay()) {
     return null;
   }
-  let minutesPastMidnightInNewYork = TIME_UTIL.calculateMinutesPastMidnight(timeInNY);
-  let currentClipInNewYork = findClipDataObject(formattedParseData, minutesPastMidnightInNewYork);
+  let minutesPastMidnightInNewYork = TIME_UTIL.calculateMinutesPastMidnight(
+    timeInNY
+  );
+  let currentClipInNewYork = findClipDataObject(
+    formattedParseData,
+    minutesPastMidnightInNewYork
+  );
   return currentClipInNewYork;
 }
 
 /**
  * @author bhaviksingh
  * @description Helper function to log information in the console about the current clip playing
- * @param {String} title 
- * @param {Number} playbackTime 
- * @param {String} fileName 
+ * @param {String} title
+ * @param {Number} playbackTime
+ * @param {String} fileName
  */
 function logConvertedClipInfo(title, playbackTime, fileName) {
   console.log(
@@ -121,12 +132,21 @@ class VideoPlayerClipInfo {
    * @param {String} title - the title name ot be displayed while video plays
    * @param {String} modalText - text to be displayed in modal
    * @param {String} duration - duration of the entire file, not just the 15 minute clip. Will also be used in modal.
+   * @param {String} storageLocation - where the video file is stored.
    */
-  constructor(fileName, playbackTime, title, modalText, duration) {
+  constructor(
+    fileName,
+    playbackTime,
+    title,
+    modalText,
+    duration,
+    storageLocation
+  ) {
     this.fileName = fileName;
     this.playbackTime = playbackTime;
     this.title = title;
     this.modalText = modalText;
     this.duration = duration;
+    this.storageLocation = storageLocation;
   }
 }

@@ -46,7 +46,9 @@ function formatParseDataAsClips(tsvParseResults) {
       /* either time/collectionID */
       data[0],
       /* Type of object */
-      data[8]
+      data[8],
+      /* storageLocation= */
+      data[9]
     );
     return dataObject;
   });
@@ -130,7 +132,8 @@ class ClipDataObject {
     modalText,
     duration,
     collectionID,
-    type
+    type,
+    storageLocation
   ) {
     this.id = id;
     this.partNumber = partNumber;
@@ -140,11 +143,8 @@ class ClipDataObject {
     this.modalText = modalText;
     this.duration = duration;
     this.collectionID = collectionID; //Note
-    if (type) {
-      this.type = type;
-    } else {
-      this.type = "CLIP";
-    }
+    this.type = type || "CLIP";
+    this.storageLocation = storageLocation || "GO_DADDY";
   }
 
   getClipInformationDOM() {

@@ -3,11 +3,14 @@ import PROD_CONSTANTS from "./prod_constants.js";
 import { DAYS_OF_THE_WEEK } from "./shared_constants.js";
 
 /**
- * @description Is true if you are in a local development environment
- * @type {Boolean}
+ * @description Returns true if you are in a local development environment
  */
-let areYouInDevelopment = window.location.hostname === "localhost";
-// let areYouInDevelopment = false;
+export function areYouInDevelopment() {
+  return (
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1"
+  );
+}
 
 /**
  * @author samdealy
@@ -48,7 +51,8 @@ export function createTSVSheetURLsByDay() {
  * @return {Array<String>} contants
  */
 function determineDevOrProdConstants() {
-  return areYouInDevelopment ? DEV_CONSTANTS : PROD_CONSTANTS;
+  const isDev = areYouInDevelopment();
+  return isDev ? DEV_CONSTANTS : PROD_CONSTANTS;
 }
 
 /**

@@ -3,6 +3,7 @@ import findCurrentClipDataInfo from "./find_clip_info.js";
 import * as TIME_UTIL from "../utils/time.js";
 import parseTSV from "../parser/index.js";
 import { loadLivePlayer, removeLivePlayerIfExists } from "./live_player.js";
+import { areYouInDevelopment } from "../utils/tsv_urls.js";
 
 const mp4Source = document.getElementById("mp4_src");
 const videoPlayer = document.getElementById("tv");
@@ -14,11 +15,11 @@ const durationSpan = document.querySelector(".duration");
 /** @type {Boolean} */
 let isSoundOn = false;
 
-/**
- * @const @type {String}
- * @description base url for videos
- */
-const LINKER = "http://8balltv.club/content/";
+const GO_DADDY_STORAGE_BASE_URL = "http://8balltv.club/content/";
+const DIGITAL_OCEAN_STORAGE_BASE_URL_PROD =
+  "https://8balltv.sfo2.digitaloceanspaces.com/transcodedVideos/";
+const DIGITAL_OCEAN_STORAGE_BASE_URL_DEV =
+  "https://8balltv-dev.sfo2.digitaloceanspaces.com/transcodedVideos/";
 
 /**
  * @author samdealy, bhaviksingh
@@ -44,7 +45,11 @@ function setCurrentClipOnVideoPlayer(currentClip) {
   let currentTime = new Date();
   let videoPlayerClip = convertClipDataObject(currentClip, currentTime);
   loadClipMetadata(videoPlayerClip);
-  setSRC_URL(videoPlayerClip.fileName, videoPlayerClip.playbackTime);
+  setSRC_URL(
+    videoPlayerClip.fileName,
+    videoPlayerClip.playbackTime,
+    videoPlayerClip.storageLocation
+  );
   showVideoPlayer();
   loadVideoPlayer();
 }
@@ -71,7 +76,11 @@ function setLivePlayer(liveClip) {
 export function setCollectionClipOnVideoPlayer(collectionClipData) {
   loadClipMetadata(collectionClipData);
   let videoPlayerClip = convertClipDataObject(collectionClipData, null);
-  setSRC_URL(videoPlayerClip.fileName, videoPlayerClip.playbackTime);
+  setSRC_URL(
+    videoPlayerClip.fileName,
+    videoPlayerClip.playbackTime,
+    videoPlayerClip.storageLocation
+  );
   showVideoPlayer();
   loadVideoPlayer();
 }
@@ -121,10 +130,11 @@ export function setSoundOnVideoPlayer(updatedIsSoundOn) {
  * @description Set the current clip's source url on the HTML src element.
  * @param {String} fileName
  * @param {Number} playbackTime
+ * @param {String} storageLocation
  * @return {null}
  */
-function setSRC_URL(fileName, playbackTime) {
-  const srcURL = constructSrcURL(fileName, playbackTime);
+function setSRC_URL(fileName, playbackTime, storageLocation) {
+  const srcURL = constructSrcURL(fileName, playbackTime, storageLocation);
   mp4Source.src = srcURL;
 }
 
@@ -184,7 +194,20 @@ function getCurrentClipDataInfo(formattedParseData) {
   return findCurrentClipDataInfo(formattedParseData, date, false);
 }
 
-function constructSrcURL(filename, playbackTime) {
-  const srcURL = LINKER + filename + "#t=" + playbackTime.toString();
+function constructSrcURL(filename, playbackTime, storageLocation) {
+  const storageUrlBase = determineStorageBaseUrl(storageLocation);
+  const srcURL = storageUrlBase + filename + "#t=" + playbackTime.toString();
   return srcURL;
+}
+
+function determineStorageBaseUrl(storageLocation) {
+  switch (storageLocation) {
+    case "GO_DADDY":
+      return GO_DADDY_STORAGE_BASE_URL;
+    case "DIGITAL_OCEAN":
+      const isDev = areYouInDevelopment();
+      return isDev === true
+        ? DIGITAL_OCEAN_STORAGE_BASE_URL_DEV
+        : DIGITAL_OCEAN_STORAGE_BASE_URL_PROD;
+  }
 }
