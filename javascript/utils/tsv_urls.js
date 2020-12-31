@@ -6,10 +6,11 @@ import { DAYS_OF_THE_WEEK } from "./shared_constants.js";
  * @description Returns true if you are in a local development environment
  */
 export function areYouInDevelopment() {
-  return (
-    window.location.hostname === "localhost" ||
-    window.location.hostname === "127.0.0.1"
-  );
+  let isDev = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+  if (isDev === true) {
+    console.log("In dev mode");
+  }
+  return isDev;
 }
 
 /**

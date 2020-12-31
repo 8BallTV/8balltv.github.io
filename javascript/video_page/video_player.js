@@ -203,8 +203,10 @@ function constructSrcURL(filename, playbackTime, storageLocation) {
 function determineStorageBaseUrl(storageLocation) {
   switch (storageLocation) {
     case "GO_DADDY":
+      console.log("Playing video from Go Daddy");
       return GO_DADDY_STORAGE_BASE_URL;
     case "DIGITAL_OCEAN":
+      console.log("Playing video from Digital Ocean");
       const isDev = areYouInDevelopment();
       return isDev === true
         ? DIGITAL_OCEAN_STORAGE_BASE_URL_DEV
