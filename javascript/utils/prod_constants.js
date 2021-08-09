@@ -3,9 +3,10 @@
 //TODO(samdealy): Keep an eye on the rate limit for cors-anywhere. Potentially
 // deploy our own heroku app that does this.
 const FIRST_PART_OF_SCHEDULE_URL_PROD =
-  "https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7EnR4fHqDgT3ZqXWXpl4xb7C4tv1PkEMHfxN5sGHponRwH36OALT_MrY3JLn3zPyrqr0oERerBob6/pub?gid=";
+  "https://radiant-citadel-82769.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7EnR4fHqDgT3ZqXWXpl4xb7C4tv1PkEMHfxN5sGHponRwH36OALT_MrY3JLn3zPyrqr0oERerBob6/pub?gid=";
 /** @const @type {String} */
 const SECOND_PART_OF_SCHEDULE_URL_PROD = "&single=true&output=tsv";
+
 
 /**
  * @const
@@ -35,4 +36,5 @@ const PROD_CONSTANTS = [
   SECOND_PART_OF_SCHEDULE_URL_PROD,
   TSV_SHEET_IDS_PROD,
 ];
+console.log(PROD_CONSTANTS);
 export default PROD_CONSTANTS;
