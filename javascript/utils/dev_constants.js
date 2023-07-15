@@ -1,7 +1,8 @@
 /** To generate these URLs, ensure that your Google Sheet is published to the web. */
 /** @const @type {String} */
-const FIRST_PART_OF_SCHEDULE_URL_DEV =
-  "https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vTjf-IMA5TF2OALd3W_DTM1BcnSbX4ToBPOwuExBiLXGpJNMmE-FHt572QmtMv9u2W2XRkTHn9Nnh-k/pub?gid=";
+
+const CORS_URL = "https://8ballcors.fly.dev/";
+const FIRST_PART_OF_SCHEDULE_URL_DEV = CORS_URL + "https://docs.google.com/spreadsheets/d/e/2PACX-1vTjf-IMA5TF2OALd3W_DTM1BcnSbX4ToBPOwuExBiLXGpJNMmE-FHt572QmtMv9u2W2XRkTHn9Nnh-k/pub?gid=";
 
 //docs.google.com/spreadsheets/d/e/2PACX-1vTjf-IMA5TF2OALd3W_DTM1BcnSbX4ToBPOwuExBiLXGpJNMmE-FHt572QmtMv9u2W2XRkTHn9Nnh-k/pub?output=tsv
 /** @const @type {String} */

@@ -19,7 +19,7 @@ const GO_DADDY_STORAGE_BASE_URL = "http://8balltv.club/content/";
 const DIGITAL_OCEAN_STORAGE_BASE_URL_PROD =
   "https://8balltv.sfo2.digitaloceanspaces.com/transcodedVideos/";
 const DIGITAL_OCEAN_STORAGE_BASE_URL_DEV =
-  "https://8balltv-dev.sfo2.digitaloceanspaces.com/transcodedVideos/";
+  "https://8balltv.sfo2.digitaloceanspaces.com/transcodedVideos/";
 
 /**
  * @author samdealy, bhaviksingh
@@ -202,10 +202,11 @@ function constructSrcURL(filename, playbackTime, storageLocation) {
 
 function determineStorageBaseUrl(storageLocation) {
   switch (storageLocation) {
-    case "GO_DADDY":
-      console.log("Playing video from Go Daddy");
-      return GO_DADDY_STORAGE_BASE_URL;
-    case "DIGITAL_OCEAN":
+    // case "GO_DADDY":
+    //   console.log("Playing video from Go Daddy");
+    //   return GO_DADDY_STORAGE_BASE_URL;
+    // case "DIGITAL_OCEAN":
+    default:
       console.log("Playing video from Digital Ocean");
       const isDev = areYouInDevelopment();
       return isDev === true
