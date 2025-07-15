@@ -278,6 +278,32 @@ video {
     display: table-cell;
     font-family: teletext;
     font-size: 18px;
+    /* opacity lower bc chat is broken */
+    opacity: .4;
+}
+/* tooltip that explains that the chat feature is currently broken */
+.chat-button::before {
+    content: "Chat feature is currently broken 💔";
+    position: absolute;
+    bottom: calc(100% + 20px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 103;
+    border: 1px solid #f400ff;
+}
+
+/* Show tooltip on hover */
+.chat-button:hover::before {
+    opacity: 1;
 }
 
 #chat a:hover {
