@@ -1,0 +1,570 @@
+<!-- 
+
+This form was made by Kevin Mead, Deepseek and this site's generator:
+https://stefano.brilli.me/google-forms-html-exporter/
+
+It runs entirely from this Google Form and could one day break:
+
+https://docs.google.com/forms/d/e/1FAIpQLScgM-s2QSRj3Rw1fIGx3GApg263yLKqD2dAflp9AZxQIoyaLg/viewform?usp=dialog
+
+Long live 8Ball and 8BallTV never too l8
+
+Kevin Mead 2025 // kevinmead.com
+
+-->
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+    /* Asterisk fallback font */
+    @font-face {
+        font-family: 'AsteriskFallback';
+        src: local('bigly'), local('Helvetica');
+        unicode-range: U+002A;
+    }
+
+    .required-asterisk {
+        color: #ff0000;
+        font-family: Arial, sans-serif; 
+        margin-left: 5px;
+        font-size: 2rem;
+    }
+
+    @font-face {
+        font-family: teletext;
+        src: url(css/Px437_IBM_EGA8.ttf);
+    }
+
+    @font-face {
+        font-family: bigly;
+        src: url(css/Px437_DTK_BIOS.ttf);
+    }
+
+    .jetbrains-mono {
+      font-family: "JetBrains Mono", monospace;
+      font-optical-sizing: auto;
+      font-weight: <weight>;
+      font-style: normal;
+    }
+
+    body {
+        background-color: #000;
+        color: #fff;
+        font-family: 'JetBrains Mono', monospace;
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+    /* header style stolen from 8balltv site */
+    .redshad {
+        text-shadow: 4px 4px 0px #000, 8px 8px 0px #f400ff, 12px 12px 0px #000, 16px 16px 0px #f400ff;
+    }
+
+    .green {
+        color: #00ff00;
+    }
+
+    a:link {
+      color: green;
+      background-color: transparent;
+      text-decoration: none;
+    }
+
+
+    /* Form container */
+    #bootstrapForm {
+        background-color: #111;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(128, 0, 128, 0.3);
+    }
+
+    /* Title styles */
+    .form-title {
+        font-family: 'bigly';
+        color: #9c27b0;
+        text-align: center;
+        font-size: 2.2rem;
+        margin-bottom: 30px;
+        text-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
+    }
+
+    h2 {
+        font-family: "bigly";
+    }
+
+    /* Fieldset styles */
+    fieldset {
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #1a1a1a;
+        text-align: center;
+    }
+
+    .topblurb {
+        text-align: center;
+        font-family: "teletext";
+        font-size: 1.5em;
+    }
+
+    .formblurb {
+        font-family: "teletext";
+        text-align: center;
+        padding: 0;
+        margin: -20px 0 10px 0;
+        font-size: 0.9rem;
+        color: #aaa;
+        line-height: 1.2;
+    }
+
+    /* Legend/Question title styles */
+    legend {
+        font-family: 'bigly';
+        font-weight: bold;
+        color: #ddd;
+        font-size: 1.1rem;
+        padding: 0 10px;
+        margin-bottom: 10px;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* Input field styles */
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #444;
+        border-radius: 6px;
+        background-color: #fff;
+        color: #333;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+    }
+
+    .form-control:focus {
+        border-color: #9c27b0;
+        outline: none;
+        box-shadow: 0 0 8px rgba(156, 39, 176, 0.4);
+    }
+
+    /* Submit button styles */
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background-color: #9c27b0;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-family: 'teletext';
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 20px;
+    }
+
+    .btn:hover {
+        background-color: #7b1fa2;
+    }
+
+    .success-message {
+        text-align: center;
+        padding: 40px;
+    }
+
+    .success-message h2 {
+        color: #4CAF50;
+        margin-bottom: 20px;
+    }
+
+    .success-message p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+
+    .success-message button {
+        background-color: #9c27b0;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .success-message button:hover {
+        background-color: #7b1fa2;
+    }
+
+    /* Validation styles */
+    .invalid {
+        border-color: #ff3860 !important;
+        box-shadow: 0 0 0 2px rgba(255, 56, 96, 0.2) !important;
+    }
+
+    .invalid-message {
+        color: #ff3860;
+        font-size: 0.8rem;
+        margin-top: 5px;
+        display: none;
+    }
+
+    .invalid + .invalid-message {
+        display: block;
+    }
+
+    /* Standards popup styles */
+    .standards-trigger {
+        color: #00ff00;
+        text-decoration: underline;
+        cursor: pointer;
+        font-family: 'teletext';
+        margin: 15px 0;
+        display: inline-block;
+    }
+    
+    .standards-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    .standards-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .standards-content {
+        background-color: #111;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 400px;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 20px;
+        box-shadow: 0 0 20px rgba(156, 39, 176, 0.5);
+        border: 1px solid #9c27b0;
+        transform: translateY(20px);
+        transition: transform 0.3s ease;
+    }
+    
+    .standards-overlay.active .standards-content {
+        transform: translateY(0);
+    }
+    
+    .standards-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #9c27b0;
+        padding-bottom: 10px;
+    }
+    
+    .standards-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 0;
+        color: #9c27b0;
+        font-family: 'bigly';
+    }
+    
+    .close-btn {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #aaa;
+        padding: 5px;
+    }
+    
+    .standards-list {
+        padding-left: 20px;
+        margin: 0;
+        color: #ddd;
+        font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .standards-list li {
+        margin-bottom: 10px;
+    }
+
+    /* mobile stuff */
+    @media screen and (max-width: 768px) {
+        body {
+            padding: 15px;
+        }
+        #bootstrapForm {
+            padding: 20px;
+        }
+        .form-title {
+            font-size: 1.8rem;
+        }
+        fieldset {
+            padding: 15px;
+        }
+    }
+    @media screen and (max-width: 480px) {
+        body {
+            padding: 10px;
+        }
+        #bootstrapForm {
+            padding: 15px;
+        }
+        .form-title {
+            font-size: 1.5rem;
+        }
+        legend {
+            font-size: 1rem;
+        }
+        .form-control {
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+        .btn {
+            padding: 10px;
+            font-size: 1rem;
+        }
+        .topblurb {
+            font-size: 0.9rem;
+        }
+        .formblurb {
+            text-align: center;
+            margin-left: 0;
+            margin-top: -5px;
+        }
+    }
+
+    @media screen and (max-width: 360px) {
+        .form-title {
+            font-size: 1.3rem;
+        }
+        legend {
+            font-size: 0.9rem;
+        }
+    }
+</style>
+</head>
+<body>
+<form action="https://docs.google.com/forms/d/e/1FAIpQLScgM-s2QSRj3Rw1fIGx3GApg263yLKqD2dAflp9AZxQIoyaLg/formResponse"
+      target="_self"
+      id="bootstrapForm"
+      method="POST">
+    <fieldset>
+       <h2 class="green redshad">Submit To 8BallTV!<br></h2>
+        <div class="topblurb">Thank you for submitting your work to us! Please use the form below.
+            <br>
+            <div class="standards-trigger">☛ Our Standards For Submissions ☚</div>
+            <br>
+            <a href= "https://8balltv.club/">← Lost? Head back to 8BallTV </a>
+            <br>
+            <span class="required-asterisk">* </span> = required field
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend for="1064795117">Your Name</legend>
+        <div class="form-group">
+            <input id="1739296288" type="text" name="entry.1739296288" class="form-control">
+            <div class="invalid-message">Please enter your name</div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend for="1064879957">Streaming Link<span class="required-asterisk"> *</span></legend>
+        <p class="formblurb">(YouTube, Vimeo, Google Drive, etc)</p>
+        <div class="form-group">
+            <input id="1194948646" type="text" name="entry.1194948646" class="form-control" required>
+            <div class="invalid-message">Please enter a streaming link</div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend for="2141634740">Title Of Work<span class="required-asterisk"> *</span></legend>
+        <div class="form-group">
+            <input id="1162145730" type="text" name="entry.1162145730" class="form-control" required>
+            <div class="invalid-message">Please enter a title</div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend for="858830176">Work Description<span class="required-asterisk"> *</span></legend>
+        <div class="form-group">
+            <textarea id="268999266" name="entry.268999266" class="form-control" required></textarea>
+            <div class="invalid-message">Please enter a description</div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend for="115142623">Email Address<span class="required-asterisk"> *</span></legend>
+        <div class="form-group">
+            <input id="1832212046" type="email" name="entry.1832212046" class="form-control" required>
+            <div class="invalid-message">Please enter a valid email address</div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend for="1115319510">Notes/Comments</legend>
+        <div class="form-group">
+            <textarea id="1489946869" name="entry.1489946869" class="form-control"></textarea>
+        </div>
+    </fieldset>
+
+    <input type="hidden" name="fvv" value="1">
+    <input type="hidden" name="fbzx" value="3626919527157505691">
+    <input type="hidden" name="pageHistory" value="0">
+
+    <input class="btn btn-primary" type="submit" value="Submit">
+</form>
+
+<div class="standards-overlay" id="standardsPopup">
+    <div class="standards-content">
+        <div class="standards-header">
+            <h3 class="standards-title">Submission Standards</h3>
+            <button class="close-btn" id="closeStandardsPopup">&times;</button>
+        </div>
+        <ol class="standards-list">
+             8 Ball TV will attempt to air all submissions, however, we reserve the right to refuse or remove videos that are deemed to be in violation of the 8 Ball Community mission. The promotion of racism, sexism, homophobia, intolerance, xenophobia, or nonconsensual behavior are in direct violation of the 8 Ball Community mission. In these cases, we will attempt to contact the video's creator for an explanation, but due to the volume of our library, this cannot be guaranteed.
+             <br> <br>
+             No commercial or branded videos are allowed. All submitters retain and own the rights to their own content.
+            <br> <br>
+
+             <a href="https://8ballcommunity.club/ABOUT" target="_blank">Learn more about our mission
+            </a>
+             <br><br>
+             Any questions:<br><a href="mailto:8balltelevision@gmail.com" target="_blank">8balltelevision@gmail.com</a>
+        </ol>
+    </div>
+</div>
+
+<script>
+document.getElementById('bootstrapForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent the default form submission
+    
+    // Get all required fields
+    const requiredFields = [
+        { id: '1194948646', name: 'Streaming link' },
+        { id: '1162145730', name: 'Title of Work' },
+        { id: '268999266', name: 'Description' },
+        { id: '1832212046', name: 'Email Address' }
+    ];
+    
+    // Validate required fields
+    let isValid = true;
+    let firstInvalidField = null;
+    
+    requiredFields.forEach(field => {
+        const input = document.getElementById(field.id);
+        const value = input.value.trim();
+        
+        if (!value) {
+            isValid = false;
+            input.classList.add('invalid');
+            if (!firstInvalidField) {
+                firstInvalidField = input;
+            }
+        } else {
+            input.classList.remove('invalid');
+            
+            // Special validation for email field
+            if (field.id === '1832212046' && !validateEmail(value)) {
+                isValid = false;
+                input.classList.add('invalid');
+                if (!firstInvalidField) {
+                    firstInvalidField = input;
+                }
+                alert('Please enter a valid email address (e.g., yourname@example.com). If you are having issues please email 8balltelevision@gmail.com.');
+            }
+        }
+    });
+    
+    if (!isValid) {
+        if (firstInvalidField) {
+            firstInvalidField.focus();
+        }
+        return false;
+    }
+    
+    // Show loading state
+    const submitBtn = document.querySelector('.btn');
+    submitBtn.disabled = true;
+    submitBtn.value = 'Submitting...';
+    
+    // Submit the form data via AJAX
+    fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this),
+        mode: 'no-cors'
+    })
+    .then(() => {
+        // Show success message
+        document.getElementById('bootstrapForm').innerHTML = `
+            <div class="success-message">
+                <h2 class="form-title">Submission Successful!</h2>
+                <p>If your submission was successful you will receive an email from us soon. Please allow us time to review. Thank you!</p>
+                <button class="btn" onclick="window.location.reload()">Submit Another</button>
+                <br>
+                <a href= "https://8balltv.club/">← Head back to 8BallTV </a>
+            </div>
+        `;
+    })
+    .catch(error => {
+        // Show error message
+        alert('Error submitting form. Please try again or email 8balltelevision@gmail.com.');
+        submitBtn.disabled = false;
+        submitBtn.value = 'Submit';
+    });
+});
+
+// Email validation function
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+// Standards popup functionality
+const standardsTrigger = document.querySelector('.standards-trigger');
+const standardsPopup = document.getElementById('standardsPopup');
+const closeStandardsPopup = document.getElementById('closeStandardsPopup');
+    
+standardsTrigger.addEventListener('click', function() {
+    standardsPopup.classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
+    
+closeStandardsPopup.addEventListener('click', function() {
+    standardsPopup.classList.remove('active');
+    document.body.style.overflow = '';
+});
+    
+standardsPopup.addEventListener('click', function(e) {
+    if (e.target === standardsPopup) {
+        standardsPopup.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+</script>
+
+</div>
+</body>
+</html>
