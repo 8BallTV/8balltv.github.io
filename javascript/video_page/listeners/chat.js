@@ -8,13 +8,16 @@ import { setupRepositionListener } from "../../utils/repositioning.js";
  * @param {null}
  * @return {null}
  */
+
+// visibility is commented out below so that nothing happens when you click the chat button - Kevin
+
 export default function registerChatButtonListener() {
   const chatButton = document.querySelector(".chat-button");
   const chatBox = document.getElementById("chatbox-container");
   chatButton.addEventListener("click", (e) => {
     if (window.getComputedStyle(chatBox).visibility === "hidden") {
-      chatBox.style.visibility = "visible";
-    } else {
+    //   chatBox.style.visibility = "visible";
+    // } else {
       chatBox.style.visibility = "hidden";
     }
   });
