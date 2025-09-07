@@ -376,6 +376,12 @@ Kevin Mead 2025 // kevinmead.com
             <br>
             <div class="standards-trigger">☛ Our Standards For Submissions ☚</div>
             <br>
+            <div class="standards-trigger" id="goodSubmissionTrigger">☛ What Makes a Good Submission? ☚</div>
+            <br>
+            General inquiries:
+            <br>
+            <a href="mailto:8balltelevision@gmail.com" target="_blank">8balltelevision@gmail.com</a>
+            <br>
             <a href= "https://8balltv.club/">← Lost? Head back to 8BallTV </a>
             <br>
             <span class="required-asterisk">* </span> = required field
@@ -391,8 +397,8 @@ Kevin Mead 2025 // kevinmead.com
     </fieldset>
 
     <fieldset>
-        <legend for="1064879957">Streaming Link<span class="required-asterisk"> *</span></legend>
-        <p class="formblurb">(YouTube, Vimeo, Google Drive, etc)</p>
+        <legend for="1064879957">Streaming Link(s)<span class="required-asterisk"> *</span></legend>
+        <p class="formblurb">(YouTube, Vimeo, Google Drive, etc). Seperate links via comma (,)</p>
         <div class="form-group">
             <input id="1194948646" type="text" name="entry.1194948646" class="form-control" required>
             <div class="invalid-message">Please enter a streaming link</div>
@@ -400,7 +406,7 @@ Kevin Mead 2025 // kevinmead.com
     </fieldset>
 
     <fieldset>
-        <legend for="2141634740">Title Of Work<span class="required-asterisk"> *</span></legend>
+        <legend for="2141634740">Title Of Work(s)<span class="required-asterisk"> *</span></legend>
         <div class="form-group">
             <input id="1162145730" type="text" name="entry.1162145730" class="form-control" required>
             <div class="invalid-message">Please enter a title</div>
@@ -408,7 +414,7 @@ Kevin Mead 2025 // kevinmead.com
     </fieldset>
 
     <fieldset>
-        <legend for="858830176">Work Description<span class="required-asterisk"> *</span></legend>
+        <legend for="858830176">Description Of Work<span class="required-asterisk"> *</span></legend>
         <div class="form-group">
             <textarea id="268999266" name="entry.268999266" class="form-control" required></textarea>
             <div class="invalid-message">Please enter a description</div>
@@ -444,15 +450,47 @@ Kevin Mead 2025 // kevinmead.com
             <button class="close-btn" id="closeStandardsPopup">&times;</button>
         </div>
         <ol class="standards-list">
-             8 Ball TV will attempt to air all submissions, however, we reserve the right to refuse or remove videos that are deemed to be in violation of the 8 Ball Community mission. The promotion of racism, sexism, homophobia, intolerance, xenophobia, or nonconsensual behavior are in direct violation of the 8 Ball Community mission. In these cases, we will attempt to contact the video's creator for an explanation, but due to the volume of our library, this cannot be guaranteed.
+            We reserve the right to refuse or remove videos that are deemed to be in violation of the 8 Ball Community mission. The promotion of racism, sexism, homophobia, intolerance, xenophobia, or nonconsensual behavior are in direct violation of the 8 Ball Community mission. In these cases, we will attempt to contact the video's creator for an explanation, but due to the volume of our library, this cannot be guaranteed.
              <br> <br>
-             No commercial or branded videos are allowed. All submitters retain and own the rights to their own content.
+             No commercial or branded videos are allowed (no ads!). 
+             <br> <br>
+             All submitters retain and own the rights to their own content. We retain the right to broadcast submitted material in purpetuity across all platforms unless otherwise indicated.
             <br> <br>
-
-             <a href="https://8ballcommunity.club/ABOUT" target="_blank">Learn more about our mission
+             <a href="https://8ballcommunity.club/ABOUT" target="_blank">Learn more about the 8-Ball mission
             </a>
+            <br> <br>
+            <i>Please also review the blurb "☛ What makes a good submission?" ☚ !</i>
              <br><br>
              Any questions:<br><a href="mailto:8balltelevision@gmail.com" target="_blank">8balltelevision@gmail.com</a>
+        </ol>
+    </div>
+</div>
+
+<div class="standards-overlay" id="goodSubmissionPopup">
+    <div class="standards-content">
+        <div class="standards-header">
+            <h3 class="standards-title">What Makes a Good Submission?</h3>
+            <button class="close-btn" id="closeGoodSubmissionPopup">&times;</button>
+        </div>
+        <ol class="standards-list">
+            8BallTV, like real TV, is programmed in blocks. Ours are made in 15 minute incriments - that means if something goes on air, it has to be 15, 30, 45, etc minutes long. 
+            <br>
+            <br>
+            Submit anything you'd like us to review to this form - but when submissions go on air, they have to follow this format! Keep this in mind when thinking about using our platform.
+            <br>
+            <br>
+            If you'd like to submit one very short film, feel free to submit to an existing content block. Calls for submissions are periodically announced on our <a href="https://www.instagram.com/8ball_tv/" target="_blank">Instagram
+            </a>. 
+            <br>
+            <br>
+            Please use this form to either submit a finished content block or a film/video you'd like to turn into a block.
+            <br>
+            <br>
+            Bumpers, (some) blank space, and eclectic BS can totally be used to fill this 15 minute incriment. Feel free to make your own or  <a href="https://drive.google.com/drive/folders/1Yt-Qxr9iu4lNHcRwZ1oKsbsARSltiqad?usp=sharing" target="_blank">use some of ours!</a>
+            <br> <br>
+             Any questions:<br><a href="mailto:8balltelevision@gmail.com" target="_blank">8balltelevision@gmail.com</a>
+             <br> <br>
+            </a>
         </ol>
     </div>
 </div>
@@ -521,7 +559,7 @@ document.getElementById('bootstrapForm').addEventListener('submit', function(e) 
         document.getElementById('bootstrapForm').innerHTML = `
             <div class="success-message">
                 <h2 class="form-title">Submission Successful!</h2>
-                <p>If your submission was successful you will receive an email from us soon. Please allow us time to review. Thank you!</p>
+                <p>Thank you so much for your submission! Please allow us time to review. </p>
                 <button class="btn" onclick="window.location.reload()">Submit Another</button>
                 <br>
                 <a href= "https://8balltv.club/">← Head back to 8BallTV </a>
@@ -560,6 +598,28 @@ closeStandardsPopup.addEventListener('click', function() {
 standardsPopup.addEventListener('click', function(e) {
     if (e.target === standardsPopup) {
         standardsPopup.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+// Good submission popup functionality
+const goodSubmissionTrigger = document.getElementById('goodSubmissionTrigger');
+const goodSubmissionPopup = document.getElementById('goodSubmissionPopup');
+const closeGoodSubmissionPopup = document.getElementById('closeGoodSubmissionPopup');
+    
+goodSubmissionTrigger.addEventListener('click', function() {
+    goodSubmissionPopup.classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
+    
+closeGoodSubmissionPopup.addEventListener('click', function() {
+    goodSubmissionPopup.classList.remove('active');
+    document.body.style.overflow = '';
+});
+    
+goodSubmissionPopup.addEventListener('click', function(e) {
+    if (e.target === goodSubmissionPopup) {
+        goodSubmissionPopup.classList.remove('active');
         document.body.style.overflow = '';
     }
 });
